@@ -1,0 +1,32 @@
+# Rust
+target/
+Cargo.lock
+**/*.rs.bk
+*.pdb
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# IntelliJ
+.idea/
+*.iml
+*.iws
+
+# VSCode
+.vscode/
+bin/
+
+# Mac
+.DS_Store
+
+# Smithy
+.smithy.lsp.log
+build/
+
+# Gradle
+.gradle/
+
+# Logs
+*.log

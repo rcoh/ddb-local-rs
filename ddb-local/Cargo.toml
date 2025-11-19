@@ -1,0 +1,35 @@
+[package]
+name = "ddb-local"
+version = "0.1.0"
+edition = "2024"
+authors = ["Russell Cohen <rcoh@rcoh.me>"]
+description = "Local DynamoDB implementation for testing"
+license = "MIT"
+repository = "https://github.com/rcoh/ddb-local-rs"
+keywords = ["dynamodb", "testing", "aws", "local"]
+categories = ["development-tools::testing"]
+
+[[bin]]
+name = "ddb-local"
+path = "src/main.rs"
+
+[dependencies]
+async-trait = "0.1"
+clap = { version = "4.5.47", features = ["derive"] }
+http = "0.2"
+hyper = { version = "0.14", features = ["server"] }
+tokio = { version = "1.47.1", features = ["full"] }
+tower = { version = "0.5.2", features = ["util"] }
+tracing-subscriber = { version = "0.3.20", features = ["env-filter"] }
+tracing = "0.1.41"
+uuid = { version = "1.18.1", features = ["v4"] }
+
+# AWS SDK
+aws-config = "=1.4"
+aws-sdk-dynamodb = { version = "1.59", features = ["test-util"] }
+
+# generated server SDK
+dynamodb_local_server_sdk = { path = "../server-sdk" }
+aws-smithy-runtime-api = "1.9.2"
+aws-smithy-types = "1.3.4"
+http-body-util = "0.1.3"
