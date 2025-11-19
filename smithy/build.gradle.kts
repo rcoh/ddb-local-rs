@@ -1,4 +1,4 @@
-description = "Smithy definition of a Cafe service."
+description = "Smithy definition of DynamoDB service."
 
 plugins {
     `java-library`
@@ -8,6 +8,7 @@ plugins {
 
 dependencies {
     val smithyVersion: String by project
+    val smithyRsVersion: String by project
 
     // Adds AWS protocol traits
     api("software.amazon.smithy:smithy-aws-traits:$smithyVersion")
@@ -16,6 +17,8 @@ dependencies {
     // ValidationException requirement enforced by smithy-rs server codegen
     api("software.amazon.smithy:smithy-validation-model:$smithyVersion")
 
+    // === Code generators ===
+    smithyBuild("software.amazon.smithy.rust:codegen-server:$smithyRsVersion")
 }
 
 // Helps the Smithy IntelliJ plugin identify models
@@ -26,3 +29,14 @@ sourceSets {
         }
     }
 }
+
+tasks.register<Copy>("copyGeneratedCode") {
+    dependsOn("smithyBuild")
+    from("build/smithyprojections/smithy/source/rust-server-codegen")
+    into("../server-sdk")
+}
+
+tasks.named("build") {
+    finalizedBy("copyGeneratedCode")
+}
+

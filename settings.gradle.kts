@@ -16,4 +16,3 @@ pluginManagement {
 
 // Subprojects
 include("smithy")
-include("ddb-local")

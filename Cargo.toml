@@ -4,3 +4,8 @@ members = [
     "ddb-local",
     "server-sdk",
 ]
+
+[workspace.package]
+edition = "2024"
+license = "MIT"
+repository = "https://github.com/rcoh/ddb-local-rs"
