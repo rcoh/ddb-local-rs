@@ -50,31 +50,31 @@ pub(crate) fn de_attribute_value<'a, I>(tokens: &mut ::std::iter::Peekable<I>) -
                             }
                             "SS" => {
                                 Some(crate::model::AttributeValue::Ss(
-                                    crate::protocol_serde::shape_string_set::de_string_set(tokens)?
+                                    crate::protocol_serde::shape_string_set_attribute_value::de_string_set_attribute_value(tokens)?
                                     .ok_or_else(|| ::aws_smithy_json::deserialize::error::DeserializeError::custom("value for 'SS' cannot be null"))?
                                 ))
                             }
                             "NS" => {
                                 Some(crate::model::AttributeValue::Ns(
-                                    crate::protocol_serde::shape_number_set::de_number_set(tokens)?
+                                    crate::protocol_serde::shape_number_set_attribute_value::de_number_set_attribute_value(tokens)?
                                     .ok_or_else(|| ::aws_smithy_json::deserialize::error::DeserializeError::custom("value for 'NS' cannot be null"))?
                                 ))
                             }
                             "BS" => {
                                 Some(crate::model::AttributeValue::Bs(
-                                    crate::protocol_serde::shape_binary_set::de_binary_set(tokens)?
+                                    crate::protocol_serde::shape_binary_set_attribute_value::de_binary_set_attribute_value(tokens)?
                                     .ok_or_else(|| ::aws_smithy_json::deserialize::error::DeserializeError::custom("value for 'BS' cannot be null"))?
                                 ))
                             }
                             "M" => {
                                 Some(crate::model::AttributeValue::M(
-                                    crate::protocol_serde::shape_attribute_map::de_attribute_map(tokens)?
+                                    crate::protocol_serde::shape_map_attribute_value::de_map_attribute_value(tokens)?
                                     .ok_or_else(|| ::aws_smithy_json::deserialize::error::DeserializeError::custom("value for 'M' cannot be null"))?
                                 ))
                             }
                             "L" => {
                                 Some(crate::model::AttributeValue::L(
-                                    crate::protocol_serde::shape_attribute_list::de_attribute_list(tokens)?
+                                    crate::protocol_serde::shape_list_attribute_value::de_list_attribute_value(tokens)?
                                     .ok_or_else(|| ::aws_smithy_json::deserialize::error::DeserializeError::custom("value for 'L' cannot be null"))?
                                 ))
                             }
@@ -105,26 +105,26 @@ pub(crate) fn de_attribute_value<'a, I>(tokens: &mut ::std::iter::Peekable<I>) -
     Ok(variant)
 }
 
-pub fn ser_attribute_value(object_6: &mut ::aws_smithy_json::serialize::JsonObjectWriter, input: &crate::model::AttributeValue) -> ::std::result::Result<(), ::aws_smithy_types::error::operation::SerializationError> {
+pub fn ser_attribute_value(object_5: &mut ::aws_smithy_json::serialize::JsonObjectWriter, input: &crate::model::AttributeValue) -> ::std::result::Result<(), ::aws_smithy_types::error::operation::SerializationError> {
     match input {
         crate::model::AttributeValue::S(inner) => {
              {
-                object_6.key("S").string(inner.as_str());
+                object_5.key("S").string(inner.as_str());
             }
         },
         crate::model::AttributeValue::N(inner) => {
              {
-                object_6.key("N").string(inner.as_str());
+                object_5.key("N").string(inner.as_str());
             }
         },
         crate::model::AttributeValue::B(inner) => {
              {
-                object_6.key("B").string_unchecked(&::aws_smithy_types::base64::encode(inner));
+                object_5.key("B").string_unchecked(&::aws_smithy_types::base64::encode(inner));
             }
         },
         crate::model::AttributeValue::Ss(inner) => {
              {
-                let mut array_1 = object_6.key("SS").start_array();
+                let mut array_1 = object_5.key("SS").start_array();
                 for item_2 in inner {
                      {
                         array_1.value().string(item_2.as_str());
@@ -135,7 +135,7 @@ pub fn ser_attribute_value(object_6: &mut ::aws_smithy_json::serialize::JsonObje
         },
         crate::model::AttributeValue::Ns(inner) => {
              {
-                let mut array_3 = object_6.key("NS").start_array();
+                let mut array_3 = object_5.key("NS").start_array();
                 for item_4 in inner {
                      {
                         array_3.value().string(item_4.as_str());
@@ -146,7 +146,7 @@ pub fn ser_attribute_value(object_6: &mut ::aws_smithy_json::serialize::JsonObje
         },
         crate::model::AttributeValue::Bs(inner) => {
              {
-                let mut array_5 = object_6.key("BS").start_array();
+                let mut array_5 = object_5.key("BS").start_array();
                 for item_6 in inner {
                      {
                         array_5.value().string_unchecked(&::aws_smithy_types::base64::encode(item_6));
@@ -158,7 +158,7 @@ pub fn ser_attribute_value(object_6: &mut ::aws_smithy_json::serialize::JsonObje
         crate::model::AttributeValue::M(inner) => {
              {
                 #[allow(unused_mut)]
-                let mut object_7 = object_6.key("M").start_object();
+                let mut object_7 = object_5.key("M").start_object();
                 for (key_8, value_9) in inner {
                      {
                         #[allow(unused_mut)]
@@ -172,7 +172,7 @@ pub fn ser_attribute_value(object_6: &mut ::aws_smithy_json::serialize::JsonObje
         },
         crate::model::AttributeValue::L(inner) => {
              {
-                let mut array_11 = object_6.key("L").start_array();
+                let mut array_11 = object_5.key("L").start_array();
                 for item_12 in inner {
                      {
                         #[allow(unused_mut)]
@@ -186,12 +186,12 @@ pub fn ser_attribute_value(object_6: &mut ::aws_smithy_json::serialize::JsonObje
         },
         crate::model::AttributeValue::Null(inner) => {
              {
-                object_6.key("NULL").boolean(*inner);
+                object_5.key("NULL").boolean(*inner);
             }
         },
         crate::model::AttributeValue::Bool(inner) => {
              {
-                object_6.key("BOOL").boolean(*inner);
+                object_5.key("BOOL").boolean(*inner);
             }
         },
     }

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import json
 
-with open('model/model.json') as f:
+with open('model/dynamo.json.bak') as f:
     model = json.load(f)
 
 shapes = model['shapes']
@@ -36,10 +36,11 @@ def find_deps(shape_id, visited=None):
     
     return visited
 
-# Start with GetItem and PutItem
+# Start with GetItem, PutItem, and CreateTable
 needed = set()
 find_deps('com.amazonaws.dynamodb#GetItem', needed)
 find_deps('com.amazonaws.dynamodb#PutItem', needed)
+find_deps('com.amazonaws.dynamodb#CreateTable', needed)
 
 # Also need the service shape
 needed.add('com.amazonaws.dynamodb#DynamoDB_20120810')
@@ -69,6 +70,7 @@ output = ['$version: "2"', '', 'namespace com.amazonaws.dynamodb', '']
 # Add necessary imports
 output.append('use aws.protocols#awsJson1_0')
 output.append('use aws.api#service')
+output.append('use smithy.framework#ValidationException')
 output.append('')
 
 # Process shapes
@@ -80,19 +82,16 @@ for shape_id in sorted(needed):
     shape_name = shape_id.split('#')[1]
     shape_type = shape['type']
     
-    # Add documentation if present
-    if 'traits' in shape and 'smithy.api#documentation' in shape['traits']:
-        doc = shape['traits']['smithy.api#documentation']
-        # Simplified doc - just first sentence
-        first_sent = doc.split('.')[0] + '.'
-        output.append(f'/// {first_sent}')
-    
     if shape_type == 'service':
         output.append('@awsJson1_0')
         output.append(f'@service(sdkId: "DynamoDB")')
         output.append(f'service {shape_name} {{')
         output.append(f'    version: "{shape["version"]}"')
-        output.append('    operations: [GetItem, PutItem]')
+        output.append('    operations: [')
+        output.append('        GetItem')
+        output.append('        PutItem')
+        output.append('        CreateTable')
+        output.append('    ]')
         output.append('}')
         output.append('')
         
@@ -100,17 +99,28 @@ for shape_id in sorted(needed):
         output.append(f'operation {shape_name} {{')
         if 'input' in shape:
             input_name = shape['input']['target'].split('#')[1]
-            output.append(f'    input := {input_name}')
+            output.append(f'    input: {input_name}')
         if 'output' in shape:
             output_name = shape['output']['target'].split('#')[1]
-            output.append(f'    output := {output_name}')
+            output.append(f'    output: {output_name}')
         if 'errors' in shape:
             errors = [e['target'].split('#')[1] for e in shape['errors']]
-            output.append(f'    errors: [{", ".join(errors)}]')
+            # Add ValidationException if not already present
+            if 'ValidationException' not in errors:
+                errors.insert(0, 'ValidationException')
+            output.append(f'    errors: [')
+            for error in errors:
+                output.append(f'        {error}')
+            output.append(f'    ]')
         output.append('}')
         output.append('')
         
     elif shape_type == 'structure':
+        # Check if this is an error structure
+        is_error = 'traits' in shape and 'smithy.api#error' in shape['traits']
+        if is_error:
+            error_type = shape['traits']['smithy.api#error']
+            output.append(f'@error("{error_type}")')
         output.append(f'structure {shape_name} {{')
         if 'members' in shape:
             for member_name, member_info in shape['members'].items():

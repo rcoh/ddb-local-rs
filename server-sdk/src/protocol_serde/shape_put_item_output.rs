@@ -24,6 +24,18 @@ pub fn ser_put_item_output_output(
         }
         object_2.finish();
     }
+    if let Some(var_6) = &input.consumed_capacity {
+        #[allow(unused_mut)]
+        let mut object_7 = object.key("ConsumedCapacity").start_object();
+        crate::protocol_serde::shape_consumed_capacity::ser_consumed_capacity(&mut object_7, var_6)?;
+        object_7.finish();
+    }
+    if let Some(var_8) = &input.item_collection_metrics {
+        #[allow(unused_mut)]
+        let mut object_9 = object.key("ItemCollectionMetrics").start_object();
+        crate::protocol_serde::shape_item_collection_metrics::ser_item_collection_metrics(&mut object_9, var_8)?;
+        object_9.finish();
+    }
     Ok(())
 }
 

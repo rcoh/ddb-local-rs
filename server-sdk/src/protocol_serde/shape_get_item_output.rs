@@ -24,6 +24,12 @@ pub fn ser_get_item_output_output(
         }
         object_2.finish();
     }
+    if let Some(var_6) = &input.consumed_capacity {
+        #[allow(unused_mut)]
+        let mut object_7 = object.key("ConsumedCapacity").start_object();
+        crate::protocol_serde::shape_consumed_capacity::ser_consumed_capacity(&mut object_7, var_6)?;
+        object_7.finish();
+    }
     Ok(())
 }
 

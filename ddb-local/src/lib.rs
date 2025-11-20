@@ -93,6 +93,49 @@ pub trait DynamoDb: Send + Sync {
         &self,
         input: input::PutItemInput,
     ) -> Result<output::PutItemOutput, error::PutItemError>;
+
+    async fn create_table(
+        &self,
+        input: input::CreateTableInput,
+    ) -> Result<output::CreateTableOutput, error::CreateTableError>;
+}
+
+macro_rules! build_service {
+    ($backend:expr) => {{
+        use dynamodb_local_server_sdk::server::{
+            instrumentation::InstrumentExt,
+            plugin::{HttpPlugins, ModelPlugins},
+        };
+        use dynamodb_local_server_sdk::{DynamoDb20120810, DynamoDb20120810Config};
+
+        let http_plugins = HttpPlugins::new().instrument();
+        let model_plugins = ModelPlugins::new();
+
+        let config = DynamoDb20120810Config::builder()
+            .http_plugin(http_plugins)
+            .model_plugin(model_plugins)
+            .build();
+
+        let get_backend = $backend.clone();
+        let put_backend = $backend.clone();
+        let create_table_backend = $backend.clone();
+
+        DynamoDb20120810::builder(config)
+            .get_item(move |input| {
+                let backend = get_backend.clone();
+                async move { backend.get_item(input).await }
+            })
+            .put_item(move |input| {
+                let backend = put_backend.clone();
+                async move { backend.put_item(input).await }
+            })
+            .create_table(move |input| {
+                let backend = create_table_backend.clone();
+                async move { backend.create_table(input).await }
+            })
+            .build()
+            .expect("failed to build DynamoDB service")
+    }};
 }
 
 /// Builder for DynamoDB local server
@@ -116,36 +159,9 @@ impl DynamoDbLocalBuilder {
 
     /// Bind to an automatically assigned port
     pub async fn bind(self) -> std::io::Result<BoundDynamoDbLocal> {
-        use dynamodb_local_server_sdk::server::{
-            instrumentation::InstrumentExt,
-            plugin::{HttpPlugins, ModelPlugins},
-        };
-        use dynamodb_local_server_sdk::{DynamoDb20120810, DynamoDb20120810Config};
         use tokio::net::TcpListener;
 
-        let http_plugins = HttpPlugins::new().instrument();
-        let model_plugins = ModelPlugins::new();
-
-        let config = DynamoDb20120810Config::builder()
-            .http_plugin(http_plugins)
-            .model_plugin(model_plugins)
-            .build();
-
-        let get_backend = self.backend.clone();
-        let put_backend = self.backend.clone();
-
-        let app = DynamoDb20120810::builder(config)
-            .get_item(move |input| {
-                let backend = get_backend.clone();
-                async move { backend.get_item(input).await }
-            })
-            .put_item(move |input| {
-                let backend = put_backend.clone();
-                async move { backend.put_item(input).await }
-            })
-            .build()
-            .expect("failed to build DynamoDB service");
-
+        let app = build_service!(self.backend);
         let listener = TcpListener::bind("127.0.0.1:0").await?;
         let addr = listener.local_addr()?;
 
@@ -168,36 +184,9 @@ impl DynamoDbLocalBuilder {
         self,
         addr: impl Into<std::net::SocketAddr>,
     ) -> std::io::Result<BoundDynamoDbLocal> {
-        use dynamodb_local_server_sdk::server::{
-            instrumentation::InstrumentExt,
-            plugin::{HttpPlugins, ModelPlugins},
-        };
-        use dynamodb_local_server_sdk::{DynamoDb20120810, DynamoDb20120810Config};
         use tokio::net::TcpListener;
 
-        let http_plugins = HttpPlugins::new().instrument();
-        let model_plugins = ModelPlugins::new();
-
-        let config = DynamoDb20120810Config::builder()
-            .http_plugin(http_plugins)
-            .model_plugin(model_plugins)
-            .build();
-
-        let get_backend = self.backend.clone();
-        let put_backend = self.backend.clone();
-
-        let app = DynamoDb20120810::builder(config)
-            .get_item(move |input| {
-                let backend = get_backend.clone();
-                async move { backend.get_item(input).await }
-            })
-            .put_item(move |input| {
-                let backend = put_backend.clone();
-                async move { backend.put_item(input).await }
-            })
-            .build()
-            .expect("failed to build DynamoDB service");
-
+        let app = build_service!(self.backend);
         let listener = TcpListener::bind(addr.into()).await?;
         let addr = listener.local_addr()?;
 
@@ -217,37 +206,8 @@ impl DynamoDbLocalBuilder {
 
     /// Create an in-memory transport (no network)
     pub fn as_http_client(self) -> InMemoryDynamoDbLocal {
-        use dynamodb_local_server_sdk::server::{
-            instrumentation::InstrumentExt,
-            plugin::{HttpPlugins, ModelPlugins},
-        };
-        use dynamodb_local_server_sdk::{DynamoDb20120810, DynamoDb20120810Config};
-
-        let http_plugins = HttpPlugins::new().instrument();
-        let model_plugins = ModelPlugins::new();
-
-        let config = DynamoDb20120810Config::builder()
-            .http_plugin(http_plugins)
-            .model_plugin(model_plugins)
-            .build();
-
-        let get_backend = self.backend.clone();
-        let put_backend = self.backend.clone();
-
-        let app = DynamoDb20120810::builder(config)
-            .get_item(move |input| {
-                let backend = get_backend.clone();
-                async move { backend.get_item(input).await }
-            })
-            .put_item(move |input| {
-                let backend = put_backend.clone();
-                async move { backend.put_item(input).await }
-            })
-            .build()
-            .expect("failed to build DynamoDB service");
-
+        let app = build_service!(self.backend);
         let boxed = DdbService::new(app);
-
         let http_client = InMemoryHttpClient::new(boxed);
 
         InMemoryDynamoDbLocal {
@@ -332,16 +292,4 @@ impl DynamoDbLocal {
     pub fn builder() -> DynamoDbLocalBuilder {
         DynamoDbLocalBuilder::new()
     }
-}
-
-pub async fn get_item(
-    _input: input::GetItemInput,
-) -> Result<output::GetItemOutput, error::GetItemError> {
-    Ok(output::GetItemOutput { item: None })
-}
-
-pub async fn put_item(
-    _input: input::PutItemInput,
-) -> Result<output::PutItemOutput, error::PutItemError> {
-    Ok(output::PutItemOutput { attributes: None })
 }

@@ -84,8 +84,34 @@ pub fn ser_get_item_http_error(error: &crate::error::GetItemError) -> std::resul
                             builder = ::aws_smithy_http::header::set_response_header_if_absent(builder, ::http::header::CONTENT_LENGTH, content_length);
                 builder.status(500).body(::aws_smithy_http_server::body::to_boxed(payload))?
             }
+            crate::error::GetItemError::InvalidEndpointException(output) => {
+                let payload = crate::protocol_serde::shape_invalid_endpoint_exception::ser_invalid_endpoint_exception_error(output)?;
+                #[allow(unused_mut)]
+                let mut builder = ::http::Response::builder();
+                builder = ::aws_smithy_http::header::set_response_header_if_absent(
+                                builder,
+                                ::http::header::CONTENT_TYPE,
+                                "application/x-amz-json-1.0",
+                            );
+                let content_length = payload.len();
+                            builder = ::aws_smithy_http::header::set_response_header_if_absent(builder, ::http::header::CONTENT_LENGTH, content_length);
+                builder.status(400).body(::aws_smithy_http_server::body::to_boxed(payload))?
+            }
             crate::error::GetItemError::ProvisionedThroughputExceededException(output) => {
                 let payload = crate::protocol_serde::shape_provisioned_throughput_exceeded_exception::ser_provisioned_throughput_exceeded_exception_error(output)?;
+                #[allow(unused_mut)]
+                let mut builder = ::http::Response::builder();
+                builder = ::aws_smithy_http::header::set_response_header_if_absent(
+                                builder,
+                                ::http::header::CONTENT_TYPE,
+                                "application/x-amz-json-1.0",
+                            );
+                let content_length = payload.len();
+                            builder = ::aws_smithy_http::header::set_response_header_if_absent(builder, ::http::header::CONTENT_LENGTH, content_length);
+                builder.status(400).body(::aws_smithy_http_server::body::to_boxed(payload))?
+            }
+            crate::error::GetItemError::RequestLimitExceeded(output) => {
+                let payload = crate::protocol_serde::shape_request_limit_exceeded::ser_request_limit_exceeded_error(output)?;
                 #[allow(unused_mut)]
                 let mut builder = ::http::Response::builder();
                 builder = ::aws_smithy_http::header::set_response_header_if_absent(
@@ -141,9 +167,23 @@ pub(crate) fn de_get_item(value: &[u8], mut builder: crate::input::get_item_inpu
                                                                     builder = builder.set_key(v);
                                                                 }
                     }
+                    "AttributesToGet" => {
+                        builder = builder.set_attributes_to_get(
+                            crate::protocol_serde::shape_attribute_name_list::de_attribute_name_list(tokens)?
+                        );
+                    }
                     "ConsistentRead" => {
                         builder = builder.set_consistent_read(
                             ::aws_smithy_json::deserialize::token::expect_bool_or_null(tokens.next())?
+                        );
+                    }
+                    "ReturnConsumedCapacity" => {
+                        builder = builder.set_return_consumed_capacity(
+                            ::aws_smithy_json::deserialize::token::expect_string_or_null(tokens.next())?.map(|s|
+                                s.to_unescaped().map(|u|
+                                    u.into_owned()
+                                )
+                            ).transpose()?
                         );
                     }
                     "ProjectionExpression" => {

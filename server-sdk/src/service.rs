@@ -3,14 +3,156 @@
                 ///
                 /// Constructed via [`DynamoDb20120810::builder`].
                 pub struct DynamoDb20120810Builder<Body, L, HttpPl, ModelPl> {
-                    get_item: Option<::aws_smithy_http_server::routing::Route<Body>>, put_item: Option<::aws_smithy_http_server::routing::Route<Body>>,
+                    create_table: Option<::aws_smithy_http_server::routing::Route<Body>>, get_item: Option<::aws_smithy_http_server::routing::Route<Body>>, put_item: Option<::aws_smithy_http_server::routing::Route<Body>>,
                     layer: L,
                     http_plugin: HttpPl,
                     model_plugin: ModelPl
                 }
 
                 impl<Body, L, HttpPl, ModelPl> DynamoDb20120810Builder<Body, L, HttpPl, ModelPl> {
-                    /// Sets the [`GetItem`](crate::operation_shape::GetItem) operation.
+                    /// Sets the [`CreateTable`](crate::operation_shape::CreateTable) operation.
+                    ///
+                    /// This should be an async function satisfying the [`Handler`](::aws_smithy_http_server::operation::Handler) trait.
+                    /// See the [operation module documentation](::aws_smithy_http_server::operation) for more information.
+                    ///
+                    /// # Example
+                    ///
+                    /// ```no_run
+                    /// use dynamodb_local_server_sdk::{DynamoDb20120810, DynamoDb20120810Config};
+                    ///
+                    /// use dynamodb_local_server_sdk::{input, output, error};
+                    ///
+                    /// async fn handler(input: input::CreateTableInput) -> Result<output::CreateTableOutput, error::CreateTableError> {
+///     todo!()
+/// }
+                    ///
+                    /// let config = DynamoDb20120810Config::builder().build();
+                    /// let app = DynamoDb20120810::builder(config)
+                    ///     .create_table(handler)
+                    ///     /* Set other handlers */
+                    ///     .build()
+                    ///     .unwrap();
+                    /// # let app: DynamoDb20120810<::aws_smithy_http_server::routing::RoutingService<::aws_smithy_http_server::protocol::aws_json::router::AwsJsonRouter<::aws_smithy_http_server::routing::Route>, ::aws_smithy_http_server::protocol::aws_json_10::AwsJson1_0>> = app;
+                    /// ```
+                    ///
+                    pub fn create_table<HandlerType, HandlerExtractors, UpgradeExtractors>(self, handler: HandlerType) -> Self
+                    where
+                        HandlerType: ::aws_smithy_http_server::operation::Handler<crate::operation_shape::CreateTable, HandlerExtractors>,
+
+                        ModelPl: ::aws_smithy_http_server::plugin::Plugin<
+                            DynamoDb20120810<L>,
+                            crate::operation_shape::CreateTable,
+                            ::aws_smithy_http_server::operation::IntoService<crate::operation_shape::CreateTable, HandlerType>
+                        >,
+                        ::aws_smithy_http_server::operation::UpgradePlugin::<UpgradeExtractors>: ::aws_smithy_http_server::plugin::Plugin<
+                            DynamoDb20120810<L>,
+                            crate::operation_shape::CreateTable,
+                            ModelPl::Output
+                        >,
+                        HttpPl: ::aws_smithy_http_server::plugin::Plugin<
+                            DynamoDb20120810<L>,
+                            crate::operation_shape::CreateTable,
+                            <
+                                ::aws_smithy_http_server::operation::UpgradePlugin::<UpgradeExtractors>
+                                as ::aws_smithy_http_server::plugin::Plugin<
+                                    DynamoDb20120810<L>,
+                                    crate::operation_shape::CreateTable,
+                                    ModelPl::Output
+                                >
+                            >::Output
+                        >,
+
+                        HttpPl::Output: ::tower::Service<::http::Request<Body>, Response = ::http::Response<::aws_smithy_http_server::body::BoxBody>, Error = ::std::convert::Infallible> + Clone + Send + 'static,
+                        <HttpPl::Output as ::tower::Service<::http::Request<Body>>>::Future: Send + 'static,
+
+                    {
+                        use ::aws_smithy_http_server::operation::OperationShapeExt;
+                        use ::aws_smithy_http_server::plugin::Plugin;
+                        let svc = crate::operation_shape::CreateTable::from_handler(handler);
+                        let svc = self.model_plugin.apply(svc);
+                        let svc = ::aws_smithy_http_server::operation::UpgradePlugin::<UpgradeExtractors>::new().apply(svc);
+                        let svc = self.http_plugin.apply(svc);
+                        self.create_table_custom(svc)
+                    }
+
+                    /// Sets the [`CreateTable`](crate::operation_shape::CreateTable) operation.
+                    ///
+                    /// This should be an async function satisfying the [`Handler`](::aws_smithy_http_server::operation::Handler) trait.
+                    /// See the [operation module documentation](::aws_smithy_http_server::operation) for more information.
+                    ///
+                    /// # Example
+                    ///
+                    /// ```no_run
+                    /// use dynamodb_local_server_sdk::{DynamoDb20120810, DynamoDb20120810Config};
+                    ///
+                    /// use dynamodb_local_server_sdk::{input, output, error};
+                    ///
+                    /// async fn handler(input: input::CreateTableInput) -> Result<output::CreateTableOutput, error::CreateTableError> {
+///     todo!()
+/// }
+                    ///
+                    /// let config = DynamoDb20120810Config::builder().build();
+                    /// let svc = ::tower::util::service_fn(handler);
+                    /// let app = DynamoDb20120810::builder(config)
+                    ///     .create_table_service(svc)
+                    ///     /* Set other handlers */
+                    ///     .build()
+                    ///     .unwrap();
+                    /// # let app: DynamoDb20120810<::aws_smithy_http_server::routing::RoutingService<::aws_smithy_http_server::protocol::aws_json::router::AwsJsonRouter<::aws_smithy_http_server::routing::Route>, ::aws_smithy_http_server::protocol::aws_json_10::AwsJson1_0>> = app;
+                    /// ```
+                    ///
+                    pub fn create_table_service<S, ServiceExtractors, UpgradeExtractors>(self, service: S) -> Self
+                    where
+                        S: ::aws_smithy_http_server::operation::OperationService<crate::operation_shape::CreateTable, ServiceExtractors>,
+
+                        ModelPl: ::aws_smithy_http_server::plugin::Plugin<
+                            DynamoDb20120810<L>,
+                            crate::operation_shape::CreateTable,
+                            ::aws_smithy_http_server::operation::Normalize<crate::operation_shape::CreateTable, S>
+                        >,
+                        ::aws_smithy_http_server::operation::UpgradePlugin::<UpgradeExtractors>: ::aws_smithy_http_server::plugin::Plugin<
+                            DynamoDb20120810<L>,
+                            crate::operation_shape::CreateTable,
+                            ModelPl::Output
+                        >,
+                        HttpPl: ::aws_smithy_http_server::plugin::Plugin<
+                            DynamoDb20120810<L>,
+                            crate::operation_shape::CreateTable,
+                            <
+                                ::aws_smithy_http_server::operation::UpgradePlugin::<UpgradeExtractors>
+                                as ::aws_smithy_http_server::plugin::Plugin<
+                                    DynamoDb20120810<L>,
+                                    crate::operation_shape::CreateTable,
+                                    ModelPl::Output
+                                >
+                            >::Output
+                        >,
+
+                        HttpPl::Output: ::tower::Service<::http::Request<Body>, Response = ::http::Response<::aws_smithy_http_server::body::BoxBody>, Error = ::std::convert::Infallible> + Clone + Send + 'static,
+                        <HttpPl::Output as ::tower::Service<::http::Request<Body>>>::Future: Send + 'static,
+
+                    {
+                        use ::aws_smithy_http_server::operation::OperationShapeExt;
+                        use ::aws_smithy_http_server::plugin::Plugin;
+                        let svc = crate::operation_shape::CreateTable::from_service(service);
+                        let svc = self.model_plugin.apply(svc);
+                        let svc = ::aws_smithy_http_server::operation::UpgradePlugin::<UpgradeExtractors>::new().apply(svc);
+                        let svc = self.http_plugin.apply(svc);
+                        self.create_table_custom(svc)
+                    }
+
+                    /// Sets the [`CreateTable`](crate::operation_shape::CreateTable) to a custom [`Service`](tower::Service).
+                    /// not constrained by the Smithy contract.
+                    fn create_table_custom<S>(mut self, svc: S) -> Self
+                    where
+                        S: ::tower::Service<::http::Request<Body>, Response = ::http::Response<::aws_smithy_http_server::body::BoxBody>, Error = ::std::convert::Infallible> + Clone + Send + 'static,
+                        S::Future: Send + 'static,
+                    {
+                        self.create_table = Some(::aws_smithy_http_server::routing::Route::new(svc));
+                        self
+                    }
+
+/// Sets the [`GetItem`](crate::operation_shape::GetItem) operation.
                     ///
                     /// This should be an async function satisfying the [`Handler`](::aws_smithy_http_server::operation::Handler) trait.
                     /// See the [operation module documentation](::aws_smithy_http_server::operation) for more information.
@@ -317,7 +459,10 @@
                     let router = {
                         use ::aws_smithy_http_server::operation::OperationShape;
                         let mut missing_operation_names = std::collections::HashMap::new();
-                        if self.get_item.is_none() {
+                        if self.create_table.is_none() {
+                                missing_operation_names.insert(crate::operation_shape::CreateTable::ID, ".create_table()");
+                            }
+if self.get_item.is_none() {
                                 missing_operation_names.insert(crate::operation_shape::GetItem::ID, ".get_item()");
                             }
 if self.put_item.is_none() {
@@ -332,7 +477,8 @@ if self.put_item.is_none() {
 
                         
 
-                        ::aws_smithy_http_server::protocol::aws_json::router::AwsJsonRouter::from_iter([(request_specs::get_item(), self.get_item.expect(unexpected_error_msg)),
+                        ::aws_smithy_http_server::protocol::aws_json::router::AwsJsonRouter::from_iter([(request_specs::create_table(), self.create_table.expect(unexpected_error_msg)),
+(request_specs::get_item(), self.get_item.expect(unexpected_error_msg)),
 (request_specs::put_item(), self.put_item.expect(unexpected_error_msg)),])
                     };
                     let svc = ::aws_smithy_http_server::routing::RoutingService::new(router);
@@ -353,6 +499,13 @@ if self.put_item.is_none() {
                     >
                 {
                     let router = ::aws_smithy_http_server::protocol::aws_json::router::AwsJsonRouter::from_iter([(
+                                request_specs::create_table(),
+                                self.create_table.unwrap_or_else(|| {
+                                    let svc = ::aws_smithy_http_server::operation::MissingFailure::<::aws_smithy_http_server::protocol::aws_json_10::AwsJson1_0>::default();
+                                    ::aws_smithy_http_server::routing::Route::new(svc)
+                                })
+                            ),
+(
                                 request_specs::get_item(),
                                 self.get_item.unwrap_or_else(|| {
                                     let svc = ::aws_smithy_http_server::operation::MissingFailure::<::aws_smithy_http_server::protocol::aws_json_10::AwsJson1_0>::default();
@@ -402,7 +555,10 @@ if self.put_item.is_none() {
                 impl std::error::Error for MissingOperationsError {}
 
             mod request_specs {
-                    pub(super) fn get_item() -> &'static str {
+                    pub(super) fn create_table() -> &'static str {
+                            "DynamoDB_20120810.CreateTable"
+                        }
+pub(super) fn get_item() -> &'static str {
                             "DynamoDB_20120810.GetItem"
                         }
 pub(super) fn put_item() -> &'static str {
@@ -441,7 +597,8 @@ pub(super) fn put_item() -> &'static str {
                         config: DynamoDb20120810Config<L, HttpPl, ModelPl>,
                     ) -> DynamoDb20120810Builder<Body, L, HttpPl, ModelPl> {
                         DynamoDb20120810Builder {
-                            get_item: None
+                            create_table: None
+, get_item: None
 , put_item: None,
                             layer: config.layers,
                             http_plugin: config.http_plugins,
@@ -470,7 +627,8 @@ pub(super) fn put_item() -> &'static str {
                         model_plugin: ModelPl
                     ) -> DynamoDb20120810Builder<Body, ::tower::layer::util::Identity, HttpPl, ModelPl> {
                         DynamoDb20120810Builder {
-                            get_item: None
+                            create_table: None
+, get_item: None
 , put_item: None,
                             layer: ::tower::layer::util::Identity::new(),
                             http_plugin,
@@ -587,18 +745,24 @@ pub(super) fn put_item() -> &'static str {
                 #[allow(clippy::enum_variant_names)]
                 #[derive(Debug, PartialEq, Eq, Clone, Copy)]
                 pub enum Operation {
-                    GetItem,PutItem
+                    CreateTable,GetItem,PutItem
                 }
 
                 impl Operation {
                     /// Returns the [operations](https://smithy.io/2.0/spec/service-types.html#operation) [`ShapeId`](::aws_smithy_http_server::shape_id::ShapeId).
                     pub fn shape_id(&self) -> ::aws_smithy_http_server::shape_id::ShapeId {
                         match self {
-                            Operation::GetItem => ::aws_smithy_http_server::shape_id::ShapeId::new("com.amazonaws.dynamodb#GetItem", "com.amazonaws.dynamodb", "GetItem")
+                            Operation::CreateTable => ::aws_smithy_http_server::shape_id::ShapeId::new("com.amazonaws.dynamodb#CreateTable", "com.amazonaws.dynamodb", "CreateTable")
+,Operation::GetItem => ::aws_smithy_http_server::shape_id::ShapeId::new("com.amazonaws.dynamodb#GetItem", "com.amazonaws.dynamodb", "GetItem")
 ,Operation::PutItem => ::aws_smithy_http_server::shape_id::ShapeId::new("com.amazonaws.dynamodb#PutItem", "com.amazonaws.dynamodb", "PutItem")
                         }
                     }
                 }
+impl<L> ::aws_smithy_http_server::service::ContainsOperation<crate::operation_shape::CreateTable>
+                        for DynamoDb20120810<L>
+                    {
+                        const VALUE: Operation = Operation::CreateTable;
+                    }
 impl<L> ::aws_smithy_http_server::service::ContainsOperation<crate::operation_shape::GetItem>
                         for DynamoDb20120810<L>
                     {
@@ -742,16 +906,16 @@ impl<L> ::aws_smithy_http_server::service::ContainsOperation<crate::operation_sh
                 ///
                 /// ```rust
                 /// scope! {
-                ///     /// Includes [`GetItem`], excluding all other operations.
+                ///     /// Includes [`CreateTable`], excluding all other operations.
                 ///     struct ScopeA {
-                ///         includes: [GetItem]
+                ///         includes: [CreateTable]
                 ///     }
                 /// }
                 ///
                 /// scope! {
-                ///     /// Excludes [`GetItem`], excluding all other operations.
+                ///     /// Excludes [`CreateTable`], excluding all other operations.
                 ///     struct ScopeB {
-                ///         excludes: [GetItem]
+                ///         excludes: [CreateTable]
                 ///     }
                 /// }
                 ///
@@ -761,8 +925,8 @@ impl<L> ::aws_smithy_http_server::service::ContainsOperation<crate::operation_sh
                 /// # impl<S, Op, T> Plugin<S, Op, T> for MockPlugin { type Output = u32; fn apply(&self, input: T) -> u32 { 3 } }
                 /// # let scoped_a = Scoped::new::<ScopeA>(MockPlugin);
                 /// # let scoped_b = Scoped::new::<ScopeB>(MockPlugin);
-                /// # let a = Plugin::<(), dynamodb_local_server_sdk::operation_shape::GetItem, u64>::apply(&scoped_a, 6);
-                /// # let b = Plugin::<(), dynamodb_local_server_sdk::operation_shape::GetItem, u64>::apply(&scoped_b, 6);
+                /// # let a = Plugin::<(), dynamodb_local_server_sdk::operation_shape::CreateTable, u64>::apply(&scoped_a, 6);
+                /// # let b = Plugin::<(), dynamodb_local_server_sdk::operation_shape::CreateTable, u64>::apply(&scoped_b, 6);
                 /// # assert_eq!(a, 3_u32);
                 /// # assert_eq!(b, 6_u64);
                 /// ```
@@ -786,6 +950,15 @@ impl<L> ::aws_smithy_http_server::service::ContainsOperation<crate::operation_sh
                         scope! { @ $ name, $ contains ($($ member)*) () ($($ temp)*) }
                     };
                     
+                        // CreateTable match found, pop from both `member` and `not_member`
+                        (@ $ name: ident, $ contains: ident (CreateTable $($ member: ident)*) ($($ temp: ident)*) (CreateTable $($ not_member: ident)*)) => {
+                            scope! { @ $ name, $ contains ($($ member)*) ($($ temp)*) ($($ not_member)*) }
+                        };
+                        // CreateTable match not found, pop from `not_member` into `temp` stack
+                        (@ $ name: ident, $ contains: ident (CreateTable $($ member: ident)*) ($($ temp: ident)*) ($ other: ident $($ not_member: ident)*)) => {
+                            scope! { @ $ name, $ contains (CreateTable $($ member)*) ($ other $($ temp)*) ($($ not_member)*) }
+                        };
+                        
                         // GetItem match found, pop from both `member` and `not_member`
                         (@ $ name: ident, $ contains: ident (GetItem $($ member: ident)*) ($($ temp: ident)*) (GetItem $($ not_member: ident)*)) => {
                             scope! { @ $ name, $ contains ($($ member)*) ($($ temp)*) ($($ not_member)*) }
@@ -818,7 +991,7 @@ impl<L> ::aws_smithy_http_server::service::ContainsOperation<crate::operation_sh
                                 excludes: []
                             }
                         }
-                        scope! { @ $ name, False ($($ include)*) () (GetItem PutItem) }
+                        scope! { @ $ name, False ($($ include)*) () (CreateTable GetItem PutItem) }
                     };
                     (
                         $(#[$ attrs:meta])*
@@ -835,7 +1008,7 @@ impl<L> ::aws_smithy_http_server::service::ContainsOperation<crate::operation_sh
                                 excludes: [$($ exclude),*]
                             }
                         }
-                        scope! { @ $ name, True ($($ exclude)*) () (GetItem PutItem) }
+                        scope! { @ $ name, True ($($ exclude)*) () (CreateTable GetItem PutItem) }
                     };
                 }
 

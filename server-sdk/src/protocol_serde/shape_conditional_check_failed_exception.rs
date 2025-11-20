@@ -15,19 +15,6 @@ pub fn ser_conditional_check_failed_exception(
     if let Some(var_1) = &input.message {
         object.key("message").string(var_1.as_str());
     }
-    if let Some(var_2) = &input.item {
-        #[allow(unused_mut)]
-        let mut object_3 = object.key("Item").start_object();
-        for (key_4, value_5) in var_2 {
-             {
-                #[allow(unused_mut)]
-                let mut object_6 = object_3.key(key_4.as_str()).start_object();
-                crate::protocol_serde::shape_attribute_value::ser_attribute_value(&mut object_6, value_5)?;
-                object_6.finish();
-            }
-        }
-        object_3.finish();
-    }
     Ok(())
 }
 

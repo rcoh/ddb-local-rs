@@ -166,7 +166,8 @@
             //! pub async fn main() {
             //!    let config = DynamoDb20120810Config::builder().build();
             //!    let app = DynamoDb20120810::builder(config)
-            //!        .get_item(get_item)
+            //!        .create_table(create_table)
+//!        .get_item(get_item)
 //!        .put_item(put_item)
             //!        .build()
             //!        .expect("failed to build an instance of DynamoDb20120810");
@@ -184,7 +185,11 @@
             //!
             //! use dynamodb_local_server_sdk::{input, output, error};
             //!
-            //! async fn get_item(input: input::GetItemInput) -> Result<output::GetItemOutput, error::GetItemError> {
+            //! async fn create_table(input: input::CreateTableInput) -> Result<output::CreateTableOutput, error::CreateTableError> {
+//!     todo!()
+//! }
+//!
+//! async fn get_item(input: input::GetItemInput) -> Result<output::GetItemOutput, error::GetItemError> {
 //!     todo!()
 //! }
 //!
@@ -221,6 +226,9 @@ pub mod server {
 /// Crate version number.
             pub static PKG_VERSION: &str = env!("CARGO_PKG_VERSION");
 
+/// Constrained types for constrained shapes.
+mod constrained;
+
 /// All error types that operations can return. Documentation on these types is copied from the model.
 pub mod error;
 
@@ -250,8 +258,8 @@ mod service;
 /// Data primitives referenced by other data types.
 pub mod types;
 
-/// Constrained types for constrained shapes.
-mod constrained;
+/// Unconstrained types for constrained shapes.
+mod unconstrained;
 
 mod mimes;
 

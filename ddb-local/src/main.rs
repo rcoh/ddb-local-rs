@@ -1,15 +1,5 @@
 use clap::Parser;
-use dynamodb_local_server_sdk::server::{
-    instrumentation::InstrumentExt,
-    layer::alb_health_check::AlbHealthCheckLayer,
-    plugin::{HttpPlugins, ModelPlugins},
-    request::request_id::ServerRequestIdProviderLayer,
-};
-use hyper::StatusCode;
-use std::net::SocketAddr;
 use tracing_subscriber::{EnvFilter, prelude::*};
-
-use dynamodb_local_server_sdk::{DynamoDb20120810, DynamoDb20120810Config};
 
 pub const DEFAULT_ADDRESS: &str = "127.0.0.1";
 pub const DEFAULT_PORT: u16 = 8888;
@@ -39,34 +29,14 @@ async fn main() {
     let args = Args::parse();
     setup_tracing();
 
-    let http_plugins = HttpPlugins::new().instrument();
-    let model_plugins = ModelPlugins::new();
+    let bind = format!("{}:{}", args.address, args.port);
+    let local = ddb_local::DynamoDbLocal::builder()
+        .bind_to_address(bind.parse().expect("unable to parse bind address"))
+        .await
+        .expect("failed to bind server");
 
-    let config = DynamoDb20120810Config::builder()
-        .layer(AlbHealthCheckLayer::from_handler("/ping", |_req| async {
-            StatusCode::OK
-        }))
-        .layer(ServerRequestIdProviderLayer::new())
-        .http_plugin(http_plugins)
-        .model_plugin(model_plugins)
-        .build();
+    tracing::info!("server listening on {}", local.addr());
 
-    let app = DynamoDb20120810::builder(config)
-        .get_item(ddb_local::get_item)
-        .put_item(ddb_local::put_item)
-        .build()
-        .expect("failed to build DynamoDB service");
-
-    let make_app = app.into_make_service_with_connect_info::<SocketAddr>();
-
-    let bind: SocketAddr = format!("{}:{}", args.address, args.port)
-        .parse()
-        .expect("unable to parse bind address");
-    let server = hyper::Server::bind(&bind).serve(make_app);
-
-    tracing::info!("server listening on {bind}");
-
-    if let Err(err) = server.await {
-        eprintln!("server error: {}", err);
-    }
+    // Keep the server running
+    tokio::signal::ctrl_c().await.expect("failed to listen for ctrl-c");
 }

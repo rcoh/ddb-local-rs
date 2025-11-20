@@ -151,7 +151,10 @@ impl DynamoDb for InMemoryDynamoDb {
         let key = table_store.key_from_item(&input.key);
         let item = table_store.items.get(&key).cloned();
 
-        Ok(output::GetItemOutput { item })
+        Ok(output::GetItemOutput {
+            item,
+            consumed_capacity: None,
+        })
     }
 
     async fn put_item(
@@ -194,7 +197,39 @@ impl DynamoDb for InMemoryDynamoDb {
         let key = table_store.key_from_item(&input.item);
         table_store.items.insert(key, input.item);
 
-        Ok(output::PutItemOutput { attributes: None })
+        Ok(output::PutItemOutput {
+            attributes: None,
+            consumed_capacity: None,
+            item_collection_metrics: None,
+        })
+    }
+
+    async fn create_table(
+        &self,
+        input: input::CreateTableInput,
+    ) -> Result<output::CreateTableOutput, error::CreateTableError> {
+        let key_schema: Vec<String> = input
+            .key_schema
+            .iter()
+            .map(|k| k.attribute_name.clone())
+            .collect();
+
+        match self.store.lock().unwrap().entry(input.table_name.clone()) {
+            Entry::Vacant(v) => {
+                v.insert(TableStore {
+                    schema: key_schema,
+                    items: HashMap::new(),
+                });
+                Ok(output::CreateTableOutput {
+                    table_description: None,
+                })
+            }
+            Entry::Occupied(_) => Err(error::CreateTableError::ResourceInUseException(
+                error::ResourceInUseException::builder()
+                    .message(Some(format!("Table {} already exists", input.table_name)))
+                    .build(),
+            )),
+        }
     }
 }
 
@@ -709,6 +744,80 @@ mod tests {
             response.item.unwrap().get("name").unwrap().as_s().unwrap(),
             "test-name"
         );
+    }
+
+    #[tokio::test]
+    async fn test_create_table() {
+        let (client, _store) = create_in_memory_dynamodb_client().await;
+
+        let result = client
+            .create_table()
+            .table_name("new-table")
+            .key_schema(
+                aws_sdk_dynamodb::types::KeySchemaElement::builder()
+                    .attribute_name("id")
+                    .key_type(aws_sdk_dynamodb::types::KeyType::Hash)
+                    .build()
+                    .unwrap(),
+            )
+            .attribute_definitions(
+                aws_sdk_dynamodb::types::AttributeDefinition::builder()
+                    .attribute_name("id")
+                    .attribute_type(aws_sdk_dynamodb::types::ScalarAttributeType::S)
+                    .build()
+                    .unwrap(),
+            )
+            .send()
+            .await;
+
+        assert!(result.is_ok());
+
+        // Verify we can use the table
+        let mut item = HashMap::new();
+        item.insert("id".to_string(), AttributeValue::S("test-id".to_string()));
+
+        let put_result = client
+            .put_item()
+            .table_name("new-table")
+            .set_item(Some(item))
+            .send()
+            .await;
+
+        assert!(put_result.is_ok());
+    }
+
+    #[tokio::test]
+    async fn test_create_table_already_exists() {
+        let (client, store) = create_in_memory_dynamodb_client().await;
+        store.create_table("existing-table", &["id"]);
+
+        let result = client
+            .create_table()
+            .table_name("existing-table")
+            .key_schema(
+                aws_sdk_dynamodb::types::KeySchemaElement::builder()
+                    .attribute_name("id")
+                    .key_type(aws_sdk_dynamodb::types::KeyType::Hash)
+                    .build()
+                    .unwrap(),
+            )
+            .attribute_definitions(
+                aws_sdk_dynamodb::types::AttributeDefinition::builder()
+                    .attribute_name("id")
+                    .attribute_type(aws_sdk_dynamodb::types::ScalarAttributeType::S)
+                    .build()
+                    .unwrap(),
+            )
+            .send()
+            .await;
+
+        assert!(result.is_err());
+        match result.unwrap_err().into_service_error() {
+            aws_sdk_dynamodb::operation::create_table::CreateTableError::ResourceInUseException(
+                _,
+            ) => {}
+            other => panic!("Expected ResourceInUseException, got: {:?}", other),
+        }
     }
 
     #[tokio::test]
