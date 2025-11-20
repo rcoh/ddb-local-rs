@@ -1,0 +1,82 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin'
+        java-version: '17'
+    
+    - name: Setup Gradle
+      uses: gradle/actions/setup-gradle@v4
+    
+    - name: Generate server SDK
+      run: ./gradlew build
+    
+    - name: Install Rust
+      uses: dtolnay/rust-toolchain@stable
+    
+    - name: Cache cargo registry
+      uses: actions/cache@v4
+      with:
+        path: ~/.cargo/registry
+        key: ${{ runner.os }}-cargo-registry-${{ hashFiles('**/Cargo.lock') }}
+    
+    - name: Cache cargo index
+      uses: actions/cache@v4
+      with:
+        path: ~/.cargo/git
+        key: ${{ runner.os }}-cargo-index-${{ hashFiles('**/Cargo.lock') }}
+    
+    - name: Cache cargo build
+      uses: actions/cache@v4
+      with:
+        path: target
+        key: ${{ runner.os }}-cargo-build-target-${{ hashFiles('**/Cargo.lock') }}
+    
+    - name: Build
+      run: cargo build --verbose
+    
+    - name: Run tests
+      run: cargo test --verbose
+    
+    - name: Check formatting
+      run: cargo fmt -p ddb-local -- --check
+    
+    - name: Run clippy
+      run: cargo clippy -- -D warnings
+
+  check-generated:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin'
+        java-version: '17'
+    
+    - name: Setup Gradle
+      uses: gradle/actions/setup-gradle@v4
+    
+    - name: Generate server SDK
+      run: ./gradlew build
+    
+    - name: Check for uncommitted changes
+      run: |
+        git diff --exit-code server-sdk/ || (echo "Generated code is out of date. Run './gradlew build' and commit the changes." && exit 1)
