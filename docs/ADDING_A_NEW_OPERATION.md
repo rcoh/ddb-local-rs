@@ -2,6 +2,18 @@
 
 This guide walks through adding support for a new DynamoDB operation. We'll use `CreateTable` as the example.
 
+## Quick Reference
+
+For experienced users, here's the checklist:
+
+1. ✅ Add operation to `smithy/extract_minimal.py` (two places: `find_deps` and service operations list)
+2. ✅ Run `cd smithy && python3 extract_minimal.py > model/main.smithy`
+3. ✅ Run `./gradlew build` from project root
+4. ✅ Check if trait method exists in `ddb-local/src/lib.rs` (may be auto-generated)
+5. ✅ Wire up in `build_service!` macro in `ddb-local/src/lib.rs` (clone backend + add handler)
+6. ✅ Implement in `impl DynamoDb for InMemoryDynamoDb` in `ddb-local/src/backend.rs`
+7. ✅ Add tests and run `cargo test`
+
 ## Overview
 
 Adding a new operation involves four steps:
@@ -75,9 +87,13 @@ pub trait DynamoDb: Send + Sync {
 }
 ```
 
+**Note**: After regenerating the SDK in Step 3, this trait method may already be present. Check before adding it manually.
+
 ### 4.2 Wire Up in the Service Builder
 
-In the `build_service!` macro in `ddb-local/src/lib.rs`, add the handler:
+In the `build_service!` macro in `ddb-local/src/lib.rs`, add the handler. You need to:
+1. Clone the backend for this operation
+2. Add the operation handler to the builder
 
 ```rust
 macro_rules! build_service {
@@ -86,7 +102,7 @@ macro_rules! build_service {
         
         let get_backend = $backend.clone();
         let put_backend = $backend.clone();
-        let create_table_backend = $backend.clone();  // Add this
+        let create_table_backend = $backend.clone();  // 1. Add this
         
         DynamoDb20120810::builder(config)
             .get_item(move |input| {
@@ -97,7 +113,7 @@ macro_rules! build_service {
                 let backend = put_backend.clone();
                 async move { backend.put_item(input).await }
             })
-            .create_table(move |input| {  // Add this block
+            .create_table(move |input| {  // 2. Add this block
                 let backend = create_table_backend.clone();
                 async move { backend.create_table(input).await }
             })
@@ -106,6 +122,8 @@ macro_rules! build_service {
     }};
 }
 ```
+
+**Important**: The operation won't work until you wire it up here, even if the trait method exists.
 
 ### 4.3 Implement in the Backend
 

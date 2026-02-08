@@ -10,6 +10,56 @@
 
 
 
+
+
+pub(crate) mod expected_attribute_map_constrained {
+    
+    #[derive(Debug, Clone)]
+                    pub(crate) struct ExpectedAttributeMapConstrained(pub(crate) std::collections::HashMap<::std::string::String, crate::model::ExpectedAttributeValue>);
+    
+                    impl crate::constrained::Constrained for ExpectedAttributeMapConstrained  {
+                        type Unconstrained = crate::unconstrained::expected_attribute_map_unconstrained::ExpectedAttributeMapUnconstrained;
+                    }
+    impl ::std::convert::From<::std::collections::HashMap::<::std::string::String, crate::model::ExpectedAttributeValue>> for ExpectedAttributeMapConstrained {
+                            fn from(v: ::std::collections::HashMap::<::std::string::String, crate::model::ExpectedAttributeValue>) -> Self {
+                                Self(v)
+                            }
+                        }
+    
+                        impl ::std::convert::From<ExpectedAttributeMapConstrained> for ::std::collections::HashMap::<::std::string::String, crate::model::ExpectedAttributeValue> {
+                            fn from(v: ExpectedAttributeMapConstrained) -> Self {
+                                v.0
+                            }
+                        }
+    
+    
+    
+    
+}
+pub(crate) mod attribute_updates_constrained {
+    
+    #[derive(Debug, Clone)]
+                    pub(crate) struct AttributeUpdatesConstrained(pub(crate) std::collections::HashMap<::std::string::String, crate::model::AttributeValueUpdate>);
+    
+                    impl crate::constrained::Constrained for AttributeUpdatesConstrained  {
+                        type Unconstrained = crate::unconstrained::attribute_updates_unconstrained::AttributeUpdatesUnconstrained;
+                    }
+    impl ::std::convert::From<::std::collections::HashMap::<::std::string::String, crate::model::AttributeValueUpdate>> for AttributeUpdatesConstrained {
+                            fn from(v: ::std::collections::HashMap::<::std::string::String, crate::model::AttributeValueUpdate>) -> Self {
+                                Self(v)
+                            }
+                        }
+    
+                        impl ::std::convert::From<AttributeUpdatesConstrained> for ::std::collections::HashMap::<::std::string::String, crate::model::AttributeValueUpdate> {
+                            fn from(v: AttributeUpdatesConstrained) -> Self {
+                                v.0
+                            }
+                        }
+    
+    
+    
+    
+}
 pub(crate) mod key_schema_constrained {
     
     #[derive(Debug, Clone)]
@@ -122,30 +172,6 @@ pub(crate) mod local_secondary_index_list_constrained {
     
                         impl ::std::convert::From<LocalSecondaryIndexListConstrained> for ::std::vec::Vec::<crate::model::LocalSecondaryIndex> {
                             fn from(v: LocalSecondaryIndexListConstrained) -> Self {
-                                v.0
-                            }
-                        }
-    
-    
-    
-    
-}
-pub(crate) mod expected_attribute_map_constrained {
-    
-    #[derive(Debug, Clone)]
-                    pub(crate) struct ExpectedAttributeMapConstrained(pub(crate) std::collections::HashMap<::std::string::String, crate::model::ExpectedAttributeValue>);
-    
-                    impl crate::constrained::Constrained for ExpectedAttributeMapConstrained  {
-                        type Unconstrained = crate::unconstrained::expected_attribute_map_unconstrained::ExpectedAttributeMapUnconstrained;
-                    }
-    impl ::std::convert::From<::std::collections::HashMap::<::std::string::String, crate::model::ExpectedAttributeValue>> for ExpectedAttributeMapConstrained {
-                            fn from(v: ::std::collections::HashMap::<::std::string::String, crate::model::ExpectedAttributeValue>) -> Self {
-                                Self(v)
-                            }
-                        }
-    
-                        impl ::std::convert::From<ExpectedAttributeMapConstrained> for ::std::collections::HashMap::<::std::string::String, crate::model::ExpectedAttributeValue> {
-                            fn from(v: ExpectedAttributeMapConstrained) -> Self {
                                 v.0
                             }
                         }

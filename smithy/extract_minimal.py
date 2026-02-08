@@ -36,11 +36,12 @@ def find_deps(shape_id, visited=None):
     
     return visited
 
-# Start with GetItem, PutItem, and CreateTable
+# Start with GetItem, PutItem, CreateTable, and UpdateItem
 needed = set()
 find_deps('com.amazonaws.dynamodb#GetItem', needed)
 find_deps('com.amazonaws.dynamodb#PutItem', needed)
 find_deps('com.amazonaws.dynamodb#CreateTable', needed)
+find_deps('com.amazonaws.dynamodb#UpdateItem', needed)
 
 # Also need the service shape
 needed.add('com.amazonaws.dynamodb#DynamoDB_20120810')
@@ -91,6 +92,7 @@ for shape_id in sorted(needed):
         output.append('        GetItem')
         output.append('        PutItem')
         output.append('        CreateTable')
+        output.append('        UpdateItem')
         output.append('    ]')
         output.append('}')
         output.append('')

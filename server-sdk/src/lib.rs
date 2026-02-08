@@ -13,6 +13,7 @@
 #![allow(clippy::result_large_err)]
 #![allow(clippy::unnecessary_map_on_constructor)]
 #![allow(clippy::deprecated_semver)]
+#![allow(clippy::uninlined_format_args)]
 #![allow(rustdoc::bare_urls)]
 #![allow(rustdoc::redundant_explicit_links)]
 #![allow(rustdoc::invalid_html_tags)]
@@ -42,20 +43,21 @@
             //! ### Running on Hyper
             //!
             //! ```rust,no_run
-            //! # use std::net::SocketAddr;
-            //! # async fn dummy() {
-            //! use dynamodb_local_server_sdk::{DynamoDb20120810, DynamoDb20120810Config};
-            //!
-            //! # let app = DynamoDb20120810::builder(
-            //! #     DynamoDb20120810Config::builder()
-            //! #         .build()
-            //! # ).build_unchecked();
-            //! let server = app.into_make_service();
-            //! let bind: SocketAddr = "127.0.0.1:6969".parse()
-            //!     .expect("unable to parse the server bind address and port");
-            //! ::hyper::Server::bind(&bind).serve(server).await.unwrap();
-            //! # }
-            //! ```
+                        //! # use std::net::SocketAddr;
+                        //! # async fn dummy() {
+                        //! use dynamodb_local_server_sdk::{DynamoDb20120810, DynamoDb20120810Config};
+                        //!
+                        //! # let app = DynamoDb20120810::builder(
+                        //! #     DynamoDb20120810Config::builder()
+                        //! #         .build()
+                        //! # ).build_unchecked();
+                        //! let server = app.into_make_service();
+                        //! let bind: SocketAddr = "127.0.0.1:6969".parse()
+                        //!     .expect("unable to parse the server bind address and port");
+                        //! ::hyper::Server::bind(&bind).serve(server).await.unwrap();
+                        //! # }
+                        //! 
+                        //! ```
             //!
             //! ### Running on Lambda
             //!
@@ -94,7 +96,7 @@
             //!         .push(LoggingPlugin)
             //!         .push(MetricsPlugin);
             //! let config = DynamoDb20120810Config::builder().build();
-            //! let builder: DynamoDb20120810Builder<Body, _, _, _> = DynamoDb20120810::builder(config);
+            //! let builder: DynamoDb20120810Builder<::hyper::Body, _, _, _> = DynamoDb20120810::builder(config);
             //! ```
             //!
             //! Check out [`crate::server::plugin`] to learn more about plugins.
@@ -159,29 +161,30 @@
             //! # Example
             //!
             //! ```rust,no_run
-            //! # use std::net::SocketAddr;
-            //! use dynamodb_local_server_sdk::{DynamoDb20120810, DynamoDb20120810Config};
-            //!
-            //! #[::tokio::main]
-            //! pub async fn main() {
-            //!    let config = DynamoDb20120810Config::builder().build();
-            //!    let app = DynamoDb20120810::builder(config)
-            //!        .create_table(create_table)
+                        //! # use std::net::SocketAddr;
+                        //! use dynamodb_local_server_sdk::{DynamoDb20120810, DynamoDb20120810Config};
+                        //!
+                        //! #[::tokio::main]
+                        //! pub async fn main() {
+                        //!    let config = DynamoDb20120810Config::builder().build();
+                        //!    let app = DynamoDb20120810::builder(config)
+                        //!        .create_table(create_table)
 //!        .get_item(get_item)
 //!        .put_item(put_item)
-            //!        .build()
-            //!        .expect("failed to build an instance of DynamoDb20120810");
-            //!
-            //!    let bind: SocketAddr = "127.0.0.1:6969".parse()
-            //!        .expect("unable to parse the server bind address and port");
-            //!    let server = ::hyper::Server::bind(&bind).serve(app.into_make_service());
-            //!    # let server = async { Ok::<_, ()>(()) };
-            //!
-            //!    // Run your service!
-            //!    if let Err(err) = server.await {
-            //!        eprintln!("server error: {:?}", err);
-            //!    }
-            //! }
+//!        .update_item(update_item)
+                        //!        .build()
+                        //!        .expect("failed to build an instance of DynamoDb20120810");
+                        //!
+                        //!    let bind: SocketAddr = "127.0.0.1:6969".parse()
+                        //!        .expect("unable to parse the server bind address and port");
+                        //!    let server = ::hyper::Server::bind(&bind).serve(app.into_make_service());
+                        //!    # let server = async { Ok::<_, ()>(()) };
+                        //!
+                        //!    // Run your service!
+                        //!    if let Err(err) = server.await {
+                        //!        eprintln!("server error: {:?}", err);
+                        //!    }
+                        //! }
             //!
             //! use dynamodb_local_server_sdk::{input, output, error};
             //!
@@ -196,14 +199,18 @@
 //! async fn put_item(input: input::PutItemInput) -> Result<output::PutItemOutput, error::PutItemError> {
 //!     todo!()
 //! }
+//!
+//! async fn update_item(input: input::UpdateItemInput) -> Result<output::UpdateItemOutput, error::UpdateItemError> {
+//!     todo!()
+//! }
             //!
             //! ```
             //!
             //! [`serve`]: https://docs.rs/hyper/0.14.16/hyper/server/struct.Builder.html#method.serve
+                    //! [hyper server]: https://docs.rs/hyper/0.14.26/hyper/server/index.html
             //! [`tower::make::MakeService`]: https://docs.rs/tower/latest/tower/make/trait.MakeService.html
             //! [HTTP binding traits]: https://smithy.io/2.0/spec/http-bindings.html
             //! [operations]: https://smithy.io/2.0/spec/service-types.html#operation
-            //! [hyper server]: https://docs.rs/hyper/latest/hyper/server/index.html
             //! [Service]: https://docs.rs/tower-service/latest/tower_service/trait.Service.html
 pub use crate::service::{
                 DynamoDb20120810,
@@ -217,7 +224,7 @@ pub use crate::service::{
 /// Contains the types that are re-exported from the `aws-smithy-http-server` crate.
 pub mod server {
     // Re-export all types from the `aws-smithy-http-server` crate.
-                pub use ::aws_smithy_http_server::*;
+                pub use ::aws_smithy_legacy_http_server::*;
     
     
 }
@@ -243,10 +250,10 @@ pub mod operation;
 
 /// A collection of types representing each operation defined in the service closure.
 ///
-/// The [plugin system](::aws_smithy_http_server::plugin) makes use of these
+/// The [plugin system](::aws_smithy_legacy_http_server::plugin) makes use of these
 /// [zero-sized types](https://doc.rust-lang.org/nomicon/exotic-sizes.html#zero-sized-types-zsts) (ZSTs) to
-/// parameterize [`Plugin`](::aws_smithy_http_server::plugin::Plugin) implementations. Their traits, such as
-/// [`OperationShape`](::aws_smithy_http_server::operation::OperationShape), can be used to provide
+/// parameterize [`Plugin`](::aws_smithy_legacy_http_server::plugin::Plugin) implementations. Their traits, such as
+/// [`OperationShape`](::aws_smithy_legacy_http_server::operation::OperationShape), can be used to provide
 /// operation specific information to the [`Layer`](::tower::Layer) being applied.
 pub mod operation_shape;
 

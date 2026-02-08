@@ -3,7 +3,7 @@
                 ///
                 /// Constructed via [`DynamoDb20120810::builder`].
                 pub struct DynamoDb20120810Builder<Body, L, HttpPl, ModelPl> {
-                    create_table: Option<::aws_smithy_http_server::routing::Route<Body>>, get_item: Option<::aws_smithy_http_server::routing::Route<Body>>, put_item: Option<::aws_smithy_http_server::routing::Route<Body>>,
+                    create_table: Option<::aws_smithy_legacy_http_server::routing::Route<Body>>, get_item: Option<::aws_smithy_legacy_http_server::routing::Route<Body>>, put_item: Option<::aws_smithy_legacy_http_server::routing::Route<Body>>, update_item: Option<::aws_smithy_legacy_http_server::routing::Route<Body>>,
                     layer: L,
                     http_plugin: HttpPl,
                     model_plugin: ModelPl
@@ -12,8 +12,8 @@
                 impl<Body, L, HttpPl, ModelPl> DynamoDb20120810Builder<Body, L, HttpPl, ModelPl> {
                     /// Sets the [`CreateTable`](crate::operation_shape::CreateTable) operation.
                     ///
-                    /// This should be an async function satisfying the [`Handler`](::aws_smithy_http_server::operation::Handler) trait.
-                    /// See the [operation module documentation](::aws_smithy_http_server::operation) for more information.
+                    /// This should be an async function satisfying the [`Handler`](::aws_smithy_legacy_http_server::operation::Handler) trait.
+                    /// See the [operation module documentation](::aws_smithy_legacy_http_server::operation) for more information.
                     ///
                     /// # Example
                     ///
@@ -32,29 +32,29 @@
                     ///     /* Set other handlers */
                     ///     .build()
                     ///     .unwrap();
-                    /// # let app: DynamoDb20120810<::aws_smithy_http_server::routing::RoutingService<::aws_smithy_http_server::protocol::aws_json::router::AwsJsonRouter<::aws_smithy_http_server::routing::Route>, ::aws_smithy_http_server::protocol::aws_json_10::AwsJson1_0>> = app;
+                    /// # let app: DynamoDb20120810<::aws_smithy_legacy_http_server::routing::RoutingService<::aws_smithy_legacy_http_server::protocol::aws_json::router::AwsJsonRouter<::aws_smithy_legacy_http_server::routing::Route>, ::aws_smithy_legacy_http_server::protocol::aws_json_10::AwsJson1_0>> = app;
                     /// ```
                     ///
                     pub fn create_table<HandlerType, HandlerExtractors, UpgradeExtractors>(self, handler: HandlerType) -> Self
                     where
-                        HandlerType: ::aws_smithy_http_server::operation::Handler<crate::operation_shape::CreateTable, HandlerExtractors>,
+                        HandlerType: ::aws_smithy_legacy_http_server::operation::Handler<crate::operation_shape::CreateTable, HandlerExtractors>,
 
-                        ModelPl: ::aws_smithy_http_server::plugin::Plugin<
+                        ModelPl: ::aws_smithy_legacy_http_server::plugin::Plugin<
                             DynamoDb20120810<L>,
                             crate::operation_shape::CreateTable,
-                            ::aws_smithy_http_server::operation::IntoService<crate::operation_shape::CreateTable, HandlerType>
+                            ::aws_smithy_legacy_http_server::operation::IntoService<crate::operation_shape::CreateTable, HandlerType>
                         >,
-                        ::aws_smithy_http_server::operation::UpgradePlugin::<UpgradeExtractors>: ::aws_smithy_http_server::plugin::Plugin<
+                        ::aws_smithy_legacy_http_server::operation::UpgradePlugin::<UpgradeExtractors>: ::aws_smithy_legacy_http_server::plugin::Plugin<
                             DynamoDb20120810<L>,
                             crate::operation_shape::CreateTable,
                             ModelPl::Output
                         >,
-                        HttpPl: ::aws_smithy_http_server::plugin::Plugin<
+                        HttpPl: ::aws_smithy_legacy_http_server::plugin::Plugin<
                             DynamoDb20120810<L>,
                             crate::operation_shape::CreateTable,
                             <
-                                ::aws_smithy_http_server::operation::UpgradePlugin::<UpgradeExtractors>
-                                as ::aws_smithy_http_server::plugin::Plugin<
+                                ::aws_smithy_legacy_http_server::operation::UpgradePlugin::<UpgradeExtractors>
+                                as ::aws_smithy_legacy_http_server::plugin::Plugin<
                                     DynamoDb20120810<L>,
                                     crate::operation_shape::CreateTable,
                                     ModelPl::Output
@@ -62,23 +62,23 @@
                             >::Output
                         >,
 
-                        HttpPl::Output: ::tower::Service<::http::Request<Body>, Response = ::http::Response<::aws_smithy_http_server::body::BoxBody>, Error = ::std::convert::Infallible> + Clone + Send + 'static,
+                        HttpPl::Output: ::tower::Service<::http::Request<Body>, Response = ::http::Response<::aws_smithy_legacy_http_server::body::BoxBody>, Error = ::std::convert::Infallible> + Clone + Send + 'static,
                         <HttpPl::Output as ::tower::Service<::http::Request<Body>>>::Future: Send + 'static,
 
                     {
-                        use ::aws_smithy_http_server::operation::OperationShapeExt;
-                        use ::aws_smithy_http_server::plugin::Plugin;
+                        use ::aws_smithy_legacy_http_server::operation::OperationShapeExt;
+                        use ::aws_smithy_legacy_http_server::plugin::Plugin;
                         let svc = crate::operation_shape::CreateTable::from_handler(handler);
                         let svc = self.model_plugin.apply(svc);
-                        let svc = ::aws_smithy_http_server::operation::UpgradePlugin::<UpgradeExtractors>::new().apply(svc);
+                        let svc = ::aws_smithy_legacy_http_server::operation::UpgradePlugin::<UpgradeExtractors>::new().apply(svc);
                         let svc = self.http_plugin.apply(svc);
                         self.create_table_custom(svc)
                     }
 
                     /// Sets the [`CreateTable`](crate::operation_shape::CreateTable) operation.
                     ///
-                    /// This should be an async function satisfying the [`Handler`](::aws_smithy_http_server::operation::Handler) trait.
-                    /// See the [operation module documentation](::aws_smithy_http_server::operation) for more information.
+                    /// This should be an async function satisfying the [`Handler`](::aws_smithy_legacy_http_server::operation::Handler) trait.
+                    /// See the [operation module documentation](::aws_smithy_legacy_http_server::operation) for more information.
                     ///
                     /// # Example
                     ///
@@ -98,29 +98,29 @@
                     ///     /* Set other handlers */
                     ///     .build()
                     ///     .unwrap();
-                    /// # let app: DynamoDb20120810<::aws_smithy_http_server::routing::RoutingService<::aws_smithy_http_server::protocol::aws_json::router::AwsJsonRouter<::aws_smithy_http_server::routing::Route>, ::aws_smithy_http_server::protocol::aws_json_10::AwsJson1_0>> = app;
+                    /// # let app: DynamoDb20120810<::aws_smithy_legacy_http_server::routing::RoutingService<::aws_smithy_legacy_http_server::protocol::aws_json::router::AwsJsonRouter<::aws_smithy_legacy_http_server::routing::Route>, ::aws_smithy_legacy_http_server::protocol::aws_json_10::AwsJson1_0>> = app;
                     /// ```
                     ///
                     pub fn create_table_service<S, ServiceExtractors, UpgradeExtractors>(self, service: S) -> Self
                     where
-                        S: ::aws_smithy_http_server::operation::OperationService<crate::operation_shape::CreateTable, ServiceExtractors>,
+                        S: ::aws_smithy_legacy_http_server::operation::OperationService<crate::operation_shape::CreateTable, ServiceExtractors>,
 
-                        ModelPl: ::aws_smithy_http_server::plugin::Plugin<
+                        ModelPl: ::aws_smithy_legacy_http_server::plugin::Plugin<
                             DynamoDb20120810<L>,
                             crate::operation_shape::CreateTable,
-                            ::aws_smithy_http_server::operation::Normalize<crate::operation_shape::CreateTable, S>
+                            ::aws_smithy_legacy_http_server::operation::Normalize<crate::operation_shape::CreateTable, S>
                         >,
-                        ::aws_smithy_http_server::operation::UpgradePlugin::<UpgradeExtractors>: ::aws_smithy_http_server::plugin::Plugin<
+                        ::aws_smithy_legacy_http_server::operation::UpgradePlugin::<UpgradeExtractors>: ::aws_smithy_legacy_http_server::plugin::Plugin<
                             DynamoDb20120810<L>,
                             crate::operation_shape::CreateTable,
                             ModelPl::Output
                         >,
-                        HttpPl: ::aws_smithy_http_server::plugin::Plugin<
+                        HttpPl: ::aws_smithy_legacy_http_server::plugin::Plugin<
                             DynamoDb20120810<L>,
                             crate::operation_shape::CreateTable,
                             <
-                                ::aws_smithy_http_server::operation::UpgradePlugin::<UpgradeExtractors>
-                                as ::aws_smithy_http_server::plugin::Plugin<
+                                ::aws_smithy_legacy_http_server::operation::UpgradePlugin::<UpgradeExtractors>
+                                as ::aws_smithy_legacy_http_server::plugin::Plugin<
                                     DynamoDb20120810<L>,
                                     crate::operation_shape::CreateTable,
                                     ModelPl::Output
@@ -128,15 +128,15 @@
                             >::Output
                         >,
 
-                        HttpPl::Output: ::tower::Service<::http::Request<Body>, Response = ::http::Response<::aws_smithy_http_server::body::BoxBody>, Error = ::std::convert::Infallible> + Clone + Send + 'static,
+                        HttpPl::Output: ::tower::Service<::http::Request<Body>, Response = ::http::Response<::aws_smithy_legacy_http_server::body::BoxBody>, Error = ::std::convert::Infallible> + Clone + Send + 'static,
                         <HttpPl::Output as ::tower::Service<::http::Request<Body>>>::Future: Send + 'static,
 
                     {
-                        use ::aws_smithy_http_server::operation::OperationShapeExt;
-                        use ::aws_smithy_http_server::plugin::Plugin;
+                        use ::aws_smithy_legacy_http_server::operation::OperationShapeExt;
+                        use ::aws_smithy_legacy_http_server::plugin::Plugin;
                         let svc = crate::operation_shape::CreateTable::from_service(service);
                         let svc = self.model_plugin.apply(svc);
-                        let svc = ::aws_smithy_http_server::operation::UpgradePlugin::<UpgradeExtractors>::new().apply(svc);
+                        let svc = ::aws_smithy_legacy_http_server::operation::UpgradePlugin::<UpgradeExtractors>::new().apply(svc);
                         let svc = self.http_plugin.apply(svc);
                         self.create_table_custom(svc)
                     }
@@ -145,17 +145,17 @@
                     /// not constrained by the Smithy contract.
                     fn create_table_custom<S>(mut self, svc: S) -> Self
                     where
-                        S: ::tower::Service<::http::Request<Body>, Response = ::http::Response<::aws_smithy_http_server::body::BoxBody>, Error = ::std::convert::Infallible> + Clone + Send + 'static,
+                        S: ::tower::Service<::http::Request<Body>, Response = ::http::Response<::aws_smithy_legacy_http_server::body::BoxBody>, Error = ::std::convert::Infallible> + Clone + Send + 'static,
                         S::Future: Send + 'static,
                     {
-                        self.create_table = Some(::aws_smithy_http_server::routing::Route::new(svc));
+                        self.create_table = Some(::aws_smithy_legacy_http_server::routing::Route::new(svc));
                         self
                     }
 
 /// Sets the [`GetItem`](crate::operation_shape::GetItem) operation.
                     ///
-                    /// This should be an async function satisfying the [`Handler`](::aws_smithy_http_server::operation::Handler) trait.
-                    /// See the [operation module documentation](::aws_smithy_http_server::operation) for more information.
+                    /// This should be an async function satisfying the [`Handler`](::aws_smithy_legacy_http_server::operation::Handler) trait.
+                    /// See the [operation module documentation](::aws_smithy_legacy_http_server::operation) for more information.
                     ///
                     /// # Example
                     ///
@@ -174,29 +174,29 @@
                     ///     /* Set other handlers */
                     ///     .build()
                     ///     .unwrap();
-                    /// # let app: DynamoDb20120810<::aws_smithy_http_server::routing::RoutingService<::aws_smithy_http_server::protocol::aws_json::router::AwsJsonRouter<::aws_smithy_http_server::routing::Route>, ::aws_smithy_http_server::protocol::aws_json_10::AwsJson1_0>> = app;
+                    /// # let app: DynamoDb20120810<::aws_smithy_legacy_http_server::routing::RoutingService<::aws_smithy_legacy_http_server::protocol::aws_json::router::AwsJsonRouter<::aws_smithy_legacy_http_server::routing::Route>, ::aws_smithy_legacy_http_server::protocol::aws_json_10::AwsJson1_0>> = app;
                     /// ```
                     ///
                     pub fn get_item<HandlerType, HandlerExtractors, UpgradeExtractors>(self, handler: HandlerType) -> Self
                     where
-                        HandlerType: ::aws_smithy_http_server::operation::Handler<crate::operation_shape::GetItem, HandlerExtractors>,
+                        HandlerType: ::aws_smithy_legacy_http_server::operation::Handler<crate::operation_shape::GetItem, HandlerExtractors>,
 
-                        ModelPl: ::aws_smithy_http_server::plugin::Plugin<
+                        ModelPl: ::aws_smithy_legacy_http_server::plugin::Plugin<
                             DynamoDb20120810<L>,
                             crate::operation_shape::GetItem,
-                            ::aws_smithy_http_server::operation::IntoService<crate::operation_shape::GetItem, HandlerType>
+                            ::aws_smithy_legacy_http_server::operation::IntoService<crate::operation_shape::GetItem, HandlerType>
                         >,
-                        ::aws_smithy_http_server::operation::UpgradePlugin::<UpgradeExtractors>: ::aws_smithy_http_server::plugin::Plugin<
+                        ::aws_smithy_legacy_http_server::operation::UpgradePlugin::<UpgradeExtractors>: ::aws_smithy_legacy_http_server::plugin::Plugin<
                             DynamoDb20120810<L>,
                             crate::operation_shape::GetItem,
                             ModelPl::Output
                         >,
-                        HttpPl: ::aws_smithy_http_server::plugin::Plugin<
+                        HttpPl: ::aws_smithy_legacy_http_server::plugin::Plugin<
                             DynamoDb20120810<L>,
                             crate::operation_shape::GetItem,
                             <
-                                ::aws_smithy_http_server::operation::UpgradePlugin::<UpgradeExtractors>
-                                as ::aws_smithy_http_server::plugin::Plugin<
+                                ::aws_smithy_legacy_http_server::operation::UpgradePlugin::<UpgradeExtractors>
+                                as ::aws_smithy_legacy_http_server::plugin::Plugin<
                                     DynamoDb20120810<L>,
                                     crate::operation_shape::GetItem,
                                     ModelPl::Output
@@ -204,23 +204,23 @@
                             >::Output
                         >,
 
-                        HttpPl::Output: ::tower::Service<::http::Request<Body>, Response = ::http::Response<::aws_smithy_http_server::body::BoxBody>, Error = ::std::convert::Infallible> + Clone + Send + 'static,
+                        HttpPl::Output: ::tower::Service<::http::Request<Body>, Response = ::http::Response<::aws_smithy_legacy_http_server::body::BoxBody>, Error = ::std::convert::Infallible> + Clone + Send + 'static,
                         <HttpPl::Output as ::tower::Service<::http::Request<Body>>>::Future: Send + 'static,
 
                     {
-                        use ::aws_smithy_http_server::operation::OperationShapeExt;
-                        use ::aws_smithy_http_server::plugin::Plugin;
+                        use ::aws_smithy_legacy_http_server::operation::OperationShapeExt;
+                        use ::aws_smithy_legacy_http_server::plugin::Plugin;
                         let svc = crate::operation_shape::GetItem::from_handler(handler);
                         let svc = self.model_plugin.apply(svc);
-                        let svc = ::aws_smithy_http_server::operation::UpgradePlugin::<UpgradeExtractors>::new().apply(svc);
+                        let svc = ::aws_smithy_legacy_http_server::operation::UpgradePlugin::<UpgradeExtractors>::new().apply(svc);
                         let svc = self.http_plugin.apply(svc);
                         self.get_item_custom(svc)
                     }
 
                     /// Sets the [`GetItem`](crate::operation_shape::GetItem) operation.
                     ///
-                    /// This should be an async function satisfying the [`Handler`](::aws_smithy_http_server::operation::Handler) trait.
-                    /// See the [operation module documentation](::aws_smithy_http_server::operation) for more information.
+                    /// This should be an async function satisfying the [`Handler`](::aws_smithy_legacy_http_server::operation::Handler) trait.
+                    /// See the [operation module documentation](::aws_smithy_legacy_http_server::operation) for more information.
                     ///
                     /// # Example
                     ///
@@ -240,29 +240,29 @@
                     ///     /* Set other handlers */
                     ///     .build()
                     ///     .unwrap();
-                    /// # let app: DynamoDb20120810<::aws_smithy_http_server::routing::RoutingService<::aws_smithy_http_server::protocol::aws_json::router::AwsJsonRouter<::aws_smithy_http_server::routing::Route>, ::aws_smithy_http_server::protocol::aws_json_10::AwsJson1_0>> = app;
+                    /// # let app: DynamoDb20120810<::aws_smithy_legacy_http_server::routing::RoutingService<::aws_smithy_legacy_http_server::protocol::aws_json::router::AwsJsonRouter<::aws_smithy_legacy_http_server::routing::Route>, ::aws_smithy_legacy_http_server::protocol::aws_json_10::AwsJson1_0>> = app;
                     /// ```
                     ///
                     pub fn get_item_service<S, ServiceExtractors, UpgradeExtractors>(self, service: S) -> Self
                     where
-                        S: ::aws_smithy_http_server::operation::OperationService<crate::operation_shape::GetItem, ServiceExtractors>,
+                        S: ::aws_smithy_legacy_http_server::operation::OperationService<crate::operation_shape::GetItem, ServiceExtractors>,
 
-                        ModelPl: ::aws_smithy_http_server::plugin::Plugin<
+                        ModelPl: ::aws_smithy_legacy_http_server::plugin::Plugin<
                             DynamoDb20120810<L>,
                             crate::operation_shape::GetItem,
-                            ::aws_smithy_http_server::operation::Normalize<crate::operation_shape::GetItem, S>
+                            ::aws_smithy_legacy_http_server::operation::Normalize<crate::operation_shape::GetItem, S>
                         >,
-                        ::aws_smithy_http_server::operation::UpgradePlugin::<UpgradeExtractors>: ::aws_smithy_http_server::plugin::Plugin<
+                        ::aws_smithy_legacy_http_server::operation::UpgradePlugin::<UpgradeExtractors>: ::aws_smithy_legacy_http_server::plugin::Plugin<
                             DynamoDb20120810<L>,
                             crate::operation_shape::GetItem,
                             ModelPl::Output
                         >,
-                        HttpPl: ::aws_smithy_http_server::plugin::Plugin<
+                        HttpPl: ::aws_smithy_legacy_http_server::plugin::Plugin<
                             DynamoDb20120810<L>,
                             crate::operation_shape::GetItem,
                             <
-                                ::aws_smithy_http_server::operation::UpgradePlugin::<UpgradeExtractors>
-                                as ::aws_smithy_http_server::plugin::Plugin<
+                                ::aws_smithy_legacy_http_server::operation::UpgradePlugin::<UpgradeExtractors>
+                                as ::aws_smithy_legacy_http_server::plugin::Plugin<
                                     DynamoDb20120810<L>,
                                     crate::operation_shape::GetItem,
                                     ModelPl::Output
@@ -270,15 +270,15 @@
                             >::Output
                         >,
 
-                        HttpPl::Output: ::tower::Service<::http::Request<Body>, Response = ::http::Response<::aws_smithy_http_server::body::BoxBody>, Error = ::std::convert::Infallible> + Clone + Send + 'static,
+                        HttpPl::Output: ::tower::Service<::http::Request<Body>, Response = ::http::Response<::aws_smithy_legacy_http_server::body::BoxBody>, Error = ::std::convert::Infallible> + Clone + Send + 'static,
                         <HttpPl::Output as ::tower::Service<::http::Request<Body>>>::Future: Send + 'static,
 
                     {
-                        use ::aws_smithy_http_server::operation::OperationShapeExt;
-                        use ::aws_smithy_http_server::plugin::Plugin;
+                        use ::aws_smithy_legacy_http_server::operation::OperationShapeExt;
+                        use ::aws_smithy_legacy_http_server::plugin::Plugin;
                         let svc = crate::operation_shape::GetItem::from_service(service);
                         let svc = self.model_plugin.apply(svc);
-                        let svc = ::aws_smithy_http_server::operation::UpgradePlugin::<UpgradeExtractors>::new().apply(svc);
+                        let svc = ::aws_smithy_legacy_http_server::operation::UpgradePlugin::<UpgradeExtractors>::new().apply(svc);
                         let svc = self.http_plugin.apply(svc);
                         self.get_item_custom(svc)
                     }
@@ -287,17 +287,17 @@
                     /// not constrained by the Smithy contract.
                     fn get_item_custom<S>(mut self, svc: S) -> Self
                     where
-                        S: ::tower::Service<::http::Request<Body>, Response = ::http::Response<::aws_smithy_http_server::body::BoxBody>, Error = ::std::convert::Infallible> + Clone + Send + 'static,
+                        S: ::tower::Service<::http::Request<Body>, Response = ::http::Response<::aws_smithy_legacy_http_server::body::BoxBody>, Error = ::std::convert::Infallible> + Clone + Send + 'static,
                         S::Future: Send + 'static,
                     {
-                        self.get_item = Some(::aws_smithy_http_server::routing::Route::new(svc));
+                        self.get_item = Some(::aws_smithy_legacy_http_server::routing::Route::new(svc));
                         self
                     }
 
 /// Sets the [`PutItem`](crate::operation_shape::PutItem) operation.
                     ///
-                    /// This should be an async function satisfying the [`Handler`](::aws_smithy_http_server::operation::Handler) trait.
-                    /// See the [operation module documentation](::aws_smithy_http_server::operation) for more information.
+                    /// This should be an async function satisfying the [`Handler`](::aws_smithy_legacy_http_server::operation::Handler) trait.
+                    /// See the [operation module documentation](::aws_smithy_legacy_http_server::operation) for more information.
                     ///
                     /// # Example
                     ///
@@ -316,29 +316,29 @@
                     ///     /* Set other handlers */
                     ///     .build()
                     ///     .unwrap();
-                    /// # let app: DynamoDb20120810<::aws_smithy_http_server::routing::RoutingService<::aws_smithy_http_server::protocol::aws_json::router::AwsJsonRouter<::aws_smithy_http_server::routing::Route>, ::aws_smithy_http_server::protocol::aws_json_10::AwsJson1_0>> = app;
+                    /// # let app: DynamoDb20120810<::aws_smithy_legacy_http_server::routing::RoutingService<::aws_smithy_legacy_http_server::protocol::aws_json::router::AwsJsonRouter<::aws_smithy_legacy_http_server::routing::Route>, ::aws_smithy_legacy_http_server::protocol::aws_json_10::AwsJson1_0>> = app;
                     /// ```
                     ///
                     pub fn put_item<HandlerType, HandlerExtractors, UpgradeExtractors>(self, handler: HandlerType) -> Self
                     where
-                        HandlerType: ::aws_smithy_http_server::operation::Handler<crate::operation_shape::PutItem, HandlerExtractors>,
+                        HandlerType: ::aws_smithy_legacy_http_server::operation::Handler<crate::operation_shape::PutItem, HandlerExtractors>,
 
-                        ModelPl: ::aws_smithy_http_server::plugin::Plugin<
+                        ModelPl: ::aws_smithy_legacy_http_server::plugin::Plugin<
                             DynamoDb20120810<L>,
                             crate::operation_shape::PutItem,
-                            ::aws_smithy_http_server::operation::IntoService<crate::operation_shape::PutItem, HandlerType>
+                            ::aws_smithy_legacy_http_server::operation::IntoService<crate::operation_shape::PutItem, HandlerType>
                         >,
-                        ::aws_smithy_http_server::operation::UpgradePlugin::<UpgradeExtractors>: ::aws_smithy_http_server::plugin::Plugin<
+                        ::aws_smithy_legacy_http_server::operation::UpgradePlugin::<UpgradeExtractors>: ::aws_smithy_legacy_http_server::plugin::Plugin<
                             DynamoDb20120810<L>,
                             crate::operation_shape::PutItem,
                             ModelPl::Output
                         >,
-                        HttpPl: ::aws_smithy_http_server::plugin::Plugin<
+                        HttpPl: ::aws_smithy_legacy_http_server::plugin::Plugin<
                             DynamoDb20120810<L>,
                             crate::operation_shape::PutItem,
                             <
-                                ::aws_smithy_http_server::operation::UpgradePlugin::<UpgradeExtractors>
-                                as ::aws_smithy_http_server::plugin::Plugin<
+                                ::aws_smithy_legacy_http_server::operation::UpgradePlugin::<UpgradeExtractors>
+                                as ::aws_smithy_legacy_http_server::plugin::Plugin<
                                     DynamoDb20120810<L>,
                                     crate::operation_shape::PutItem,
                                     ModelPl::Output
@@ -346,23 +346,23 @@
                             >::Output
                         >,
 
-                        HttpPl::Output: ::tower::Service<::http::Request<Body>, Response = ::http::Response<::aws_smithy_http_server::body::BoxBody>, Error = ::std::convert::Infallible> + Clone + Send + 'static,
+                        HttpPl::Output: ::tower::Service<::http::Request<Body>, Response = ::http::Response<::aws_smithy_legacy_http_server::body::BoxBody>, Error = ::std::convert::Infallible> + Clone + Send + 'static,
                         <HttpPl::Output as ::tower::Service<::http::Request<Body>>>::Future: Send + 'static,
 
                     {
-                        use ::aws_smithy_http_server::operation::OperationShapeExt;
-                        use ::aws_smithy_http_server::plugin::Plugin;
+                        use ::aws_smithy_legacy_http_server::operation::OperationShapeExt;
+                        use ::aws_smithy_legacy_http_server::plugin::Plugin;
                         let svc = crate::operation_shape::PutItem::from_handler(handler);
                         let svc = self.model_plugin.apply(svc);
-                        let svc = ::aws_smithy_http_server::operation::UpgradePlugin::<UpgradeExtractors>::new().apply(svc);
+                        let svc = ::aws_smithy_legacy_http_server::operation::UpgradePlugin::<UpgradeExtractors>::new().apply(svc);
                         let svc = self.http_plugin.apply(svc);
                         self.put_item_custom(svc)
                     }
 
                     /// Sets the [`PutItem`](crate::operation_shape::PutItem) operation.
                     ///
-                    /// This should be an async function satisfying the [`Handler`](::aws_smithy_http_server::operation::Handler) trait.
-                    /// See the [operation module documentation](::aws_smithy_http_server::operation) for more information.
+                    /// This should be an async function satisfying the [`Handler`](::aws_smithy_legacy_http_server::operation::Handler) trait.
+                    /// See the [operation module documentation](::aws_smithy_legacy_http_server::operation) for more information.
                     ///
                     /// # Example
                     ///
@@ -382,29 +382,29 @@
                     ///     /* Set other handlers */
                     ///     .build()
                     ///     .unwrap();
-                    /// # let app: DynamoDb20120810<::aws_smithy_http_server::routing::RoutingService<::aws_smithy_http_server::protocol::aws_json::router::AwsJsonRouter<::aws_smithy_http_server::routing::Route>, ::aws_smithy_http_server::protocol::aws_json_10::AwsJson1_0>> = app;
+                    /// # let app: DynamoDb20120810<::aws_smithy_legacy_http_server::routing::RoutingService<::aws_smithy_legacy_http_server::protocol::aws_json::router::AwsJsonRouter<::aws_smithy_legacy_http_server::routing::Route>, ::aws_smithy_legacy_http_server::protocol::aws_json_10::AwsJson1_0>> = app;
                     /// ```
                     ///
                     pub fn put_item_service<S, ServiceExtractors, UpgradeExtractors>(self, service: S) -> Self
                     where
-                        S: ::aws_smithy_http_server::operation::OperationService<crate::operation_shape::PutItem, ServiceExtractors>,
+                        S: ::aws_smithy_legacy_http_server::operation::OperationService<crate::operation_shape::PutItem, ServiceExtractors>,
 
-                        ModelPl: ::aws_smithy_http_server::plugin::Plugin<
+                        ModelPl: ::aws_smithy_legacy_http_server::plugin::Plugin<
                             DynamoDb20120810<L>,
                             crate::operation_shape::PutItem,
-                            ::aws_smithy_http_server::operation::Normalize<crate::operation_shape::PutItem, S>
+                            ::aws_smithy_legacy_http_server::operation::Normalize<crate::operation_shape::PutItem, S>
                         >,
-                        ::aws_smithy_http_server::operation::UpgradePlugin::<UpgradeExtractors>: ::aws_smithy_http_server::plugin::Plugin<
+                        ::aws_smithy_legacy_http_server::operation::UpgradePlugin::<UpgradeExtractors>: ::aws_smithy_legacy_http_server::plugin::Plugin<
                             DynamoDb20120810<L>,
                             crate::operation_shape::PutItem,
                             ModelPl::Output
                         >,
-                        HttpPl: ::aws_smithy_http_server::plugin::Plugin<
+                        HttpPl: ::aws_smithy_legacy_http_server::plugin::Plugin<
                             DynamoDb20120810<L>,
                             crate::operation_shape::PutItem,
                             <
-                                ::aws_smithy_http_server::operation::UpgradePlugin::<UpgradeExtractors>
-                                as ::aws_smithy_http_server::plugin::Plugin<
+                                ::aws_smithy_legacy_http_server::operation::UpgradePlugin::<UpgradeExtractors>
+                                as ::aws_smithy_legacy_http_server::plugin::Plugin<
                                     DynamoDb20120810<L>,
                                     crate::operation_shape::PutItem,
                                     ModelPl::Output
@@ -412,15 +412,15 @@
                             >::Output
                         >,
 
-                        HttpPl::Output: ::tower::Service<::http::Request<Body>, Response = ::http::Response<::aws_smithy_http_server::body::BoxBody>, Error = ::std::convert::Infallible> + Clone + Send + 'static,
+                        HttpPl::Output: ::tower::Service<::http::Request<Body>, Response = ::http::Response<::aws_smithy_legacy_http_server::body::BoxBody>, Error = ::std::convert::Infallible> + Clone + Send + 'static,
                         <HttpPl::Output as ::tower::Service<::http::Request<Body>>>::Future: Send + 'static,
 
                     {
-                        use ::aws_smithy_http_server::operation::OperationShapeExt;
-                        use ::aws_smithy_http_server::plugin::Plugin;
+                        use ::aws_smithy_legacy_http_server::operation::OperationShapeExt;
+                        use ::aws_smithy_legacy_http_server::plugin::Plugin;
                         let svc = crate::operation_shape::PutItem::from_service(service);
                         let svc = self.model_plugin.apply(svc);
-                        let svc = ::aws_smithy_http_server::operation::UpgradePlugin::<UpgradeExtractors>::new().apply(svc);
+                        let svc = ::aws_smithy_legacy_http_server::operation::UpgradePlugin::<UpgradeExtractors>::new().apply(svc);
                         let svc = self.http_plugin.apply(svc);
                         self.put_item_custom(svc)
                     }
@@ -429,10 +429,152 @@
                     /// not constrained by the Smithy contract.
                     fn put_item_custom<S>(mut self, svc: S) -> Self
                     where
-                        S: ::tower::Service<::http::Request<Body>, Response = ::http::Response<::aws_smithy_http_server::body::BoxBody>, Error = ::std::convert::Infallible> + Clone + Send + 'static,
+                        S: ::tower::Service<::http::Request<Body>, Response = ::http::Response<::aws_smithy_legacy_http_server::body::BoxBody>, Error = ::std::convert::Infallible> + Clone + Send + 'static,
                         S::Future: Send + 'static,
                     {
-                        self.put_item = Some(::aws_smithy_http_server::routing::Route::new(svc));
+                        self.put_item = Some(::aws_smithy_legacy_http_server::routing::Route::new(svc));
+                        self
+                    }
+
+/// Sets the [`UpdateItem`](crate::operation_shape::UpdateItem) operation.
+                    ///
+                    /// This should be an async function satisfying the [`Handler`](::aws_smithy_legacy_http_server::operation::Handler) trait.
+                    /// See the [operation module documentation](::aws_smithy_legacy_http_server::operation) for more information.
+                    ///
+                    /// # Example
+                    ///
+                    /// ```no_run
+                    /// use dynamodb_local_server_sdk::{DynamoDb20120810, DynamoDb20120810Config};
+                    ///
+                    /// use dynamodb_local_server_sdk::{input, output, error};
+                    ///
+                    /// async fn handler(input: input::UpdateItemInput) -> Result<output::UpdateItemOutput, error::UpdateItemError> {
+///     todo!()
+/// }
+                    ///
+                    /// let config = DynamoDb20120810Config::builder().build();
+                    /// let app = DynamoDb20120810::builder(config)
+                    ///     .update_item(handler)
+                    ///     /* Set other handlers */
+                    ///     .build()
+                    ///     .unwrap();
+                    /// # let app: DynamoDb20120810<::aws_smithy_legacy_http_server::routing::RoutingService<::aws_smithy_legacy_http_server::protocol::aws_json::router::AwsJsonRouter<::aws_smithy_legacy_http_server::routing::Route>, ::aws_smithy_legacy_http_server::protocol::aws_json_10::AwsJson1_0>> = app;
+                    /// ```
+                    ///
+                    pub fn update_item<HandlerType, HandlerExtractors, UpgradeExtractors>(self, handler: HandlerType) -> Self
+                    where
+                        HandlerType: ::aws_smithy_legacy_http_server::operation::Handler<crate::operation_shape::UpdateItem, HandlerExtractors>,
+
+                        ModelPl: ::aws_smithy_legacy_http_server::plugin::Plugin<
+                            DynamoDb20120810<L>,
+                            crate::operation_shape::UpdateItem,
+                            ::aws_smithy_legacy_http_server::operation::IntoService<crate::operation_shape::UpdateItem, HandlerType>
+                        >,
+                        ::aws_smithy_legacy_http_server::operation::UpgradePlugin::<UpgradeExtractors>: ::aws_smithy_legacy_http_server::plugin::Plugin<
+                            DynamoDb20120810<L>,
+                            crate::operation_shape::UpdateItem,
+                            ModelPl::Output
+                        >,
+                        HttpPl: ::aws_smithy_legacy_http_server::plugin::Plugin<
+                            DynamoDb20120810<L>,
+                            crate::operation_shape::UpdateItem,
+                            <
+                                ::aws_smithy_legacy_http_server::operation::UpgradePlugin::<UpgradeExtractors>
+                                as ::aws_smithy_legacy_http_server::plugin::Plugin<
+                                    DynamoDb20120810<L>,
+                                    crate::operation_shape::UpdateItem,
+                                    ModelPl::Output
+                                >
+                            >::Output
+                        >,
+
+                        HttpPl::Output: ::tower::Service<::http::Request<Body>, Response = ::http::Response<::aws_smithy_legacy_http_server::body::BoxBody>, Error = ::std::convert::Infallible> + Clone + Send + 'static,
+                        <HttpPl::Output as ::tower::Service<::http::Request<Body>>>::Future: Send + 'static,
+
+                    {
+                        use ::aws_smithy_legacy_http_server::operation::OperationShapeExt;
+                        use ::aws_smithy_legacy_http_server::plugin::Plugin;
+                        let svc = crate::operation_shape::UpdateItem::from_handler(handler);
+                        let svc = self.model_plugin.apply(svc);
+                        let svc = ::aws_smithy_legacy_http_server::operation::UpgradePlugin::<UpgradeExtractors>::new().apply(svc);
+                        let svc = self.http_plugin.apply(svc);
+                        self.update_item_custom(svc)
+                    }
+
+                    /// Sets the [`UpdateItem`](crate::operation_shape::UpdateItem) operation.
+                    ///
+                    /// This should be an async function satisfying the [`Handler`](::aws_smithy_legacy_http_server::operation::Handler) trait.
+                    /// See the [operation module documentation](::aws_smithy_legacy_http_server::operation) for more information.
+                    ///
+                    /// # Example
+                    ///
+                    /// ```no_run
+                    /// use dynamodb_local_server_sdk::{DynamoDb20120810, DynamoDb20120810Config};
+                    ///
+                    /// use dynamodb_local_server_sdk::{input, output, error};
+                    ///
+                    /// async fn handler(input: input::UpdateItemInput) -> Result<output::UpdateItemOutput, error::UpdateItemError> {
+///     todo!()
+/// }
+                    ///
+                    /// let config = DynamoDb20120810Config::builder().build();
+                    /// let svc = ::tower::util::service_fn(handler);
+                    /// let app = DynamoDb20120810::builder(config)
+                    ///     .update_item_service(svc)
+                    ///     /* Set other handlers */
+                    ///     .build()
+                    ///     .unwrap();
+                    /// # let app: DynamoDb20120810<::aws_smithy_legacy_http_server::routing::RoutingService<::aws_smithy_legacy_http_server::protocol::aws_json::router::AwsJsonRouter<::aws_smithy_legacy_http_server::routing::Route>, ::aws_smithy_legacy_http_server::protocol::aws_json_10::AwsJson1_0>> = app;
+                    /// ```
+                    ///
+                    pub fn update_item_service<S, ServiceExtractors, UpgradeExtractors>(self, service: S) -> Self
+                    where
+                        S: ::aws_smithy_legacy_http_server::operation::OperationService<crate::operation_shape::UpdateItem, ServiceExtractors>,
+
+                        ModelPl: ::aws_smithy_legacy_http_server::plugin::Plugin<
+                            DynamoDb20120810<L>,
+                            crate::operation_shape::UpdateItem,
+                            ::aws_smithy_legacy_http_server::operation::Normalize<crate::operation_shape::UpdateItem, S>
+                        >,
+                        ::aws_smithy_legacy_http_server::operation::UpgradePlugin::<UpgradeExtractors>: ::aws_smithy_legacy_http_server::plugin::Plugin<
+                            DynamoDb20120810<L>,
+                            crate::operation_shape::UpdateItem,
+                            ModelPl::Output
+                        >,
+                        HttpPl: ::aws_smithy_legacy_http_server::plugin::Plugin<
+                            DynamoDb20120810<L>,
+                            crate::operation_shape::UpdateItem,
+                            <
+                                ::aws_smithy_legacy_http_server::operation::UpgradePlugin::<UpgradeExtractors>
+                                as ::aws_smithy_legacy_http_server::plugin::Plugin<
+                                    DynamoDb20120810<L>,
+                                    crate::operation_shape::UpdateItem,
+                                    ModelPl::Output
+                                >
+                            >::Output
+                        >,
+
+                        HttpPl::Output: ::tower::Service<::http::Request<Body>, Response = ::http::Response<::aws_smithy_legacy_http_server::body::BoxBody>, Error = ::std::convert::Infallible> + Clone + Send + 'static,
+                        <HttpPl::Output as ::tower::Service<::http::Request<Body>>>::Future: Send + 'static,
+
+                    {
+                        use ::aws_smithy_legacy_http_server::operation::OperationShapeExt;
+                        use ::aws_smithy_legacy_http_server::plugin::Plugin;
+                        let svc = crate::operation_shape::UpdateItem::from_service(service);
+                        let svc = self.model_plugin.apply(svc);
+                        let svc = ::aws_smithy_legacy_http_server::operation::UpgradePlugin::<UpgradeExtractors>::new().apply(svc);
+                        let svc = self.http_plugin.apply(svc);
+                        self.update_item_custom(svc)
+                    }
+
+                    /// Sets the [`UpdateItem`](crate::operation_shape::UpdateItem) to a custom [`Service`](tower::Service).
+                    /// not constrained by the Smithy contract.
+                    fn update_item_custom<S>(mut self, svc: S) -> Self
+                    where
+                        S: ::tower::Service<::http::Request<Body>, Response = ::http::Response<::aws_smithy_legacy_http_server::body::BoxBody>, Error = ::std::convert::Infallible> + Clone + Send + 'static,
+                        S::Future: Send + 'static,
+                    {
+                        self.update_item = Some(::aws_smithy_legacy_http_server::routing::Route::new(svc));
                         self
                     }
                 }
@@ -446,18 +588,18 @@
                 /// unspecified route is requested.
                 pub fn build(self) -> ::std::result::Result<
                     DynamoDb20120810<
-                        ::aws_smithy_http_server::routing::RoutingService<
-                            ::aws_smithy_http_server::protocol::aws_json::router::AwsJsonRouter<L::Service>,
-                            ::aws_smithy_http_server::protocol::aws_json_10::AwsJson1_0,
+                        ::aws_smithy_legacy_http_server::routing::RoutingService<
+                            ::aws_smithy_legacy_http_server::protocol::aws_json::router::AwsJsonRouter<L::Service>,
+                            ::aws_smithy_legacy_http_server::protocol::aws_json_10::AwsJson1_0,
                         >,
                     >,
                     MissingOperationsError,
                 >
                 where
-                    L: ::tower::Layer<::aws_smithy_http_server::routing::Route<Body>>,
+                    L: ::tower::Layer<::aws_smithy_legacy_http_server::routing::Route<Body>>,
                 {
                     let router = {
-                        use ::aws_smithy_http_server::operation::OperationShape;
+                        use ::aws_smithy_legacy_http_server::operation::OperationShape;
                         let mut missing_operation_names = std::collections::HashMap::new();
                         if self.create_table.is_none() {
                                 missing_operation_names.insert(crate::operation_shape::CreateTable::ID, ".create_table()");
@@ -468,6 +610,9 @@ if self.get_item.is_none() {
 if self.put_item.is_none() {
                                 missing_operation_names.insert(crate::operation_shape::PutItem::ID, ".put_item()");
                             }
+if self.update_item.is_none() {
+                                missing_operation_names.insert(crate::operation_shape::UpdateItem::ID, ".update_item()");
+                            }
                         if !missing_operation_names.is_empty() {
                             return Err(MissingOperationsError {
                                 operation_names2setter_methods: missing_operation_names,
@@ -477,11 +622,12 @@ if self.put_item.is_none() {
 
                         
 
-                        ::aws_smithy_http_server::protocol::aws_json::router::AwsJsonRouter::from_iter([(request_specs::create_table(), self.create_table.expect(unexpected_error_msg)),
+                        ::aws_smithy_legacy_http_server::protocol::aws_json::router::AwsJsonRouter::from_iter([(request_specs::create_table(), self.create_table.expect(unexpected_error_msg)),
 (request_specs::get_item(), self.get_item.expect(unexpected_error_msg)),
-(request_specs::put_item(), self.put_item.expect(unexpected_error_msg)),])
+(request_specs::put_item(), self.put_item.expect(unexpected_error_msg)),
+(request_specs::update_item(), self.update_item.expect(unexpected_error_msg)),])
                     };
-                    let svc = ::aws_smithy_http_server::routing::RoutingService::new(router);
+                    let svc = ::aws_smithy_legacy_http_server::routing::RoutingService::new(router);
                     let svc = svc.map(|s| s.layer(self.layer));
                     Ok(DynamoDb20120810 { svc })
                 }
@@ -495,33 +641,40 @@ if self.put_item.is_none() {
                 where
                     Body: Send + 'static,
                     L: ::tower::Layer<
-                        ::aws_smithy_http_server::routing::RoutingService<::aws_smithy_http_server::protocol::aws_json::router::AwsJsonRouter<::aws_smithy_http_server::routing::Route<Body>>, ::aws_smithy_http_server::protocol::aws_json_10::AwsJson1_0>
+                        ::aws_smithy_legacy_http_server::routing::RoutingService<::aws_smithy_legacy_http_server::protocol::aws_json::router::AwsJsonRouter<::aws_smithy_legacy_http_server::routing::Route<Body>>, ::aws_smithy_legacy_http_server::protocol::aws_json_10::AwsJson1_0>
                     >
                 {
-                    let router = ::aws_smithy_http_server::protocol::aws_json::router::AwsJsonRouter::from_iter([(
+                    let router = ::aws_smithy_legacy_http_server::protocol::aws_json::router::AwsJsonRouter::from_iter([(
                                 request_specs::create_table(),
                                 self.create_table.unwrap_or_else(|| {
-                                    let svc = ::aws_smithy_http_server::operation::MissingFailure::<::aws_smithy_http_server::protocol::aws_json_10::AwsJson1_0>::default();
-                                    ::aws_smithy_http_server::routing::Route::new(svc)
+                                    let svc = ::aws_smithy_legacy_http_server::operation::MissingFailure::<::aws_smithy_legacy_http_server::protocol::aws_json_10::AwsJson1_0>::default();
+                                    ::aws_smithy_legacy_http_server::routing::Route::new(svc)
                                 })
                             ),
 (
                                 request_specs::get_item(),
                                 self.get_item.unwrap_or_else(|| {
-                                    let svc = ::aws_smithy_http_server::operation::MissingFailure::<::aws_smithy_http_server::protocol::aws_json_10::AwsJson1_0>::default();
-                                    ::aws_smithy_http_server::routing::Route::new(svc)
+                                    let svc = ::aws_smithy_legacy_http_server::operation::MissingFailure::<::aws_smithy_legacy_http_server::protocol::aws_json_10::AwsJson1_0>::default();
+                                    ::aws_smithy_legacy_http_server::routing::Route::new(svc)
                                 })
                             ),
 (
                                 request_specs::put_item(),
                                 self.put_item.unwrap_or_else(|| {
-                                    let svc = ::aws_smithy_http_server::operation::MissingFailure::<::aws_smithy_http_server::protocol::aws_json_10::AwsJson1_0>::default();
-                                    ::aws_smithy_http_server::routing::Route::new(svc)
+                                    let svc = ::aws_smithy_legacy_http_server::operation::MissingFailure::<::aws_smithy_legacy_http_server::protocol::aws_json_10::AwsJson1_0>::default();
+                                    ::aws_smithy_legacy_http_server::routing::Route::new(svc)
+                                })
+                            ),
+(
+                                request_specs::update_item(),
+                                self.update_item.unwrap_or_else(|| {
+                                    let svc = ::aws_smithy_legacy_http_server::operation::MissingFailure::<::aws_smithy_legacy_http_server::protocol::aws_json_10::AwsJson1_0>::default();
+                                    ::aws_smithy_legacy_http_server::routing::Route::new(svc)
                                 })
                             ),]);
                     let svc = self
                         .layer
-                        .layer(::aws_smithy_http_server::routing::RoutingService::new(router));
+                        .layer(::aws_smithy_legacy_http_server::routing::RoutingService::new(router));
                     DynamoDb20120810 { svc }
                 }
                 }
@@ -530,7 +683,7 @@ if self.put_item.is_none() {
                 /// specified.
                 #[derive(Debug)]
                 pub struct MissingOperationsError {
-                    operation_names2setter_methods: std::collections::HashMap<::aws_smithy_http_server::shape_id::ShapeId, &'static str>,
+                    operation_names2setter_methods: std::collections::HashMap<::aws_smithy_legacy_http_server::shape_id::ShapeId, &'static str>,
                 }
 
                 impl std::fmt::Display for MissingOperationsError {
@@ -564,6 +717,9 @@ pub(super) fn get_item() -> &'static str {
 pub(super) fn put_item() -> &'static str {
                             "DynamoDB_20120810.PutItem"
                         }
+pub(super) fn update_item() -> &'static str {
+                            "DynamoDB_20120810.UpdateItem"
+                        }
                 }
 
             #[allow(missing_docs)] // documentation missing in model
@@ -571,13 +727,13 @@ pub(super) fn put_item() -> &'static str {
                 /// See the [root](crate) documentation for more information.
                 #[derive(Clone)]
                 pub struct DynamoDb20120810<
-                    S = ::aws_smithy_http_server::routing::RoutingService<
-                        ::aws_smithy_http_server::protocol::aws_json::router::AwsJsonRouter<
-                            ::aws_smithy_http_server::routing::Route<
-                                ::aws_smithy_http_server::body::BoxBody
+                    S = ::aws_smithy_legacy_http_server::routing::RoutingService<
+                        ::aws_smithy_legacy_http_server::protocol::aws_json::router::AwsJsonRouter<
+                            ::aws_smithy_legacy_http_server::routing::Route<
+                                ::aws_smithy_legacy_http_server::body::BoxBody
                             >,
                         >,
-                        ::aws_smithy_http_server::protocol::aws_json_10::AwsJson1_0,
+                        ::aws_smithy_legacy_http_server::protocol::aws_json_10::AwsJson1_0,
                     >
                 > {
                     // This is the router wrapped by layers.
@@ -591,15 +747,16 @@ pub(super) fn put_item() -> &'static str {
                     pub fn builder<
                         Body,
                         L,
-                        HttpPl: ::aws_smithy_http_server::plugin::HttpMarker,
-                        ModelPl: ::aws_smithy_http_server::plugin::ModelMarker,
+                        HttpPl: ::aws_smithy_legacy_http_server::plugin::HttpMarker,
+                        ModelPl: ::aws_smithy_legacy_http_server::plugin::ModelMarker,
                     >(
                         config: DynamoDb20120810Config<L, HttpPl, ModelPl>,
                     ) -> DynamoDb20120810Builder<Body, L, HttpPl, ModelPl> {
                         DynamoDb20120810Builder {
                             create_table: None
 , get_item: None
-, put_item: None,
+, put_item: None
+, update_item: None,
                             layer: config.layers,
                             http_plugin: config.http_plugins,
                             model_plugin: config.model_plugins,
@@ -611,8 +768,8 @@ pub(super) fn put_item() -> &'static str {
                     ///
                     /// Use [`DynamoDb20120810::builder_without_plugins`] if you don't need to apply plugins.
                     ///
-                    /// Check out [`HttpPlugins`](::aws_smithy_http_server::plugin::HttpPlugins) and
-                    /// [`ModelPlugins`](::aws_smithy_http_server::plugin::ModelPlugins) if you need to apply
+                    /// Check out [`HttpPlugins`](::aws_smithy_legacy_http_server::plugin::HttpPlugins) and
+                    /// [`ModelPlugins`](::aws_smithy_legacy_http_server::plugin::ModelPlugins) if you need to apply
                     /// multiple plugins.
                     #[deprecated(
                         since = "0.57.0",
@@ -620,8 +777,8 @@ pub(super) fn put_item() -> &'static str {
                     )]
                     pub fn builder_with_plugins<
                         Body,
-                        HttpPl: ::aws_smithy_http_server::plugin::HttpMarker,
-                        ModelPl: ::aws_smithy_http_server::plugin::ModelMarker
+                        HttpPl: ::aws_smithy_legacy_http_server::plugin::HttpMarker,
+                        ModelPl: ::aws_smithy_legacy_http_server::plugin::ModelMarker
                     >(
                         http_plugin: HttpPl,
                         model_plugin: ModelPl
@@ -629,7 +786,8 @@ pub(super) fn put_item() -> &'static str {
                         DynamoDb20120810Builder {
                             create_table: None
 , get_item: None
-, put_item: None,
+, put_item: None
+, update_item: None,
                             layer: ::tower::layer::util::Identity::new(),
                             http_plugin,
                             model_plugin
@@ -646,31 +804,31 @@ pub(super) fn put_item() -> &'static str {
                     pub fn builder_without_plugins<Body>() -> DynamoDb20120810Builder<
                         Body,
                         ::tower::layer::util::Identity,
-                        ::aws_smithy_http_server::plugin::IdentityPlugin,
-                        ::aws_smithy_http_server::plugin::IdentityPlugin
+                        ::aws_smithy_legacy_http_server::plugin::IdentityPlugin,
+                        ::aws_smithy_legacy_http_server::plugin::IdentityPlugin
                     > {
-                        Self::builder_with_plugins(::aws_smithy_http_server::plugin::IdentityPlugin, ::aws_smithy_http_server::plugin::IdentityPlugin)
+                        Self::builder_with_plugins(::aws_smithy_legacy_http_server::plugin::IdentityPlugin, ::aws_smithy_legacy_http_server::plugin::IdentityPlugin)
                     }
                 }
 
                 impl<S> DynamoDb20120810<S> {
                     /// Converts [`DynamoDb20120810`] into a [`MakeService`](tower::make::MakeService).
-                    pub fn into_make_service(self) -> ::aws_smithy_http_server::routing::IntoMakeService<Self> {
-                        ::aws_smithy_http_server::routing::IntoMakeService::new(self)
+                    pub fn into_make_service(self) -> ::aws_smithy_legacy_http_server::routing::IntoMakeService<Self> {
+                        ::aws_smithy_legacy_http_server::routing::IntoMakeService::new(self)
                     }
 
 
-                    /// Converts [`DynamoDb20120810`] into a [`MakeService`](tower::make::MakeService) with [`ConnectInfo`](::aws_smithy_http_server::request::connect_info::ConnectInfo).
-                    pub fn into_make_service_with_connect_info<C>(self) -> ::aws_smithy_http_server::routing::IntoMakeServiceWithConnectInfo<Self, C> {
-                        ::aws_smithy_http_server::routing::IntoMakeServiceWithConnectInfo::new(self)
+                    /// Converts [`DynamoDb20120810`] into a [`MakeService`](tower::make::MakeService) with [`ConnectInfo`](::aws_smithy_legacy_http_server::request::connect_info::ConnectInfo).
+                    pub fn into_make_service_with_connect_info<C>(self) -> ::aws_smithy_legacy_http_server::routing::IntoMakeServiceWithConnectInfo<Self, C> {
+                        ::aws_smithy_legacy_http_server::routing::IntoMakeServiceWithConnectInfo::new(self)
                     }
                 }
 
                 impl<S>
                     DynamoDb20120810<
-                        ::aws_smithy_http_server::routing::RoutingService<
-                            ::aws_smithy_http_server::protocol::aws_json::router::AwsJsonRouter<S>,
-                            ::aws_smithy_http_server::protocol::aws_json_10::AwsJson1_0,
+                        ::aws_smithy_legacy_http_server::routing::RoutingService<
+                            ::aws_smithy_legacy_http_server::protocol::aws_json::router::AwsJsonRouter<S>,
+                            ::aws_smithy_legacy_http_server::protocol::aws_json_10::AwsJson1_0,
                         >,
                     >
                 {
@@ -683,9 +841,9 @@ pub(super) fn put_item() -> &'static str {
                         self,
                         layer: &L,
                     ) -> DynamoDb20120810<
-                        ::aws_smithy_http_server::routing::RoutingService<
-                            ::aws_smithy_http_server::protocol::aws_json::router::AwsJsonRouter<L::Service>,
-                            ::aws_smithy_http_server::protocol::aws_json_10::AwsJson1_0,
+                        ::aws_smithy_legacy_http_server::routing::RoutingService<
+                            ::aws_smithy_legacy_http_server::protocol::aws_json::router::AwsJsonRouter<L::Service>,
+                            ::aws_smithy_legacy_http_server::protocol::aws_json_10::AwsJson1_0,
                         >,
                     >
                     where
@@ -696,30 +854,30 @@ pub(super) fn put_item() -> &'static str {
                         }
                     }
 
-                    /// Applies [`Route::new`](::aws_smithy_http_server::routing::Route::new) to all routes.
+                    /// Applies [`Route::new`](::aws_smithy_legacy_http_server::routing::Route::new) to all routes.
                     ///
                     /// This has the effect of erasing all types accumulated via layers.
                     pub fn boxed<B>(
                         self,
                     ) -> DynamoDb20120810<
-                        ::aws_smithy_http_server::routing::RoutingService<
-                            ::aws_smithy_http_server::protocol::aws_json::router::AwsJsonRouter<
-                                ::aws_smithy_http_server::routing::Route<B>,
+                        ::aws_smithy_legacy_http_server::routing::RoutingService<
+                            ::aws_smithy_legacy_http_server::protocol::aws_json::router::AwsJsonRouter<
+                                ::aws_smithy_legacy_http_server::routing::Route<B>,
                             >,
-                            ::aws_smithy_http_server::protocol::aws_json_10::AwsJson1_0,
+                            ::aws_smithy_legacy_http_server::protocol::aws_json_10::AwsJson1_0,
                         >,
                     >
                     where
                         S: ::tower::Service<
                             ::http::Request<B>,
-                            Response = ::http::Response<::aws_smithy_http_server::body::BoxBody>,
+                            Response = ::http::Response<::aws_smithy_legacy_http_server::body::BoxBody>,
                             Error = std::convert::Infallible,
                         >,
                         S: Clone + Send + 'static,
                         S::Future: Send + 'static,
                     {
                         self.layer(&::tower::layer::layer_fn(
-                            ::aws_smithy_http_server::routing::Route::new,
+                            ::aws_smithy_legacy_http_server::routing::Route::new,
                         ))
                     }
                 }
@@ -745,41 +903,47 @@ pub(super) fn put_item() -> &'static str {
                 #[allow(clippy::enum_variant_names)]
                 #[derive(Debug, PartialEq, Eq, Clone, Copy)]
                 pub enum Operation {
-                    CreateTable,GetItem,PutItem
+                    CreateTable,GetItem,PutItem,UpdateItem
                 }
 
                 impl Operation {
-                    /// Returns the [operations](https://smithy.io/2.0/spec/service-types.html#operation) [`ShapeId`](::aws_smithy_http_server::shape_id::ShapeId).
-                    pub fn shape_id(&self) -> ::aws_smithy_http_server::shape_id::ShapeId {
+                    /// Returns the [operations](https://smithy.io/2.0/spec/service-types.html#operation) [`ShapeId`](::aws_smithy_legacy_http_server::shape_id::ShapeId).
+                    pub fn shape_id(&self) -> ::aws_smithy_legacy_http_server::shape_id::ShapeId {
                         match self {
-                            Operation::CreateTable => ::aws_smithy_http_server::shape_id::ShapeId::new("com.amazonaws.dynamodb#CreateTable", "com.amazonaws.dynamodb", "CreateTable")
-,Operation::GetItem => ::aws_smithy_http_server::shape_id::ShapeId::new("com.amazonaws.dynamodb#GetItem", "com.amazonaws.dynamodb", "GetItem")
-,Operation::PutItem => ::aws_smithy_http_server::shape_id::ShapeId::new("com.amazonaws.dynamodb#PutItem", "com.amazonaws.dynamodb", "PutItem")
+                            Operation::CreateTable => ::aws_smithy_legacy_http_server::shape_id::ShapeId::new("com.amazonaws.dynamodb#CreateTable", "com.amazonaws.dynamodb", "CreateTable")
+,Operation::GetItem => ::aws_smithy_legacy_http_server::shape_id::ShapeId::new("com.amazonaws.dynamodb#GetItem", "com.amazonaws.dynamodb", "GetItem")
+,Operation::PutItem => ::aws_smithy_legacy_http_server::shape_id::ShapeId::new("com.amazonaws.dynamodb#PutItem", "com.amazonaws.dynamodb", "PutItem")
+,Operation::UpdateItem => ::aws_smithy_legacy_http_server::shape_id::ShapeId::new("com.amazonaws.dynamodb#UpdateItem", "com.amazonaws.dynamodb", "UpdateItem")
                         }
                     }
                 }
-impl<L> ::aws_smithy_http_server::service::ContainsOperation<crate::operation_shape::CreateTable>
+impl<L> ::aws_smithy_legacy_http_server::service::ContainsOperation<crate::operation_shape::CreateTable>
                         for DynamoDb20120810<L>
                     {
                         const VALUE: Operation = Operation::CreateTable;
                     }
-impl<L> ::aws_smithy_http_server::service::ContainsOperation<crate::operation_shape::GetItem>
+impl<L> ::aws_smithy_legacy_http_server::service::ContainsOperation<crate::operation_shape::GetItem>
                         for DynamoDb20120810<L>
                     {
                         const VALUE: Operation = Operation::GetItem;
                     }
-impl<L> ::aws_smithy_http_server::service::ContainsOperation<crate::operation_shape::PutItem>
+impl<L> ::aws_smithy_legacy_http_server::service::ContainsOperation<crate::operation_shape::PutItem>
                         for DynamoDb20120810<L>
                     {
                         const VALUE: Operation = Operation::PutItem;
                     }
+impl<L> ::aws_smithy_legacy_http_server::service::ContainsOperation<crate::operation_shape::UpdateItem>
+                        for DynamoDb20120810<L>
+                    {
+                        const VALUE: Operation = Operation::UpdateItem;
+                    }
 
-            impl<S> ::aws_smithy_http_server::service::ServiceShape for DynamoDb20120810<S> {
-                    const ID: ::aws_smithy_http_server::shape_id::ShapeId = ::aws_smithy_http_server::shape_id::ShapeId::new("com.amazonaws.dynamodb#DynamoDB_20120810", "com.amazonaws.dynamodb", "DynamoDB_20120810");
+            impl<S> ::aws_smithy_legacy_http_server::service::ServiceShape for DynamoDb20120810<S> {
+                    const ID: ::aws_smithy_legacy_http_server::shape_id::ShapeId = ::aws_smithy_legacy_http_server::shape_id::ShapeId::new("com.amazonaws.dynamodb#DynamoDB_20120810", "com.amazonaws.dynamodb", "DynamoDB_20120810");
 
                     const VERSION: Option<&'static str> = Some("2012-08-10");
 
-                    type Protocol = ::aws_smithy_http_server::protocol::aws_json_10::AwsJson1_0;
+                    type Protocol = ::aws_smithy_legacy_http_server::protocol::aws_json_10::AwsJson1_0;
 
                     type Operations = Operation;
                 }
@@ -788,7 +952,7 @@ impl<L> ::aws_smithy_http_server::service::ContainsOperation<crate::operation_sh
             ///
             /// ```rust,no_run
             /// # use dynamodb_local_server_sdk::DynamoDb20120810Config;
-            /// # use ::aws_smithy_http_server::plugin::IdentityPlugin;
+            /// # use ::aws_smithy_legacy_http_server::plugin::IdentityPlugin;
             /// # use ::tower::layer::util::Identity;
             /// # let authentication_plugin = IdentityPlugin;
             /// # let authorization_plugin = IdentityPlugin;
@@ -805,7 +969,7 @@ impl<L> ::aws_smithy_http_server::service::ContainsOperation<crate::operation_sh
             ///
             /// See the [`plugin`] system for details.
             ///
-            /// [`plugin`]: ::aws_smithy_http_server::plugin
+            /// [`plugin`]: ::aws_smithy_legacy_http_server::plugin
             #[derive(::std::fmt::Debug)]
             pub struct DynamoDb20120810Config<L, H, M> {
                 layers: L,
@@ -817,13 +981,13 @@ impl<L> ::aws_smithy_http_server::service::ContainsOperation<crate::operation_sh
                 /// Returns a builder to construct the configuration.
                 pub fn builder() -> DynamoDb20120810ConfigBuilder<
                     ::tower::layer::util::Identity,
-                    ::aws_smithy_http_server::plugin::IdentityPlugin,
-                    ::aws_smithy_http_server::plugin::IdentityPlugin,
+                    ::aws_smithy_legacy_http_server::plugin::IdentityPlugin,
+                    ::aws_smithy_legacy_http_server::plugin::IdentityPlugin,
                 > {
                     DynamoDb20120810ConfigBuilder {
                         layers: ::tower::layer::util::Identity::new(),
-                        http_plugins: ::aws_smithy_http_server::plugin::IdentityPlugin,
-                        model_plugins: ::aws_smithy_http_server::plugin::IdentityPlugin,
+                        http_plugins: ::aws_smithy_legacy_http_server::plugin::IdentityPlugin,
+                        model_plugins: ::aws_smithy_legacy_http_server::plugin::IdentityPlugin,
                         
                     }
                 }
@@ -855,16 +1019,16 @@ impl<L> ::aws_smithy_http_server::service::ContainsOperation<crate::operation_sh
 
                 /// Add a HTTP [plugin] to the service.
                 ///
-                /// [plugin]: ::aws_smithy_http_server::plugin
+                /// [plugin]: ::aws_smithy_legacy_http_server::plugin
                 // We eagerly require `NewPlugin: HttpMarker`, despite not really needing it, because compiler
                 // errors get _substantially_ better if the user makes a mistake.
-                pub fn http_plugin<NewPlugin: ::aws_smithy_http_server::plugin::HttpMarker>(
+                pub fn http_plugin<NewPlugin: ::aws_smithy_legacy_http_server::plugin::HttpMarker>(
                     self,
                     http_plugin: NewPlugin,
-                ) -> DynamoDb20120810ConfigBuilder<L, ::aws_smithy_http_server::plugin::PluginStack<NewPlugin, H>, M> {
+                ) -> DynamoDb20120810ConfigBuilder<L, ::aws_smithy_legacy_http_server::plugin::PluginStack<NewPlugin, H>, M> {
                     DynamoDb20120810ConfigBuilder {
                         layers: self.layers,
-                        http_plugins: ::aws_smithy_http_server::plugin::PluginStack::new(http_plugin, self.http_plugins),
+                        http_plugins: ::aws_smithy_legacy_http_server::plugin::PluginStack::new(http_plugin, self.http_plugins),
                         model_plugins: self.model_plugins,
                         
                     }
@@ -872,17 +1036,17 @@ impl<L> ::aws_smithy_http_server::service::ContainsOperation<crate::operation_sh
 
                 /// Add a model [plugin] to the service.
                 ///
-                /// [plugin]: ::aws_smithy_http_server::plugin
+                /// [plugin]: ::aws_smithy_legacy_http_server::plugin
                 // We eagerly require `NewPlugin: ModelMarker`, despite not really needing it, because compiler
                 // errors get _substantially_ better if the user makes a mistake.
-                pub fn model_plugin<NewPlugin: ::aws_smithy_http_server::plugin::ModelMarker>(
+                pub fn model_plugin<NewPlugin: ::aws_smithy_legacy_http_server::plugin::ModelMarker>(
                     self,
                     model_plugin: NewPlugin,
-                ) -> DynamoDb20120810ConfigBuilder<L, H, ::aws_smithy_http_server::plugin::PluginStack<NewPlugin, M>> {
+                ) -> DynamoDb20120810ConfigBuilder<L, H, ::aws_smithy_legacy_http_server::plugin::PluginStack<NewPlugin, M>> {
                     DynamoDb20120810ConfigBuilder {
                         layers: self.layers,
                         http_plugins: self.http_plugins,
-                        model_plugins: ::aws_smithy_http_server::plugin::PluginStack::new(model_plugin, self.model_plugins),
+                        model_plugins: ::aws_smithy_legacy_http_server::plugin::PluginStack::new(model_plugin, self.model_plugins),
                         
                     }
                 }
@@ -977,6 +1141,15 @@ impl<L> ::aws_smithy_http_server::service::ContainsOperation<crate::operation_sh
                             scope! { @ $ name, $ contains (PutItem $($ member)*) ($ other $($ temp)*) ($($ not_member)*) }
                         };
                         
+                        // UpdateItem match found, pop from both `member` and `not_member`
+                        (@ $ name: ident, $ contains: ident (UpdateItem $($ member: ident)*) ($($ temp: ident)*) (UpdateItem $($ not_member: ident)*)) => {
+                            scope! { @ $ name, $ contains ($($ member)*) ($($ temp)*) ($($ not_member)*) }
+                        };
+                        // UpdateItem match not found, pop from `not_member` into `temp` stack
+                        (@ $ name: ident, $ contains: ident (UpdateItem $($ member: ident)*) ($($ temp: ident)*) ($ other: ident $($ not_member: ident)*)) => {
+                            scope! { @ $ name, $ contains (UpdateItem $($ member)*) ($ other $($ temp)*) ($($ not_member)*) }
+                        };
+                        
                     (
                         $(#[$ attrs:meta])*
                         $ vis:vis struct $ name:ident {
@@ -991,7 +1164,7 @@ impl<L> ::aws_smithy_http_server::service::ContainsOperation<crate::operation_sh
                                 excludes: []
                             }
                         }
-                        scope! { @ $ name, False ($($ include)*) () (CreateTable GetItem PutItem) }
+                        scope! { @ $ name, False ($($ include)*) () (CreateTable GetItem PutItem UpdateItem) }
                     };
                     (
                         $(#[$ attrs:meta])*
@@ -1008,7 +1181,7 @@ impl<L> ::aws_smithy_http_server::service::ContainsOperation<crate::operation_sh
                                 excludes: [$($ exclude),*]
                             }
                         }
-                        scope! { @ $ name, True ($($ exclude)*) () (CreateTable GetItem PutItem) }
+                        scope! { @ $ name, True ($($ exclude)*) () (CreateTable GetItem PutItem UpdateItem) }
                     };
                 }
 

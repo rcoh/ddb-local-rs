@@ -4,12 +4,12 @@ pub async fn de_put_item_http_request<B>(
     #[allow(unused_variables)] request: ::http::Request<B>
 ) -> std::result::Result<
     crate::input::PutItemInput,
-    ::aws_smithy_http_server::protocol::aws_json::rejection::RequestRejection
+    ::aws_smithy_legacy_http_server::protocol::aws_json::rejection::RequestRejection
 >
 where
-    B: ::aws_smithy_http_server::body::HttpBody + Send, 
+    B: ::aws_smithy_legacy_http_server::body::HttpBody + Send, 
     B::Data: Send,
-    ::aws_smithy_http_server::protocol::aws_json::rejection::RequestRejection: From<<B as ::aws_smithy_http_server::body::HttpBody>::Error> {
+    ::aws_smithy_legacy_http_server::protocol::aws_json::rejection::RequestRejection: From<<B as ::aws_smithy_legacy_http_server::body::HttpBody>::Error> {
     Ok({
         #[allow(unused_mut)]
         let mut input = crate::input::put_item_input::Builder::default();
@@ -17,7 +17,7 @@ where
         let ::aws_smithy_runtime_api::http::RequestParts { uri, headers, body, .. } = ::aws_smithy_runtime_api::http::Request::try_from(request)?.into_parts();
         let bytes = ::hyper::body::to_bytes(body).await?;
         if !bytes.is_empty() {
-            ::aws_smithy_http_server::protocol::content_type_header_classifier_smithy(
+            ::aws_smithy_legacy_http_server::protocol::content_type_header_classifier_smithy(
                                     &headers,
                                     Some("application/x-amz-json-1.0"),
                                 )?;
@@ -31,13 +31,13 @@ where
 pub fn ser_put_item_http_response(
     #[allow(unused_variables)] output: crate::output::PutItemOutput
 ) -> std::result::Result<
-    ::aws_smithy_http_server::response::Response,
-    ::aws_smithy_http_server::protocol::aws_json::rejection::ResponseRejection
+    ::aws_smithy_legacy_http_server::response::Response,
+    ::aws_smithy_legacy_http_server::protocol::aws_json::rejection::ResponseRejection
 > {
     Ok({
         #[allow(unused_mut)]
         let mut builder = ::http::Response::builder();
-        builder = ::aws_smithy_http::header::set_response_header_if_absent(
+        builder = ::aws_smithy_legacy_http::header::set_response_header_if_absent(
                         builder,
                         ::http::header::CONTENT_TYPE,
                         "application/x-amz-json-1.0",
@@ -48,139 +48,139 @@ pub fn ser_put_item_http_response(
             crate::protocol_serde::shape_put_item_output::ser_put_item_output_output_output(&output)?
         ;
         let content_length = payload.len();
-                    builder = ::aws_smithy_http::header::set_response_header_if_absent(builder, ::http::header::CONTENT_LENGTH, content_length);
-        let body = ::aws_smithy_http_server::body::to_boxed(payload);
+                    builder = ::aws_smithy_legacy_http::header::set_response_header_if_absent(builder, ::http::header::CONTENT_LENGTH, content_length);
+        let body = ::aws_smithy_legacy_http_server::body::to_boxed(payload);
         builder.body(body)?
     })
 }
 
 #[allow(clippy::unnecessary_wraps)]
-pub fn ser_put_item_http_error(error: &crate::error::PutItemError) -> std::result::Result<::aws_smithy_http_server::response::Response, ::aws_smithy_http_server::protocol::aws_json::rejection::ResponseRejection> {
+pub fn ser_put_item_http_error(error: &crate::error::PutItemError) -> std::result::Result<::aws_smithy_legacy_http_server::response::Response, ::aws_smithy_legacy_http_server::protocol::aws_json::rejection::ResponseRejection> {
     Ok({
         match error {
             crate::error::PutItemError::ValidationException(output) => {
                 let payload = crate::protocol_serde::shape_validation_exception::ser_validation_exception_error(output)?;
                 #[allow(unused_mut)]
                 let mut builder = ::http::Response::builder();
-                builder = ::aws_smithy_http::header::set_response_header_if_absent(
+                builder = ::aws_smithy_legacy_http::header::set_response_header_if_absent(
                                 builder,
                                 ::http::header::CONTENT_TYPE,
                                 "application/x-amz-json-1.0",
                             );
                 let content_length = payload.len();
-                            builder = ::aws_smithy_http::header::set_response_header_if_absent(builder, ::http::header::CONTENT_LENGTH, content_length);
-                builder.status(400).body(::aws_smithy_http_server::body::to_boxed(payload))?
+                            builder = ::aws_smithy_legacy_http::header::set_response_header_if_absent(builder, ::http::header::CONTENT_LENGTH, content_length);
+                builder.status(400).body(::aws_smithy_legacy_http_server::body::to_boxed(payload))?
             }
             crate::error::PutItemError::ConditionalCheckFailedException(output) => {
                 let payload = crate::protocol_serde::shape_conditional_check_failed_exception::ser_conditional_check_failed_exception_error(output)?;
                 #[allow(unused_mut)]
                 let mut builder = ::http::Response::builder();
-                builder = ::aws_smithy_http::header::set_response_header_if_absent(
+                builder = ::aws_smithy_legacy_http::header::set_response_header_if_absent(
                                 builder,
                                 ::http::header::CONTENT_TYPE,
                                 "application/x-amz-json-1.0",
                             );
                 let content_length = payload.len();
-                            builder = ::aws_smithy_http::header::set_response_header_if_absent(builder, ::http::header::CONTENT_LENGTH, content_length);
-                builder.status(400).body(::aws_smithy_http_server::body::to_boxed(payload))?
+                            builder = ::aws_smithy_legacy_http::header::set_response_header_if_absent(builder, ::http::header::CONTENT_LENGTH, content_length);
+                builder.status(400).body(::aws_smithy_legacy_http_server::body::to_boxed(payload))?
             }
             crate::error::PutItemError::InternalServerError(output) => {
                 let payload = crate::protocol_serde::shape_internal_server_error::ser_internal_server_error_error(output)?;
                 #[allow(unused_mut)]
                 let mut builder = ::http::Response::builder();
-                builder = ::aws_smithy_http::header::set_response_header_if_absent(
+                builder = ::aws_smithy_legacy_http::header::set_response_header_if_absent(
                                 builder,
                                 ::http::header::CONTENT_TYPE,
                                 "application/x-amz-json-1.0",
                             );
                 let content_length = payload.len();
-                            builder = ::aws_smithy_http::header::set_response_header_if_absent(builder, ::http::header::CONTENT_LENGTH, content_length);
-                builder.status(500).body(::aws_smithy_http_server::body::to_boxed(payload))?
+                            builder = ::aws_smithy_legacy_http::header::set_response_header_if_absent(builder, ::http::header::CONTENT_LENGTH, content_length);
+                builder.status(500).body(::aws_smithy_legacy_http_server::body::to_boxed(payload))?
             }
             crate::error::PutItemError::InvalidEndpointException(output) => {
                 let payload = crate::protocol_serde::shape_invalid_endpoint_exception::ser_invalid_endpoint_exception_error(output)?;
                 #[allow(unused_mut)]
                 let mut builder = ::http::Response::builder();
-                builder = ::aws_smithy_http::header::set_response_header_if_absent(
+                builder = ::aws_smithy_legacy_http::header::set_response_header_if_absent(
                                 builder,
                                 ::http::header::CONTENT_TYPE,
                                 "application/x-amz-json-1.0",
                             );
                 let content_length = payload.len();
-                            builder = ::aws_smithy_http::header::set_response_header_if_absent(builder, ::http::header::CONTENT_LENGTH, content_length);
-                builder.status(400).body(::aws_smithy_http_server::body::to_boxed(payload))?
+                            builder = ::aws_smithy_legacy_http::header::set_response_header_if_absent(builder, ::http::header::CONTENT_LENGTH, content_length);
+                builder.status(400).body(::aws_smithy_legacy_http_server::body::to_boxed(payload))?
             }
             crate::error::PutItemError::ItemCollectionSizeLimitExceededException(output) => {
                 let payload = crate::protocol_serde::shape_item_collection_size_limit_exceeded_exception::ser_item_collection_size_limit_exceeded_exception_error(output)?;
                 #[allow(unused_mut)]
                 let mut builder = ::http::Response::builder();
-                builder = ::aws_smithy_http::header::set_response_header_if_absent(
+                builder = ::aws_smithy_legacy_http::header::set_response_header_if_absent(
                                 builder,
                                 ::http::header::CONTENT_TYPE,
                                 "application/x-amz-json-1.0",
                             );
                 let content_length = payload.len();
-                            builder = ::aws_smithy_http::header::set_response_header_if_absent(builder, ::http::header::CONTENT_LENGTH, content_length);
-                builder.status(400).body(::aws_smithy_http_server::body::to_boxed(payload))?
+                            builder = ::aws_smithy_legacy_http::header::set_response_header_if_absent(builder, ::http::header::CONTENT_LENGTH, content_length);
+                builder.status(400).body(::aws_smithy_legacy_http_server::body::to_boxed(payload))?
             }
             crate::error::PutItemError::ProvisionedThroughputExceededException(output) => {
                 let payload = crate::protocol_serde::shape_provisioned_throughput_exceeded_exception::ser_provisioned_throughput_exceeded_exception_error(output)?;
                 #[allow(unused_mut)]
                 let mut builder = ::http::Response::builder();
-                builder = ::aws_smithy_http::header::set_response_header_if_absent(
+                builder = ::aws_smithy_legacy_http::header::set_response_header_if_absent(
                                 builder,
                                 ::http::header::CONTENT_TYPE,
                                 "application/x-amz-json-1.0",
                             );
                 let content_length = payload.len();
-                            builder = ::aws_smithy_http::header::set_response_header_if_absent(builder, ::http::header::CONTENT_LENGTH, content_length);
-                builder.status(400).body(::aws_smithy_http_server::body::to_boxed(payload))?
+                            builder = ::aws_smithy_legacy_http::header::set_response_header_if_absent(builder, ::http::header::CONTENT_LENGTH, content_length);
+                builder.status(400).body(::aws_smithy_legacy_http_server::body::to_boxed(payload))?
             }
             crate::error::PutItemError::RequestLimitExceeded(output) => {
                 let payload = crate::protocol_serde::shape_request_limit_exceeded::ser_request_limit_exceeded_error(output)?;
                 #[allow(unused_mut)]
                 let mut builder = ::http::Response::builder();
-                builder = ::aws_smithy_http::header::set_response_header_if_absent(
+                builder = ::aws_smithy_legacy_http::header::set_response_header_if_absent(
                                 builder,
                                 ::http::header::CONTENT_TYPE,
                                 "application/x-amz-json-1.0",
                             );
                 let content_length = payload.len();
-                            builder = ::aws_smithy_http::header::set_response_header_if_absent(builder, ::http::header::CONTENT_LENGTH, content_length);
-                builder.status(400).body(::aws_smithy_http_server::body::to_boxed(payload))?
+                            builder = ::aws_smithy_legacy_http::header::set_response_header_if_absent(builder, ::http::header::CONTENT_LENGTH, content_length);
+                builder.status(400).body(::aws_smithy_legacy_http_server::body::to_boxed(payload))?
             }
             crate::error::PutItemError::ResourceNotFoundException(output) => {
                 let payload = crate::protocol_serde::shape_resource_not_found_exception::ser_resource_not_found_exception_error(output)?;
                 #[allow(unused_mut)]
                 let mut builder = ::http::Response::builder();
-                builder = ::aws_smithy_http::header::set_response_header_if_absent(
+                builder = ::aws_smithy_legacy_http::header::set_response_header_if_absent(
                                 builder,
                                 ::http::header::CONTENT_TYPE,
                                 "application/x-amz-json-1.0",
                             );
                 let content_length = payload.len();
-                            builder = ::aws_smithy_http::header::set_response_header_if_absent(builder, ::http::header::CONTENT_LENGTH, content_length);
-                builder.status(400).body(::aws_smithy_http_server::body::to_boxed(payload))?
+                            builder = ::aws_smithy_legacy_http::header::set_response_header_if_absent(builder, ::http::header::CONTENT_LENGTH, content_length);
+                builder.status(400).body(::aws_smithy_legacy_http_server::body::to_boxed(payload))?
             }
             crate::error::PutItemError::TransactionConflictException(output) => {
                 let payload = crate::protocol_serde::shape_transaction_conflict_exception::ser_transaction_conflict_exception_error(output)?;
                 #[allow(unused_mut)]
                 let mut builder = ::http::Response::builder();
-                builder = ::aws_smithy_http::header::set_response_header_if_absent(
+                builder = ::aws_smithy_legacy_http::header::set_response_header_if_absent(
                                 builder,
                                 ::http::header::CONTENT_TYPE,
                                 "application/x-amz-json-1.0",
                             );
                 let content_length = payload.len();
-                            builder = ::aws_smithy_http::header::set_response_header_if_absent(builder, ::http::header::CONTENT_LENGTH, content_length);
-                builder.status(400).body(::aws_smithy_http_server::body::to_boxed(payload))?
+                            builder = ::aws_smithy_legacy_http::header::set_response_header_if_absent(builder, ::http::header::CONTENT_LENGTH, content_length);
+                builder.status(400).body(::aws_smithy_legacy_http_server::body::to_boxed(payload))?
             }
         }
     })
 }
 
-pub(crate) fn de_put_item(value: &[u8], mut builder: crate::input::put_item_input::Builder) -> ::std::result::Result<crate::input::put_item_input::Builder, ::aws_smithy_json::deserialize::error::DeserializeError> {
-    let mut tokens_owned = ::aws_smithy_json::deserialize::json_token_iter(crate::protocol_serde::or_empty_doc(value)).peekable();
+pub(crate) fn de_put_item(_value: &[u8], mut builder: crate::input::put_item_input::Builder) -> ::std::result::Result<crate::input::put_item_input::Builder, ::aws_smithy_json::deserialize::error::DeserializeError> {
+    let mut tokens_owned = ::aws_smithy_json::deserialize::json_token_iter(crate::protocol_serde::or_empty_doc(_value)).peekable();
                         let tokens = &mut tokens_owned;
                         ::aws_smithy_json::deserialize::token::expect_start_object(tokens.next())?;
     loop {
@@ -201,14 +201,14 @@ pub(crate) fn de_put_item(value: &[u8], mut builder: crate::input::put_item_inpu
                     }
                     "Item" => {
                         if let Some(v) =
-                        crate::protocol_serde::shape_put_item_input_attribute_map::de_put_item_input_attribute_map(tokens)?
+                        crate::protocol_serde::shape_put_item_input_attribute_map::de_put_item_input_attribute_map(tokens, _value)?
                         {
                                                                     builder = builder.set_item(v);
                                                                 }
                     }
                     "Expected" => {
                         builder = builder.set_expected(
-                            crate::protocol_serde::shape_expected_attribute_map::de_expected_attribute_map(tokens)?
+                            crate::protocol_serde::shape_expected_attribute_map::de_expected_attribute_map(tokens, _value)?
                         );
                     }
                     "ReturnValues" => {
@@ -258,18 +258,18 @@ pub(crate) fn de_put_item(value: &[u8], mut builder: crate::input::put_item_inpu
                     }
                     "ExpressionAttributeNames" => {
                         builder = builder.set_expression_attribute_names(
-                            crate::protocol_serde::shape_expression_attribute_name_map::de_expression_attribute_name_map(tokens)?
+                            crate::protocol_serde::shape_expression_attribute_name_map::de_expression_attribute_name_map(tokens, _value)?
                         );
                     }
                     "ExpressionAttributeValues" => {
                         builder = builder.set_expression_attribute_values(
-                            crate::protocol_serde::shape_expression_attribute_value_map::de_expression_attribute_value_map(tokens)?
+                            crate::protocol_serde::shape_expression_attribute_value_map::de_expression_attribute_value_map(tokens, _value)?
                         );
                     }
                     _ => ::aws_smithy_json::deserialize::token::skip_value(tokens)?
                 }
             }
-            other => return Err(::aws_smithy_json::deserialize::error::DeserializeError::custom(format!("expected object key or end object, found: {:?}", other)))
+            other => return Err(::aws_smithy_json::deserialize::error::DeserializeError::custom(format!("expected object key or end object, found: {other:?}")))
         }
     }
     if tokens.next().is_some() {

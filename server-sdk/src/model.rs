@@ -26,6 +26,856 @@ impl  ValidationExceptionField  {
 }
 
 #[allow(missing_docs)] // documentation missing in model
+#[derive(::std::clone::Clone, ::std::cmp::PartialEq, ::std::fmt::Debug)]
+pub struct ItemCollectionMetrics  {
+    #[allow(missing_docs)] // documentation missing in model
+    pub item_collection_key: ::std::option::Option<::std::collections::HashMap::<::std::string::String, crate::model::AttributeValue>>,
+    #[allow(missing_docs)] // documentation missing in model
+    pub size_estimate_range_gb: ::std::option::Option<::std::vec::Vec::<f64>>,
+}
+impl  ItemCollectionMetrics  {
+    #[allow(missing_docs)] // documentation missing in model
+    pub fn item_collection_key(&self) -> ::std::option::Option<&::std::collections::HashMap::<::std::string::String, crate::model::AttributeValue>> {
+        self.item_collection_key.as_ref()
+    }
+    #[allow(missing_docs)] // documentation missing in model
+    pub fn size_estimate_range_gb(&self) -> ::std::option::Option<&[f64]> {
+        self.size_estimate_range_gb.as_deref()
+    }
+}
+impl  ItemCollectionMetrics  {
+    /// Creates a new builder-style object to manufacture [`ItemCollectionMetrics`](crate::model::ItemCollectionMetrics).
+    pub fn builder() -> crate::model::item_collection_metrics::Builder  {
+        crate::model::item_collection_metrics::Builder::default()
+    }
+}
+
+#[allow(missing_docs)] // documentation missing in model
+#[derive(::std::clone::Clone, ::std::cmp::Eq, ::std::cmp::PartialEq, ::std::fmt::Debug)]
+pub enum AttributeValue {
+    #[allow(missing_docs)] // documentation missing in model
+    B(::aws_smithy_types::Blob),
+    #[allow(missing_docs)] // documentation missing in model
+    Bool(bool),
+    #[allow(missing_docs)] // documentation missing in model
+    Bs(::std::vec::Vec::<::aws_smithy_types::Blob>),
+    #[allow(missing_docs)] // documentation missing in model
+    L(::std::vec::Vec::<crate::model::AttributeValue>),
+    #[allow(missing_docs)] // documentation missing in model
+    M(::std::collections::HashMap::<::std::string::String, crate::model::AttributeValue>),
+    #[allow(missing_docs)] // documentation missing in model
+    N(::std::string::String),
+    #[allow(missing_docs)] // documentation missing in model
+    Ns(::std::vec::Vec::<::std::string::String>),
+    #[allow(missing_docs)] // documentation missing in model
+    Null(bool),
+    #[allow(missing_docs)] // documentation missing in model
+    S(::std::string::String),
+    #[allow(missing_docs)] // documentation missing in model
+    Ss(::std::vec::Vec::<::std::string::String>),
+}
+impl AttributeValue {
+    /// Tries to convert the enum instance into [`B`](crate::model::AttributeValue::B), extracting the inner [`Blob`](::aws_smithy_types::Blob).
+    /// Returns `Err(&Self)` if it can't be converted.
+    pub fn as_b(&self) -> ::std::result::Result<&::aws_smithy_types::Blob, &Self> {
+        if let AttributeValue::B(val) = &self { ::std::result::Result::Ok(val) } else { ::std::result::Result::Err(self) }
+    }
+    /// Returns true if this is a [`B`](crate::model::AttributeValue::B).
+    pub fn is_b(&self) -> bool {
+        self.as_b().is_ok()
+    }
+    /// Tries to convert the enum instance into [`Bool`](crate::model::AttributeValue::Bool), extracting the inner [`bool`](bool).
+    /// Returns `Err(&Self)` if it can't be converted.
+    pub fn as_bool(&self) -> ::std::result::Result<&bool, &Self> {
+        if let AttributeValue::Bool(val) = &self { ::std::result::Result::Ok(val) } else { ::std::result::Result::Err(self) }
+    }
+    /// Returns true if this is a [`Bool`](crate::model::AttributeValue::Bool).
+    pub fn is_bool(&self) -> bool {
+        self.as_bool().is_ok()
+    }
+    /// Tries to convert the enum instance into [`Bs`](crate::model::AttributeValue::Bs), extracting the inner [`Vec`](::std::vec::Vec).
+    /// Returns `Err(&Self)` if it can't be converted.
+    pub fn as_bs(&self) -> ::std::result::Result<&::std::vec::Vec::<::aws_smithy_types::Blob>, &Self> {
+        if let AttributeValue::Bs(val) = &self { ::std::result::Result::Ok(val) } else { ::std::result::Result::Err(self) }
+    }
+    /// Returns true if this is a [`Bs`](crate::model::AttributeValue::Bs).
+    pub fn is_bs(&self) -> bool {
+        self.as_bs().is_ok()
+    }
+    /// Tries to convert the enum instance into [`L`](crate::model::AttributeValue::L), extracting the inner [`Vec`](::std::vec::Vec).
+    /// Returns `Err(&Self)` if it can't be converted.
+    pub fn as_l(&self) -> ::std::result::Result<&::std::vec::Vec::<crate::model::AttributeValue>, &Self> {
+        if let AttributeValue::L(val) = &self { ::std::result::Result::Ok(val) } else { ::std::result::Result::Err(self) }
+    }
+    /// Returns true if this is a [`L`](crate::model::AttributeValue::L).
+    pub fn is_l(&self) -> bool {
+        self.as_l().is_ok()
+    }
+    /// Tries to convert the enum instance into [`M`](crate::model::AttributeValue::M), extracting the inner [`HashMap`](::std::collections::HashMap).
+    /// Returns `Err(&Self)` if it can't be converted.
+    pub fn as_m(&self) -> ::std::result::Result<&::std::collections::HashMap::<::std::string::String, crate::model::AttributeValue>, &Self> {
+        if let AttributeValue::M(val) = &self { ::std::result::Result::Ok(val) } else { ::std::result::Result::Err(self) }
+    }
+    /// Returns true if this is a [`M`](crate::model::AttributeValue::M).
+    pub fn is_m(&self) -> bool {
+        self.as_m().is_ok()
+    }
+    /// Tries to convert the enum instance into [`N`](crate::model::AttributeValue::N), extracting the inner [`String`](::std::string::String).
+    /// Returns `Err(&Self)` if it can't be converted.
+    pub fn as_n(&self) -> ::std::result::Result<&::std::string::String, &Self> {
+        if let AttributeValue::N(val) = &self { ::std::result::Result::Ok(val) } else { ::std::result::Result::Err(self) }
+    }
+    /// Returns true if this is a [`N`](crate::model::AttributeValue::N).
+    pub fn is_n(&self) -> bool {
+        self.as_n().is_ok()
+    }
+    /// Tries to convert the enum instance into [`Ns`](crate::model::AttributeValue::Ns), extracting the inner [`Vec`](::std::vec::Vec).
+    /// Returns `Err(&Self)` if it can't be converted.
+    pub fn as_ns(&self) -> ::std::result::Result<&::std::vec::Vec::<::std::string::String>, &Self> {
+        if let AttributeValue::Ns(val) = &self { ::std::result::Result::Ok(val) } else { ::std::result::Result::Err(self) }
+    }
+    /// Returns true if this is a [`Ns`](crate::model::AttributeValue::Ns).
+    pub fn is_ns(&self) -> bool {
+        self.as_ns().is_ok()
+    }
+    /// Tries to convert the enum instance into [`Null`](crate::model::AttributeValue::Null), extracting the inner [`bool`](bool).
+    /// Returns `Err(&Self)` if it can't be converted.
+    pub fn as_null(&self) -> ::std::result::Result<&bool, &Self> {
+        if let AttributeValue::Null(val) = &self { ::std::result::Result::Ok(val) } else { ::std::result::Result::Err(self) }
+    }
+    /// Returns true if this is a [`Null`](crate::model::AttributeValue::Null).
+    pub fn is_null(&self) -> bool {
+        self.as_null().is_ok()
+    }
+    /// Tries to convert the enum instance into [`S`](crate::model::AttributeValue::S), extracting the inner [`String`](::std::string::String).
+    /// Returns `Err(&Self)` if it can't be converted.
+    pub fn as_s(&self) -> ::std::result::Result<&::std::string::String, &Self> {
+        if let AttributeValue::S(val) = &self { ::std::result::Result::Ok(val) } else { ::std::result::Result::Err(self) }
+    }
+    /// Returns true if this is a [`S`](crate::model::AttributeValue::S).
+    pub fn is_s(&self) -> bool {
+        self.as_s().is_ok()
+    }
+    /// Tries to convert the enum instance into [`Ss`](crate::model::AttributeValue::Ss), extracting the inner [`Vec`](::std::vec::Vec).
+    /// Returns `Err(&Self)` if it can't be converted.
+    pub fn as_ss(&self) -> ::std::result::Result<&::std::vec::Vec::<::std::string::String>, &Self> {
+        if let AttributeValue::Ss(val) = &self { ::std::result::Result::Ok(val) } else { ::std::result::Result::Err(self) }
+    }
+    /// Returns true if this is a [`Ss`](crate::model::AttributeValue::Ss).
+    pub fn is_ss(&self) -> bool {
+        self.as_ss().is_ok()
+    }
+}
+
+#[allow(missing_docs)] // documentation missing in model
+#[derive(::std::clone::Clone, ::std::cmp::PartialEq, ::std::fmt::Debug)]
+pub struct ConsumedCapacity  {
+    #[allow(missing_docs)] // documentation missing in model
+    pub table_name: ::std::option::Option<::std::string::String>,
+    #[allow(missing_docs)] // documentation missing in model
+    pub capacity_units: ::std::option::Option<f64>,
+    #[allow(missing_docs)] // documentation missing in model
+    pub read_capacity_units: ::std::option::Option<f64>,
+    #[allow(missing_docs)] // documentation missing in model
+    pub write_capacity_units: ::std::option::Option<f64>,
+    #[allow(missing_docs)] // documentation missing in model
+    pub table: ::std::option::Option<crate::model::Capacity>,
+    #[allow(missing_docs)] // documentation missing in model
+    pub local_secondary_indexes: ::std::option::Option<::std::collections::HashMap::<::std::string::String, crate::model::Capacity>>,
+    #[allow(missing_docs)] // documentation missing in model
+    pub global_secondary_indexes: ::std::option::Option<::std::collections::HashMap::<::std::string::String, crate::model::Capacity>>,
+}
+impl  ConsumedCapacity  {
+    #[allow(missing_docs)] // documentation missing in model
+    pub fn table_name(&self) -> ::std::option::Option<&str> {
+        self.table_name.as_deref()
+    }
+    #[allow(missing_docs)] // documentation missing in model
+    pub fn capacity_units(&self) -> ::std::option::Option<f64> {
+        self.capacity_units
+    }
+    #[allow(missing_docs)] // documentation missing in model
+    pub fn read_capacity_units(&self) -> ::std::option::Option<f64> {
+        self.read_capacity_units
+    }
+    #[allow(missing_docs)] // documentation missing in model
+    pub fn write_capacity_units(&self) -> ::std::option::Option<f64> {
+        self.write_capacity_units
+    }
+    #[allow(missing_docs)] // documentation missing in model
+    pub fn table(&self) -> ::std::option::Option<&crate::model::Capacity> {
+        self.table.as_ref()
+    }
+    #[allow(missing_docs)] // documentation missing in model
+    pub fn local_secondary_indexes(&self) -> ::std::option::Option<&::std::collections::HashMap::<::std::string::String, crate::model::Capacity>> {
+        self.local_secondary_indexes.as_ref()
+    }
+    #[allow(missing_docs)] // documentation missing in model
+    pub fn global_secondary_indexes(&self) -> ::std::option::Option<&::std::collections::HashMap::<::std::string::String, crate::model::Capacity>> {
+        self.global_secondary_indexes.as_ref()
+    }
+}
+impl  ConsumedCapacity  {
+    /// Creates a new builder-style object to manufacture [`ConsumedCapacity`](crate::model::ConsumedCapacity).
+    pub fn builder() -> crate::model::consumed_capacity::Builder  {
+        crate::model::consumed_capacity::Builder::default()
+    }
+}
+
+#[allow(missing_docs)] // documentation missing in model
+#[derive(::std::clone::Clone, ::std::cmp::PartialEq, ::std::fmt::Debug)]
+pub struct Capacity  {
+    #[allow(missing_docs)] // documentation missing in model
+    pub read_capacity_units: ::std::option::Option<f64>,
+    #[allow(missing_docs)] // documentation missing in model
+    pub write_capacity_units: ::std::option::Option<f64>,
+    #[allow(missing_docs)] // documentation missing in model
+    pub capacity_units: ::std::option::Option<f64>,
+}
+impl  Capacity  {
+    #[allow(missing_docs)] // documentation missing in model
+    pub fn read_capacity_units(&self) -> ::std::option::Option<f64> {
+        self.read_capacity_units
+    }
+    #[allow(missing_docs)] // documentation missing in model
+    pub fn write_capacity_units(&self) -> ::std::option::Option<f64> {
+        self.write_capacity_units
+    }
+    #[allow(missing_docs)] // documentation missing in model
+    pub fn capacity_units(&self) -> ::std::option::Option<f64> {
+        self.capacity_units
+    }
+}
+impl  Capacity  {
+    /// Creates a new builder-style object to manufacture [`Capacity`](crate::model::Capacity).
+    pub fn builder() -> crate::model::capacity::Builder  {
+        crate::model::capacity::Builder::default()
+    }
+}
+
+#[allow(missing_docs)] // documentation missing in model
+#[derive(::std::clone::Clone, ::std::cmp::Eq, ::std::cmp::Ord, ::std::cmp::PartialEq, ::std::cmp::PartialOrd, ::std::fmt::Debug, ::std::hash::Hash)]
+pub enum ReturnItemCollectionMetrics {
+    #[allow(missing_docs)] // documentation missing in model
+    None,
+    #[allow(missing_docs)] // documentation missing in model
+    Size,
+}
+/// See [`ReturnItemCollectionMetrics`](crate::model::ReturnItemCollectionMetrics).
+pub mod return_item_collection_metrics {
+    #[derive(Debug, PartialEq)]
+                    pub struct ConstraintViolation(pub(crate) ::std::string::String);
+    
+                    impl ::std::fmt::Display for ConstraintViolation {
+                        fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                            write!(f, r#"Value provided for 'com.amazonaws.dynamodb#ReturnItemCollectionMetrics' failed to satisfy constraint: Member must satisfy enum value set: [SIZE, NONE]"#)
+                        }
+                    }
+    
+                    impl ::std::error::Error for ConstraintViolation {}
+    impl ConstraintViolation {
+                            pub(crate) fn as_validation_exception_field(self, path: ::std::string::String) -> crate::model::ValidationExceptionField {
+                        crate::model::ValidationExceptionField {
+                            message: format!(r#"Value at '{}' failed to satisfy constraint: Member must satisfy enum value set: [SIZE, NONE]"#, &path),
+                            path,
+                        }
+                    }
+                        }
+    
+    
+}
+impl ::std::convert::TryFrom<&str> for ReturnItemCollectionMetrics {
+                    type Error = crate::model::return_item_collection_metrics::ConstraintViolation;
+                    fn try_from(s: &str) -> ::std::result::Result<Self, <Self as ::std::convert::TryFrom<&str>>::Error> {
+                        match s {
+                            "NONE" => Ok(ReturnItemCollectionMetrics::None),
+"SIZE" => Ok(ReturnItemCollectionMetrics::Size),
+                            _ => Err(crate::model::return_item_collection_metrics::ConstraintViolation(s.to_owned()))
+                        }
+                    }
+                }
+                impl ::std::convert::TryFrom<::std::string::String> for ReturnItemCollectionMetrics {
+                    type Error = crate::model::return_item_collection_metrics::ConstraintViolation;
+                    fn try_from(s: ::std::string::String) -> ::std::result::Result<Self, <Self as ::std::convert::TryFrom<::std::string::String>>::Error> {
+                        s.as_str().try_into()
+                    }
+                }
+impl std::str::FromStr for ReturnItemCollectionMetrics {
+                    type Err = crate::model::return_item_collection_metrics::ConstraintViolation;
+                    fn from_str(s: &str) -> std::result::Result<Self, <Self as std::str::FromStr>::Err> {
+                        Self::try_from(s)
+                    }
+                }
+impl ReturnItemCollectionMetrics {
+                /// Returns the `&str` value of the enum member.
+                pub fn as_str(&self) -> &str {
+                    match self {
+    ReturnItemCollectionMetrics::None => "NONE",
+    ReturnItemCollectionMetrics::Size => "SIZE",
+}
+                }
+                /// Returns all the `&str` representations of the enum members.
+                pub const fn values() -> &'static [&'static str] {
+                    &["NONE", "SIZE"]
+                }
+            }
+impl ::std::convert::AsRef<str> for ReturnItemCollectionMetrics {
+                fn as_ref(&self) -> &str {
+                    self.as_str()
+                }
+            }
+impl crate::constrained::Constrained for ReturnItemCollectionMetrics  {
+                type Unconstrained = ::std::string::String;
+            }
+
+            impl ::std::convert::From<::std::string::String> for crate::constrained::MaybeConstrained<crate::model::ReturnItemCollectionMetrics> {
+                fn from(value: ::std::string::String) -> Self {
+                    Self::Unconstrained(value)
+                }
+            }
+
+#[allow(missing_docs)] // documentation missing in model
+#[derive(::std::clone::Clone, ::std::cmp::Eq, ::std::cmp::Ord, ::std::cmp::PartialEq, ::std::cmp::PartialOrd, ::std::fmt::Debug, ::std::hash::Hash)]
+pub enum ReturnConsumedCapacity {
+    #[allow(missing_docs)] // documentation missing in model
+    Indexes,
+    #[allow(missing_docs)] // documentation missing in model
+    None,
+    #[allow(missing_docs)] // documentation missing in model
+    Total,
+}
+/// See [`ReturnConsumedCapacity`](crate::model::ReturnConsumedCapacity).
+pub mod return_consumed_capacity {
+    #[derive(Debug, PartialEq)]
+                    pub struct ConstraintViolation(pub(crate) ::std::string::String);
+    
+                    impl ::std::fmt::Display for ConstraintViolation {
+                        fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                            write!(f, r#"Value provided for 'com.amazonaws.dynamodb#ReturnConsumedCapacity' failed to satisfy constraint: Member must satisfy enum value set: [INDEXES, TOTAL, NONE]"#)
+                        }
+                    }
+    
+                    impl ::std::error::Error for ConstraintViolation {}
+    impl ConstraintViolation {
+                            pub(crate) fn as_validation_exception_field(self, path: ::std::string::String) -> crate::model::ValidationExceptionField {
+                        crate::model::ValidationExceptionField {
+                            message: format!(r#"Value at '{}' failed to satisfy constraint: Member must satisfy enum value set: [INDEXES, TOTAL, NONE]"#, &path),
+                            path,
+                        }
+                    }
+                        }
+    
+    
+}
+impl ::std::convert::TryFrom<&str> for ReturnConsumedCapacity {
+                    type Error = crate::model::return_consumed_capacity::ConstraintViolation;
+                    fn try_from(s: &str) -> ::std::result::Result<Self, <Self as ::std::convert::TryFrom<&str>>::Error> {
+                        match s {
+                            "INDEXES" => Ok(ReturnConsumedCapacity::Indexes),
+"NONE" => Ok(ReturnConsumedCapacity::None),
+"TOTAL" => Ok(ReturnConsumedCapacity::Total),
+                            _ => Err(crate::model::return_consumed_capacity::ConstraintViolation(s.to_owned()))
+                        }
+                    }
+                }
+                impl ::std::convert::TryFrom<::std::string::String> for ReturnConsumedCapacity {
+                    type Error = crate::model::return_consumed_capacity::ConstraintViolation;
+                    fn try_from(s: ::std::string::String) -> ::std::result::Result<Self, <Self as ::std::convert::TryFrom<::std::string::String>>::Error> {
+                        s.as_str().try_into()
+                    }
+                }
+impl std::str::FromStr for ReturnConsumedCapacity {
+                    type Err = crate::model::return_consumed_capacity::ConstraintViolation;
+                    fn from_str(s: &str) -> std::result::Result<Self, <Self as std::str::FromStr>::Err> {
+                        Self::try_from(s)
+                    }
+                }
+impl ReturnConsumedCapacity {
+                /// Returns the `&str` value of the enum member.
+                pub fn as_str(&self) -> &str {
+                    match self {
+    ReturnConsumedCapacity::Indexes => "INDEXES",
+    ReturnConsumedCapacity::None => "NONE",
+    ReturnConsumedCapacity::Total => "TOTAL",
+}
+                }
+                /// Returns all the `&str` representations of the enum members.
+                pub const fn values() -> &'static [&'static str] {
+                    &["INDEXES", "NONE", "TOTAL"]
+                }
+            }
+impl ::std::convert::AsRef<str> for ReturnConsumedCapacity {
+                fn as_ref(&self) -> &str {
+                    self.as_str()
+                }
+            }
+impl crate::constrained::Constrained for ReturnConsumedCapacity  {
+                type Unconstrained = ::std::string::String;
+            }
+
+            impl ::std::convert::From<::std::string::String> for crate::constrained::MaybeConstrained<crate::model::ReturnConsumedCapacity> {
+                fn from(value: ::std::string::String) -> Self {
+                    Self::Unconstrained(value)
+                }
+            }
+
+#[allow(missing_docs)] // documentation missing in model
+#[derive(::std::clone::Clone, ::std::cmp::Eq, ::std::cmp::Ord, ::std::cmp::PartialEq, ::std::cmp::PartialOrd, ::std::fmt::Debug, ::std::hash::Hash)]
+pub enum ReturnValue {
+    #[allow(missing_docs)] // documentation missing in model
+    AllNew,
+    #[allow(missing_docs)] // documentation missing in model
+    AllOld,
+    #[allow(missing_docs)] // documentation missing in model
+    None,
+    #[allow(missing_docs)] // documentation missing in model
+    UpdatedNew,
+    #[allow(missing_docs)] // documentation missing in model
+    UpdatedOld,
+}
+/// See [`ReturnValue`](crate::model::ReturnValue).
+pub mod return_value {
+    #[derive(Debug, PartialEq)]
+                    pub struct ConstraintViolation(pub(crate) ::std::string::String);
+    
+                    impl ::std::fmt::Display for ConstraintViolation {
+                        fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                            write!(f, r#"Value provided for 'com.amazonaws.dynamodb#ReturnValue' failed to satisfy constraint: Member must satisfy enum value set: [NONE, ALL_OLD, UPDATED_OLD, ALL_NEW, UPDATED_NEW]"#)
+                        }
+                    }
+    
+                    impl ::std::error::Error for ConstraintViolation {}
+    impl ConstraintViolation {
+                            pub(crate) fn as_validation_exception_field(self, path: ::std::string::String) -> crate::model::ValidationExceptionField {
+                        crate::model::ValidationExceptionField {
+                            message: format!(r#"Value at '{}' failed to satisfy constraint: Member must satisfy enum value set: [NONE, ALL_OLD, UPDATED_OLD, ALL_NEW, UPDATED_NEW]"#, &path),
+                            path,
+                        }
+                    }
+                        }
+    
+    
+}
+impl ::std::convert::TryFrom<&str> for ReturnValue {
+                    type Error = crate::model::return_value::ConstraintViolation;
+                    fn try_from(s: &str) -> ::std::result::Result<Self, <Self as ::std::convert::TryFrom<&str>>::Error> {
+                        match s {
+                            "ALL_NEW" => Ok(ReturnValue::AllNew),
+"ALL_OLD" => Ok(ReturnValue::AllOld),
+"NONE" => Ok(ReturnValue::None),
+"UPDATED_NEW" => Ok(ReturnValue::UpdatedNew),
+"UPDATED_OLD" => Ok(ReturnValue::UpdatedOld),
+                            _ => Err(crate::model::return_value::ConstraintViolation(s.to_owned()))
+                        }
+                    }
+                }
+                impl ::std::convert::TryFrom<::std::string::String> for ReturnValue {
+                    type Error = crate::model::return_value::ConstraintViolation;
+                    fn try_from(s: ::std::string::String) -> ::std::result::Result<Self, <Self as ::std::convert::TryFrom<::std::string::String>>::Error> {
+                        s.as_str().try_into()
+                    }
+                }
+impl std::str::FromStr for ReturnValue {
+                    type Err = crate::model::return_value::ConstraintViolation;
+                    fn from_str(s: &str) -> std::result::Result<Self, <Self as std::str::FromStr>::Err> {
+                        Self::try_from(s)
+                    }
+                }
+impl ReturnValue {
+                /// Returns the `&str` value of the enum member.
+                pub fn as_str(&self) -> &str {
+                    match self {
+    ReturnValue::AllNew => "ALL_NEW",
+    ReturnValue::AllOld => "ALL_OLD",
+    ReturnValue::None => "NONE",
+    ReturnValue::UpdatedNew => "UPDATED_NEW",
+    ReturnValue::UpdatedOld => "UPDATED_OLD",
+}
+                }
+                /// Returns all the `&str` representations of the enum members.
+                pub const fn values() -> &'static [&'static str] {
+                    &["ALL_NEW", "ALL_OLD", "NONE", "UPDATED_NEW", "UPDATED_OLD"]
+                }
+            }
+impl ::std::convert::AsRef<str> for ReturnValue {
+                fn as_ref(&self) -> &str {
+                    self.as_str()
+                }
+            }
+impl crate::constrained::Constrained for ReturnValue  {
+                type Unconstrained = ::std::string::String;
+            }
+
+            impl ::std::convert::From<::std::string::String> for crate::constrained::MaybeConstrained<crate::model::ReturnValue> {
+                fn from(value: ::std::string::String) -> Self {
+                    Self::Unconstrained(value)
+                }
+            }
+
+#[allow(missing_docs)] // documentation missing in model
+#[derive(::std::clone::Clone, ::std::cmp::Eq, ::std::cmp::Ord, ::std::cmp::PartialEq, ::std::cmp::PartialOrd, ::std::fmt::Debug, ::std::hash::Hash)]
+pub enum ConditionalOperator {
+    #[allow(missing_docs)] // documentation missing in model
+    And,
+    #[allow(missing_docs)] // documentation missing in model
+    Or,
+}
+/// See [`ConditionalOperator`](crate::model::ConditionalOperator).
+pub mod conditional_operator {
+    #[derive(Debug, PartialEq)]
+                    pub struct ConstraintViolation(pub(crate) ::std::string::String);
+    
+                    impl ::std::fmt::Display for ConstraintViolation {
+                        fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                            write!(f, r#"Value provided for 'com.amazonaws.dynamodb#ConditionalOperator' failed to satisfy constraint: Member must satisfy enum value set: [AND, OR]"#)
+                        }
+                    }
+    
+                    impl ::std::error::Error for ConstraintViolation {}
+    impl ConstraintViolation {
+                            pub(crate) fn as_validation_exception_field(self, path: ::std::string::String) -> crate::model::ValidationExceptionField {
+                        crate::model::ValidationExceptionField {
+                            message: format!(r#"Value at '{}' failed to satisfy constraint: Member must satisfy enum value set: [AND, OR]"#, &path),
+                            path,
+                        }
+                    }
+                        }
+    
+    
+}
+impl ::std::convert::TryFrom<&str> for ConditionalOperator {
+                    type Error = crate::model::conditional_operator::ConstraintViolation;
+                    fn try_from(s: &str) -> ::std::result::Result<Self, <Self as ::std::convert::TryFrom<&str>>::Error> {
+                        match s {
+                            "AND" => Ok(ConditionalOperator::And),
+"OR" => Ok(ConditionalOperator::Or),
+                            _ => Err(crate::model::conditional_operator::ConstraintViolation(s.to_owned()))
+                        }
+                    }
+                }
+                impl ::std::convert::TryFrom<::std::string::String> for ConditionalOperator {
+                    type Error = crate::model::conditional_operator::ConstraintViolation;
+                    fn try_from(s: ::std::string::String) -> ::std::result::Result<Self, <Self as ::std::convert::TryFrom<::std::string::String>>::Error> {
+                        s.as_str().try_into()
+                    }
+                }
+impl std::str::FromStr for ConditionalOperator {
+                    type Err = crate::model::conditional_operator::ConstraintViolation;
+                    fn from_str(s: &str) -> std::result::Result<Self, <Self as std::str::FromStr>::Err> {
+                        Self::try_from(s)
+                    }
+                }
+impl ConditionalOperator {
+                /// Returns the `&str` value of the enum member.
+                pub fn as_str(&self) -> &str {
+                    match self {
+    ConditionalOperator::And => "AND",
+    ConditionalOperator::Or => "OR",
+}
+                }
+                /// Returns all the `&str` representations of the enum members.
+                pub const fn values() -> &'static [&'static str] {
+                    &["AND", "OR"]
+                }
+            }
+impl ::std::convert::AsRef<str> for ConditionalOperator {
+                fn as_ref(&self) -> &str {
+                    self.as_str()
+                }
+            }
+impl crate::constrained::Constrained for ConditionalOperator  {
+                type Unconstrained = ::std::string::String;
+            }
+
+            impl ::std::convert::From<::std::string::String> for crate::constrained::MaybeConstrained<crate::model::ConditionalOperator> {
+                fn from(value: ::std::string::String) -> Self {
+                    Self::Unconstrained(value)
+                }
+            }
+
+
+
+#[allow(missing_docs)] // documentation missing in model
+#[derive(::std::clone::Clone, ::std::cmp::Eq, ::std::cmp::PartialEq, ::std::fmt::Debug)]
+pub struct ExpectedAttributeValue  {
+    #[allow(missing_docs)] // documentation missing in model
+    pub value: ::std::option::Option<crate::model::AttributeValue>,
+    #[allow(missing_docs)] // documentation missing in model
+    pub exists: ::std::option::Option<bool>,
+    #[allow(missing_docs)] // documentation missing in model
+    pub comparison_operator: ::std::option::Option<crate::model::ComparisonOperator>,
+    #[allow(missing_docs)] // documentation missing in model
+    pub attribute_value_list: ::std::option::Option<::std::vec::Vec::<crate::model::AttributeValue>>,
+}
+impl  ExpectedAttributeValue  {
+    #[allow(missing_docs)] // documentation missing in model
+    pub fn value(&self) -> ::std::option::Option<&crate::model::AttributeValue> {
+        self.value.as_ref()
+    }
+    #[allow(missing_docs)] // documentation missing in model
+    pub fn exists(&self) -> ::std::option::Option<bool> {
+        self.exists
+    }
+    #[allow(missing_docs)] // documentation missing in model
+    pub fn comparison_operator(&self) -> ::std::option::Option<&crate::model::ComparisonOperator> {
+        self.comparison_operator.as_ref()
+    }
+    #[allow(missing_docs)] // documentation missing in model
+    pub fn attribute_value_list(&self) -> ::std::option::Option<&[crate::model::AttributeValue]> {
+        self.attribute_value_list.as_deref()
+    }
+}
+impl  ExpectedAttributeValue  {
+    /// Creates a new builder-style object to manufacture [`ExpectedAttributeValue`](crate::model::ExpectedAttributeValue).
+    pub fn builder() -> crate::model::expected_attribute_value::Builder  {
+        crate::model::expected_attribute_value::Builder::default()
+    }
+}
+impl crate::constrained::Constrained for crate::model::ExpectedAttributeValue {
+                type Unconstrained = crate::model::expected_attribute_value::Builder;
+            }
+
+#[allow(missing_docs)] // documentation missing in model
+#[derive(::std::clone::Clone, ::std::cmp::Eq, ::std::cmp::Ord, ::std::cmp::PartialEq, ::std::cmp::PartialOrd, ::std::fmt::Debug, ::std::hash::Hash)]
+pub enum ComparisonOperator {
+    #[allow(missing_docs)] // documentation missing in model
+    BeginsWith,
+    #[allow(missing_docs)] // documentation missing in model
+    Between,
+    #[allow(missing_docs)] // documentation missing in model
+    Contains,
+    #[allow(missing_docs)] // documentation missing in model
+    Eq,
+    #[allow(missing_docs)] // documentation missing in model
+    Ge,
+    #[allow(missing_docs)] // documentation missing in model
+    Gt,
+    #[allow(missing_docs)] // documentation missing in model
+    In,
+    #[allow(missing_docs)] // documentation missing in model
+    Le,
+    #[allow(missing_docs)] // documentation missing in model
+    Lt,
+    #[allow(missing_docs)] // documentation missing in model
+    Ne,
+    #[allow(missing_docs)] // documentation missing in model
+    NotContains,
+    #[allow(missing_docs)] // documentation missing in model
+    NotNull,
+    #[allow(missing_docs)] // documentation missing in model
+    Null,
+}
+/// See [`ComparisonOperator`](crate::model::ComparisonOperator).
+pub mod comparison_operator {
+    #[derive(Debug, PartialEq)]
+                    pub struct ConstraintViolation(pub(crate) ::std::string::String);
+    
+                    impl ::std::fmt::Display for ConstraintViolation {
+                        fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                            write!(f, r#"Value provided for 'com.amazonaws.dynamodb#ComparisonOperator' failed to satisfy constraint: Member must satisfy enum value set: [EQ, NE, IN, LE, LT, GE, GT, BETWEEN, NOT_NULL, NULL, CONTAINS, NOT_CONTAINS, BEGINS_WITH]"#)
+                        }
+                    }
+    
+                    impl ::std::error::Error for ConstraintViolation {}
+    impl ConstraintViolation {
+                            pub(crate) fn as_validation_exception_field(self, path: ::std::string::String) -> crate::model::ValidationExceptionField {
+                        crate::model::ValidationExceptionField {
+                            message: format!(r#"Value at '{}' failed to satisfy constraint: Member must satisfy enum value set: [EQ, NE, IN, LE, LT, GE, GT, BETWEEN, NOT_NULL, NULL, CONTAINS, NOT_CONTAINS, BEGINS_WITH]"#, &path),
+                            path,
+                        }
+                    }
+                        }
+    
+    
+}
+impl ::std::convert::TryFrom<&str> for ComparisonOperator {
+                    type Error = crate::model::comparison_operator::ConstraintViolation;
+                    fn try_from(s: &str) -> ::std::result::Result<Self, <Self as ::std::convert::TryFrom<&str>>::Error> {
+                        match s {
+                            "BEGINS_WITH" => Ok(ComparisonOperator::BeginsWith),
+"BETWEEN" => Ok(ComparisonOperator::Between),
+"CONTAINS" => Ok(ComparisonOperator::Contains),
+"EQ" => Ok(ComparisonOperator::Eq),
+"GE" => Ok(ComparisonOperator::Ge),
+"GT" => Ok(ComparisonOperator::Gt),
+"IN" => Ok(ComparisonOperator::In),
+"LE" => Ok(ComparisonOperator::Le),
+"LT" => Ok(ComparisonOperator::Lt),
+"NE" => Ok(ComparisonOperator::Ne),
+"NOT_CONTAINS" => Ok(ComparisonOperator::NotContains),
+"NOT_NULL" => Ok(ComparisonOperator::NotNull),
+"NULL" => Ok(ComparisonOperator::Null),
+                            _ => Err(crate::model::comparison_operator::ConstraintViolation(s.to_owned()))
+                        }
+                    }
+                }
+                impl ::std::convert::TryFrom<::std::string::String> for ComparisonOperator {
+                    type Error = crate::model::comparison_operator::ConstraintViolation;
+                    fn try_from(s: ::std::string::String) -> ::std::result::Result<Self, <Self as ::std::convert::TryFrom<::std::string::String>>::Error> {
+                        s.as_str().try_into()
+                    }
+                }
+impl std::str::FromStr for ComparisonOperator {
+                    type Err = crate::model::comparison_operator::ConstraintViolation;
+                    fn from_str(s: &str) -> std::result::Result<Self, <Self as std::str::FromStr>::Err> {
+                        Self::try_from(s)
+                    }
+                }
+impl ComparisonOperator {
+                /// Returns the `&str` value of the enum member.
+                pub fn as_str(&self) -> &str {
+                    match self {
+    ComparisonOperator::BeginsWith => "BEGINS_WITH",
+    ComparisonOperator::Between => "BETWEEN",
+    ComparisonOperator::Contains => "CONTAINS",
+    ComparisonOperator::Eq => "EQ",
+    ComparisonOperator::Ge => "GE",
+    ComparisonOperator::Gt => "GT",
+    ComparisonOperator::In => "IN",
+    ComparisonOperator::Le => "LE",
+    ComparisonOperator::Lt => "LT",
+    ComparisonOperator::Ne => "NE",
+    ComparisonOperator::NotContains => "NOT_CONTAINS",
+    ComparisonOperator::NotNull => "NOT_NULL",
+    ComparisonOperator::Null => "NULL",
+}
+                }
+                /// Returns all the `&str` representations of the enum members.
+                pub const fn values() -> &'static [&'static str] {
+                    &["BEGINS_WITH", "BETWEEN", "CONTAINS", "EQ", "GE", "GT", "IN", "LE", "LT", "NE", "NOT_CONTAINS", "NOT_NULL", "NULL"]
+                }
+            }
+impl ::std::convert::AsRef<str> for ComparisonOperator {
+                fn as_ref(&self) -> &str {
+                    self.as_str()
+                }
+            }
+impl crate::constrained::Constrained for ComparisonOperator  {
+                type Unconstrained = ::std::string::String;
+            }
+
+            impl ::std::convert::From<::std::string::String> for crate::constrained::MaybeConstrained<crate::model::ComparisonOperator> {
+                fn from(value: ::std::string::String) -> Self {
+                    Self::Unconstrained(value)
+                }
+            }
+
+
+
+#[allow(missing_docs)] // documentation missing in model
+#[derive(::std::clone::Clone, ::std::cmp::Eq, ::std::cmp::PartialEq, ::std::fmt::Debug)]
+pub struct AttributeValueUpdate  {
+    #[allow(missing_docs)] // documentation missing in model
+    pub value: ::std::option::Option<crate::model::AttributeValue>,
+    #[allow(missing_docs)] // documentation missing in model
+    pub action: ::std::option::Option<crate::model::AttributeAction>,
+}
+impl  AttributeValueUpdate  {
+    #[allow(missing_docs)] // documentation missing in model
+    pub fn value(&self) -> ::std::option::Option<&crate::model::AttributeValue> {
+        self.value.as_ref()
+    }
+    #[allow(missing_docs)] // documentation missing in model
+    pub fn action(&self) -> ::std::option::Option<&crate::model::AttributeAction> {
+        self.action.as_ref()
+    }
+}
+impl  AttributeValueUpdate  {
+    /// Creates a new builder-style object to manufacture [`AttributeValueUpdate`](crate::model::AttributeValueUpdate).
+    pub fn builder() -> crate::model::attribute_value_update::Builder  {
+        crate::model::attribute_value_update::Builder::default()
+    }
+}
+impl crate::constrained::Constrained for crate::model::AttributeValueUpdate {
+                type Unconstrained = crate::model::attribute_value_update::Builder;
+            }
+
+#[allow(missing_docs)] // documentation missing in model
+#[derive(::std::clone::Clone, ::std::cmp::Eq, ::std::cmp::Ord, ::std::cmp::PartialEq, ::std::cmp::PartialOrd, ::std::fmt::Debug, ::std::hash::Hash)]
+pub enum AttributeAction {
+    #[allow(missing_docs)] // documentation missing in model
+    Add,
+    #[allow(missing_docs)] // documentation missing in model
+    Delete,
+    #[allow(missing_docs)] // documentation missing in model
+    Put,
+}
+/// See [`AttributeAction`](crate::model::AttributeAction).
+pub mod attribute_action {
+    #[derive(Debug, PartialEq)]
+                    pub struct ConstraintViolation(pub(crate) ::std::string::String);
+    
+                    impl ::std::fmt::Display for ConstraintViolation {
+                        fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                            write!(f, r#"Value provided for 'com.amazonaws.dynamodb#AttributeAction' failed to satisfy constraint: Member must satisfy enum value set: [ADD, PUT, DELETE]"#)
+                        }
+                    }
+    
+                    impl ::std::error::Error for ConstraintViolation {}
+    impl ConstraintViolation {
+                            pub(crate) fn as_validation_exception_field(self, path: ::std::string::String) -> crate::model::ValidationExceptionField {
+                        crate::model::ValidationExceptionField {
+                            message: format!(r#"Value at '{}' failed to satisfy constraint: Member must satisfy enum value set: [ADD, PUT, DELETE]"#, &path),
+                            path,
+                        }
+                    }
+                        }
+    
+    
+}
+impl ::std::convert::TryFrom<&str> for AttributeAction {
+                    type Error = crate::model::attribute_action::ConstraintViolation;
+                    fn try_from(s: &str) -> ::std::result::Result<Self, <Self as ::std::convert::TryFrom<&str>>::Error> {
+                        match s {
+                            "ADD" => Ok(AttributeAction::Add),
+"DELETE" => Ok(AttributeAction::Delete),
+"PUT" => Ok(AttributeAction::Put),
+                            _ => Err(crate::model::attribute_action::ConstraintViolation(s.to_owned()))
+                        }
+                    }
+                }
+                impl ::std::convert::TryFrom<::std::string::String> for AttributeAction {
+                    type Error = crate::model::attribute_action::ConstraintViolation;
+                    fn try_from(s: ::std::string::String) -> ::std::result::Result<Self, <Self as ::std::convert::TryFrom<::std::string::String>>::Error> {
+                        s.as_str().try_into()
+                    }
+                }
+impl std::str::FromStr for AttributeAction {
+                    type Err = crate::model::attribute_action::ConstraintViolation;
+                    fn from_str(s: &str) -> std::result::Result<Self, <Self as std::str::FromStr>::Err> {
+                        Self::try_from(s)
+                    }
+                }
+impl AttributeAction {
+                /// Returns the `&str` value of the enum member.
+                pub fn as_str(&self) -> &str {
+                    match self {
+    AttributeAction::Add => "ADD",
+    AttributeAction::Delete => "DELETE",
+    AttributeAction::Put => "PUT",
+}
+                }
+                /// Returns all the `&str` representations of the enum members.
+                pub const fn values() -> &'static [&'static str] {
+                    &["ADD", "DELETE", "PUT"]
+                }
+            }
+impl ::std::convert::AsRef<str> for AttributeAction {
+                fn as_ref(&self) -> &str {
+                    self.as_str()
+                }
+            }
+impl crate::constrained::Constrained for AttributeAction  {
+                type Unconstrained = ::std::string::String;
+            }
+
+            impl ::std::convert::From<::std::string::String> for crate::constrained::MaybeConstrained<crate::model::AttributeAction> {
+                fn from(value: ::std::string::String) -> Self {
+                    Self::Unconstrained(value)
+                }
+            }
+
+#[allow(missing_docs)] // documentation missing in model
 #[derive(::std::clone::Clone, ::std::cmp::Eq, ::std::cmp::PartialEq, ::std::fmt::Debug, ::std::hash::Hash)]
 pub struct TableDescription  {
     #[allow(missing_docs)] // documentation missing in model
@@ -1697,741 +2547,6 @@ impl  LocalSecondaryIndex  {
 impl crate::constrained::Constrained for crate::model::LocalSecondaryIndex {
                 type Unconstrained = crate::model::local_secondary_index::Builder;
             }
-
-#[allow(missing_docs)] // documentation missing in model
-#[derive(::std::clone::Clone, ::std::cmp::PartialEq, ::std::fmt::Debug)]
-pub struct ItemCollectionMetrics  {
-    #[allow(missing_docs)] // documentation missing in model
-    pub item_collection_key: ::std::option::Option<::std::collections::HashMap::<::std::string::String, crate::model::AttributeValue>>,
-    #[allow(missing_docs)] // documentation missing in model
-    pub size_estimate_range_gb: ::std::option::Option<::std::vec::Vec::<f64>>,
-}
-impl  ItemCollectionMetrics  {
-    #[allow(missing_docs)] // documentation missing in model
-    pub fn item_collection_key(&self) -> ::std::option::Option<&::std::collections::HashMap::<::std::string::String, crate::model::AttributeValue>> {
-        self.item_collection_key.as_ref()
-    }
-    #[allow(missing_docs)] // documentation missing in model
-    pub fn size_estimate_range_gb(&self) -> ::std::option::Option<&[f64]> {
-        self.size_estimate_range_gb.as_deref()
-    }
-}
-impl  ItemCollectionMetrics  {
-    /// Creates a new builder-style object to manufacture [`ItemCollectionMetrics`](crate::model::ItemCollectionMetrics).
-    pub fn builder() -> crate::model::item_collection_metrics::Builder  {
-        crate::model::item_collection_metrics::Builder::default()
-    }
-}
-
-#[allow(missing_docs)] // documentation missing in model
-#[derive(::std::clone::Clone, ::std::cmp::Eq, ::std::cmp::PartialEq, ::std::fmt::Debug)]
-pub enum AttributeValue {
-    #[allow(missing_docs)] // documentation missing in model
-    B(::aws_smithy_types::Blob),
-    #[allow(missing_docs)] // documentation missing in model
-    Bool(bool),
-    #[allow(missing_docs)] // documentation missing in model
-    Bs(::std::vec::Vec::<::aws_smithy_types::Blob>),
-    #[allow(missing_docs)] // documentation missing in model
-    L(::std::vec::Vec::<crate::model::AttributeValue>),
-    #[allow(missing_docs)] // documentation missing in model
-    M(::std::collections::HashMap::<::std::string::String, crate::model::AttributeValue>),
-    #[allow(missing_docs)] // documentation missing in model
-    N(::std::string::String),
-    #[allow(missing_docs)] // documentation missing in model
-    Ns(::std::vec::Vec::<::std::string::String>),
-    #[allow(missing_docs)] // documentation missing in model
-    Null(bool),
-    #[allow(missing_docs)] // documentation missing in model
-    S(::std::string::String),
-    #[allow(missing_docs)] // documentation missing in model
-    Ss(::std::vec::Vec::<::std::string::String>),
-}
-impl AttributeValue {
-    /// Tries to convert the enum instance into [`B`](crate::model::AttributeValue::B), extracting the inner [`Blob`](::aws_smithy_types::Blob).
-    /// Returns `Err(&Self)` if it can't be converted.
-    pub fn as_b(&self) -> ::std::result::Result<&::aws_smithy_types::Blob, &Self> {
-        if let AttributeValue::B(val) = &self { ::std::result::Result::Ok(val) } else { ::std::result::Result::Err(self) }
-    }
-    /// Returns true if this is a [`B`](crate::model::AttributeValue::B).
-    pub fn is_b(&self) -> bool {
-        self.as_b().is_ok()
-    }
-    /// Tries to convert the enum instance into [`Bool`](crate::model::AttributeValue::Bool), extracting the inner [`bool`](bool).
-    /// Returns `Err(&Self)` if it can't be converted.
-    pub fn as_bool(&self) -> ::std::result::Result<&bool, &Self> {
-        if let AttributeValue::Bool(val) = &self { ::std::result::Result::Ok(val) } else { ::std::result::Result::Err(self) }
-    }
-    /// Returns true if this is a [`Bool`](crate::model::AttributeValue::Bool).
-    pub fn is_bool(&self) -> bool {
-        self.as_bool().is_ok()
-    }
-    /// Tries to convert the enum instance into [`Bs`](crate::model::AttributeValue::Bs), extracting the inner [`Vec`](::std::vec::Vec).
-    /// Returns `Err(&Self)` if it can't be converted.
-    pub fn as_bs(&self) -> ::std::result::Result<&::std::vec::Vec::<::aws_smithy_types::Blob>, &Self> {
-        if let AttributeValue::Bs(val) = &self { ::std::result::Result::Ok(val) } else { ::std::result::Result::Err(self) }
-    }
-    /// Returns true if this is a [`Bs`](crate::model::AttributeValue::Bs).
-    pub fn is_bs(&self) -> bool {
-        self.as_bs().is_ok()
-    }
-    /// Tries to convert the enum instance into [`L`](crate::model::AttributeValue::L), extracting the inner [`Vec`](::std::vec::Vec).
-    /// Returns `Err(&Self)` if it can't be converted.
-    pub fn as_l(&self) -> ::std::result::Result<&::std::vec::Vec::<crate::model::AttributeValue>, &Self> {
-        if let AttributeValue::L(val) = &self { ::std::result::Result::Ok(val) } else { ::std::result::Result::Err(self) }
-    }
-    /// Returns true if this is a [`L`](crate::model::AttributeValue::L).
-    pub fn is_l(&self) -> bool {
-        self.as_l().is_ok()
-    }
-    /// Tries to convert the enum instance into [`M`](crate::model::AttributeValue::M), extracting the inner [`HashMap`](::std::collections::HashMap).
-    /// Returns `Err(&Self)` if it can't be converted.
-    pub fn as_m(&self) -> ::std::result::Result<&::std::collections::HashMap::<::std::string::String, crate::model::AttributeValue>, &Self> {
-        if let AttributeValue::M(val) = &self { ::std::result::Result::Ok(val) } else { ::std::result::Result::Err(self) }
-    }
-    /// Returns true if this is a [`M`](crate::model::AttributeValue::M).
-    pub fn is_m(&self) -> bool {
-        self.as_m().is_ok()
-    }
-    /// Tries to convert the enum instance into [`N`](crate::model::AttributeValue::N), extracting the inner [`String`](::std::string::String).
-    /// Returns `Err(&Self)` if it can't be converted.
-    pub fn as_n(&self) -> ::std::result::Result<&::std::string::String, &Self> {
-        if let AttributeValue::N(val) = &self { ::std::result::Result::Ok(val) } else { ::std::result::Result::Err(self) }
-    }
-    /// Returns true if this is a [`N`](crate::model::AttributeValue::N).
-    pub fn is_n(&self) -> bool {
-        self.as_n().is_ok()
-    }
-    /// Tries to convert the enum instance into [`Ns`](crate::model::AttributeValue::Ns), extracting the inner [`Vec`](::std::vec::Vec).
-    /// Returns `Err(&Self)` if it can't be converted.
-    pub fn as_ns(&self) -> ::std::result::Result<&::std::vec::Vec::<::std::string::String>, &Self> {
-        if let AttributeValue::Ns(val) = &self { ::std::result::Result::Ok(val) } else { ::std::result::Result::Err(self) }
-    }
-    /// Returns true if this is a [`Ns`](crate::model::AttributeValue::Ns).
-    pub fn is_ns(&self) -> bool {
-        self.as_ns().is_ok()
-    }
-    /// Tries to convert the enum instance into [`Null`](crate::model::AttributeValue::Null), extracting the inner [`bool`](bool).
-    /// Returns `Err(&Self)` if it can't be converted.
-    pub fn as_null(&self) -> ::std::result::Result<&bool, &Self> {
-        if let AttributeValue::Null(val) = &self { ::std::result::Result::Ok(val) } else { ::std::result::Result::Err(self) }
-    }
-    /// Returns true if this is a [`Null`](crate::model::AttributeValue::Null).
-    pub fn is_null(&self) -> bool {
-        self.as_null().is_ok()
-    }
-    /// Tries to convert the enum instance into [`S`](crate::model::AttributeValue::S), extracting the inner [`String`](::std::string::String).
-    /// Returns `Err(&Self)` if it can't be converted.
-    pub fn as_s(&self) -> ::std::result::Result<&::std::string::String, &Self> {
-        if let AttributeValue::S(val) = &self { ::std::result::Result::Ok(val) } else { ::std::result::Result::Err(self) }
-    }
-    /// Returns true if this is a [`S`](crate::model::AttributeValue::S).
-    pub fn is_s(&self) -> bool {
-        self.as_s().is_ok()
-    }
-    /// Tries to convert the enum instance into [`Ss`](crate::model::AttributeValue::Ss), extracting the inner [`Vec`](::std::vec::Vec).
-    /// Returns `Err(&Self)` if it can't be converted.
-    pub fn as_ss(&self) -> ::std::result::Result<&::std::vec::Vec::<::std::string::String>, &Self> {
-        if let AttributeValue::Ss(val) = &self { ::std::result::Result::Ok(val) } else { ::std::result::Result::Err(self) }
-    }
-    /// Returns true if this is a [`Ss`](crate::model::AttributeValue::Ss).
-    pub fn is_ss(&self) -> bool {
-        self.as_ss().is_ok()
-    }
-}
-
-#[allow(missing_docs)] // documentation missing in model
-#[derive(::std::clone::Clone, ::std::cmp::PartialEq, ::std::fmt::Debug)]
-pub struct ConsumedCapacity  {
-    #[allow(missing_docs)] // documentation missing in model
-    pub table_name: ::std::option::Option<::std::string::String>,
-    #[allow(missing_docs)] // documentation missing in model
-    pub capacity_units: ::std::option::Option<f64>,
-    #[allow(missing_docs)] // documentation missing in model
-    pub read_capacity_units: ::std::option::Option<f64>,
-    #[allow(missing_docs)] // documentation missing in model
-    pub write_capacity_units: ::std::option::Option<f64>,
-    #[allow(missing_docs)] // documentation missing in model
-    pub table: ::std::option::Option<crate::model::Capacity>,
-    #[allow(missing_docs)] // documentation missing in model
-    pub local_secondary_indexes: ::std::option::Option<::std::collections::HashMap::<::std::string::String, crate::model::Capacity>>,
-    #[allow(missing_docs)] // documentation missing in model
-    pub global_secondary_indexes: ::std::option::Option<::std::collections::HashMap::<::std::string::String, crate::model::Capacity>>,
-}
-impl  ConsumedCapacity  {
-    #[allow(missing_docs)] // documentation missing in model
-    pub fn table_name(&self) -> ::std::option::Option<&str> {
-        self.table_name.as_deref()
-    }
-    #[allow(missing_docs)] // documentation missing in model
-    pub fn capacity_units(&self) -> ::std::option::Option<f64> {
-        self.capacity_units
-    }
-    #[allow(missing_docs)] // documentation missing in model
-    pub fn read_capacity_units(&self) -> ::std::option::Option<f64> {
-        self.read_capacity_units
-    }
-    #[allow(missing_docs)] // documentation missing in model
-    pub fn write_capacity_units(&self) -> ::std::option::Option<f64> {
-        self.write_capacity_units
-    }
-    #[allow(missing_docs)] // documentation missing in model
-    pub fn table(&self) -> ::std::option::Option<&crate::model::Capacity> {
-        self.table.as_ref()
-    }
-    #[allow(missing_docs)] // documentation missing in model
-    pub fn local_secondary_indexes(&self) -> ::std::option::Option<&::std::collections::HashMap::<::std::string::String, crate::model::Capacity>> {
-        self.local_secondary_indexes.as_ref()
-    }
-    #[allow(missing_docs)] // documentation missing in model
-    pub fn global_secondary_indexes(&self) -> ::std::option::Option<&::std::collections::HashMap::<::std::string::String, crate::model::Capacity>> {
-        self.global_secondary_indexes.as_ref()
-    }
-}
-impl  ConsumedCapacity  {
-    /// Creates a new builder-style object to manufacture [`ConsumedCapacity`](crate::model::ConsumedCapacity).
-    pub fn builder() -> crate::model::consumed_capacity::Builder  {
-        crate::model::consumed_capacity::Builder::default()
-    }
-}
-
-#[allow(missing_docs)] // documentation missing in model
-#[derive(::std::clone::Clone, ::std::cmp::PartialEq, ::std::fmt::Debug)]
-pub struct Capacity  {
-    #[allow(missing_docs)] // documentation missing in model
-    pub read_capacity_units: ::std::option::Option<f64>,
-    #[allow(missing_docs)] // documentation missing in model
-    pub write_capacity_units: ::std::option::Option<f64>,
-    #[allow(missing_docs)] // documentation missing in model
-    pub capacity_units: ::std::option::Option<f64>,
-}
-impl  Capacity  {
-    #[allow(missing_docs)] // documentation missing in model
-    pub fn read_capacity_units(&self) -> ::std::option::Option<f64> {
-        self.read_capacity_units
-    }
-    #[allow(missing_docs)] // documentation missing in model
-    pub fn write_capacity_units(&self) -> ::std::option::Option<f64> {
-        self.write_capacity_units
-    }
-    #[allow(missing_docs)] // documentation missing in model
-    pub fn capacity_units(&self) -> ::std::option::Option<f64> {
-        self.capacity_units
-    }
-}
-impl  Capacity  {
-    /// Creates a new builder-style object to manufacture [`Capacity`](crate::model::Capacity).
-    pub fn builder() -> crate::model::capacity::Builder  {
-        crate::model::capacity::Builder::default()
-    }
-}
-
-#[allow(missing_docs)] // documentation missing in model
-#[derive(::std::clone::Clone, ::std::cmp::Eq, ::std::cmp::Ord, ::std::cmp::PartialEq, ::std::cmp::PartialOrd, ::std::fmt::Debug, ::std::hash::Hash)]
-pub enum ConditionalOperator {
-    #[allow(missing_docs)] // documentation missing in model
-    And,
-    #[allow(missing_docs)] // documentation missing in model
-    Or,
-}
-/// See [`ConditionalOperator`](crate::model::ConditionalOperator).
-pub mod conditional_operator {
-    #[derive(Debug, PartialEq)]
-                    pub struct ConstraintViolation(pub(crate) ::std::string::String);
-    
-                    impl ::std::fmt::Display for ConstraintViolation {
-                        fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-                            write!(f, r#"Value provided for 'com.amazonaws.dynamodb#ConditionalOperator' failed to satisfy constraint: Member must satisfy enum value set: [AND, OR]"#)
-                        }
-                    }
-    
-                    impl ::std::error::Error for ConstraintViolation {}
-    impl ConstraintViolation {
-                            pub(crate) fn as_validation_exception_field(self, path: ::std::string::String) -> crate::model::ValidationExceptionField {
-                        crate::model::ValidationExceptionField {
-                            message: format!(r#"Value at '{}' failed to satisfy constraint: Member must satisfy enum value set: [AND, OR]"#, &path),
-                            path,
-                        }
-                    }
-                        }
-    
-    
-}
-impl ::std::convert::TryFrom<&str> for ConditionalOperator {
-                    type Error = crate::model::conditional_operator::ConstraintViolation;
-                    fn try_from(s: &str) -> ::std::result::Result<Self, <Self as ::std::convert::TryFrom<&str>>::Error> {
-                        match s {
-                            "AND" => Ok(ConditionalOperator::And),
-"OR" => Ok(ConditionalOperator::Or),
-                            _ => Err(crate::model::conditional_operator::ConstraintViolation(s.to_owned()))
-                        }
-                    }
-                }
-                impl ::std::convert::TryFrom<::std::string::String> for ConditionalOperator {
-                    type Error = crate::model::conditional_operator::ConstraintViolation;
-                    fn try_from(s: ::std::string::String) -> ::std::result::Result<Self, <Self as ::std::convert::TryFrom<::std::string::String>>::Error> {
-                        s.as_str().try_into()
-                    }
-                }
-impl std::str::FromStr for ConditionalOperator {
-                    type Err = crate::model::conditional_operator::ConstraintViolation;
-                    fn from_str(s: &str) -> std::result::Result<Self, <Self as std::str::FromStr>::Err> {
-                        Self::try_from(s)
-                    }
-                }
-impl ConditionalOperator {
-                /// Returns the `&str` value of the enum member.
-                pub fn as_str(&self) -> &str {
-                    match self {
-    ConditionalOperator::And => "AND",
-    ConditionalOperator::Or => "OR",
-}
-                }
-                /// Returns all the `&str` representations of the enum members.
-                pub const fn values() -> &'static [&'static str] {
-                    &["AND", "OR"]
-                }
-            }
-impl ::std::convert::AsRef<str> for ConditionalOperator {
-                fn as_ref(&self) -> &str {
-                    self.as_str()
-                }
-            }
-impl crate::constrained::Constrained for ConditionalOperator  {
-                type Unconstrained = ::std::string::String;
-            }
-
-            impl ::std::convert::From<::std::string::String> for crate::constrained::MaybeConstrained<crate::model::ConditionalOperator> {
-                fn from(value: ::std::string::String) -> Self {
-                    Self::Unconstrained(value)
-                }
-            }
-
-#[allow(missing_docs)] // documentation missing in model
-#[derive(::std::clone::Clone, ::std::cmp::Eq, ::std::cmp::Ord, ::std::cmp::PartialEq, ::std::cmp::PartialOrd, ::std::fmt::Debug, ::std::hash::Hash)]
-pub enum ReturnItemCollectionMetrics {
-    #[allow(missing_docs)] // documentation missing in model
-    None,
-    #[allow(missing_docs)] // documentation missing in model
-    Size,
-}
-/// See [`ReturnItemCollectionMetrics`](crate::model::ReturnItemCollectionMetrics).
-pub mod return_item_collection_metrics {
-    #[derive(Debug, PartialEq)]
-                    pub struct ConstraintViolation(pub(crate) ::std::string::String);
-    
-                    impl ::std::fmt::Display for ConstraintViolation {
-                        fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-                            write!(f, r#"Value provided for 'com.amazonaws.dynamodb#ReturnItemCollectionMetrics' failed to satisfy constraint: Member must satisfy enum value set: [SIZE, NONE]"#)
-                        }
-                    }
-    
-                    impl ::std::error::Error for ConstraintViolation {}
-    impl ConstraintViolation {
-                            pub(crate) fn as_validation_exception_field(self, path: ::std::string::String) -> crate::model::ValidationExceptionField {
-                        crate::model::ValidationExceptionField {
-                            message: format!(r#"Value at '{}' failed to satisfy constraint: Member must satisfy enum value set: [SIZE, NONE]"#, &path),
-                            path,
-                        }
-                    }
-                        }
-    
-    
-}
-impl ::std::convert::TryFrom<&str> for ReturnItemCollectionMetrics {
-                    type Error = crate::model::return_item_collection_metrics::ConstraintViolation;
-                    fn try_from(s: &str) -> ::std::result::Result<Self, <Self as ::std::convert::TryFrom<&str>>::Error> {
-                        match s {
-                            "NONE" => Ok(ReturnItemCollectionMetrics::None),
-"SIZE" => Ok(ReturnItemCollectionMetrics::Size),
-                            _ => Err(crate::model::return_item_collection_metrics::ConstraintViolation(s.to_owned()))
-                        }
-                    }
-                }
-                impl ::std::convert::TryFrom<::std::string::String> for ReturnItemCollectionMetrics {
-                    type Error = crate::model::return_item_collection_metrics::ConstraintViolation;
-                    fn try_from(s: ::std::string::String) -> ::std::result::Result<Self, <Self as ::std::convert::TryFrom<::std::string::String>>::Error> {
-                        s.as_str().try_into()
-                    }
-                }
-impl std::str::FromStr for ReturnItemCollectionMetrics {
-                    type Err = crate::model::return_item_collection_metrics::ConstraintViolation;
-                    fn from_str(s: &str) -> std::result::Result<Self, <Self as std::str::FromStr>::Err> {
-                        Self::try_from(s)
-                    }
-                }
-impl ReturnItemCollectionMetrics {
-                /// Returns the `&str` value of the enum member.
-                pub fn as_str(&self) -> &str {
-                    match self {
-    ReturnItemCollectionMetrics::None => "NONE",
-    ReturnItemCollectionMetrics::Size => "SIZE",
-}
-                }
-                /// Returns all the `&str` representations of the enum members.
-                pub const fn values() -> &'static [&'static str] {
-                    &["NONE", "SIZE"]
-                }
-            }
-impl ::std::convert::AsRef<str> for ReturnItemCollectionMetrics {
-                fn as_ref(&self) -> &str {
-                    self.as_str()
-                }
-            }
-impl crate::constrained::Constrained for ReturnItemCollectionMetrics  {
-                type Unconstrained = ::std::string::String;
-            }
-
-            impl ::std::convert::From<::std::string::String> for crate::constrained::MaybeConstrained<crate::model::ReturnItemCollectionMetrics> {
-                fn from(value: ::std::string::String) -> Self {
-                    Self::Unconstrained(value)
-                }
-            }
-
-#[allow(missing_docs)] // documentation missing in model
-#[derive(::std::clone::Clone, ::std::cmp::Eq, ::std::cmp::Ord, ::std::cmp::PartialEq, ::std::cmp::PartialOrd, ::std::fmt::Debug, ::std::hash::Hash)]
-pub enum ReturnConsumedCapacity {
-    #[allow(missing_docs)] // documentation missing in model
-    Indexes,
-    #[allow(missing_docs)] // documentation missing in model
-    None,
-    #[allow(missing_docs)] // documentation missing in model
-    Total,
-}
-/// See [`ReturnConsumedCapacity`](crate::model::ReturnConsumedCapacity).
-pub mod return_consumed_capacity {
-    #[derive(Debug, PartialEq)]
-                    pub struct ConstraintViolation(pub(crate) ::std::string::String);
-    
-                    impl ::std::fmt::Display for ConstraintViolation {
-                        fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-                            write!(f, r#"Value provided for 'com.amazonaws.dynamodb#ReturnConsumedCapacity' failed to satisfy constraint: Member must satisfy enum value set: [INDEXES, TOTAL, NONE]"#)
-                        }
-                    }
-    
-                    impl ::std::error::Error for ConstraintViolation {}
-    impl ConstraintViolation {
-                            pub(crate) fn as_validation_exception_field(self, path: ::std::string::String) -> crate::model::ValidationExceptionField {
-                        crate::model::ValidationExceptionField {
-                            message: format!(r#"Value at '{}' failed to satisfy constraint: Member must satisfy enum value set: [INDEXES, TOTAL, NONE]"#, &path),
-                            path,
-                        }
-                    }
-                        }
-    
-    
-}
-impl ::std::convert::TryFrom<&str> for ReturnConsumedCapacity {
-                    type Error = crate::model::return_consumed_capacity::ConstraintViolation;
-                    fn try_from(s: &str) -> ::std::result::Result<Self, <Self as ::std::convert::TryFrom<&str>>::Error> {
-                        match s {
-                            "INDEXES" => Ok(ReturnConsumedCapacity::Indexes),
-"NONE" => Ok(ReturnConsumedCapacity::None),
-"TOTAL" => Ok(ReturnConsumedCapacity::Total),
-                            _ => Err(crate::model::return_consumed_capacity::ConstraintViolation(s.to_owned()))
-                        }
-                    }
-                }
-                impl ::std::convert::TryFrom<::std::string::String> for ReturnConsumedCapacity {
-                    type Error = crate::model::return_consumed_capacity::ConstraintViolation;
-                    fn try_from(s: ::std::string::String) -> ::std::result::Result<Self, <Self as ::std::convert::TryFrom<::std::string::String>>::Error> {
-                        s.as_str().try_into()
-                    }
-                }
-impl std::str::FromStr for ReturnConsumedCapacity {
-                    type Err = crate::model::return_consumed_capacity::ConstraintViolation;
-                    fn from_str(s: &str) -> std::result::Result<Self, <Self as std::str::FromStr>::Err> {
-                        Self::try_from(s)
-                    }
-                }
-impl ReturnConsumedCapacity {
-                /// Returns the `&str` value of the enum member.
-                pub fn as_str(&self) -> &str {
-                    match self {
-    ReturnConsumedCapacity::Indexes => "INDEXES",
-    ReturnConsumedCapacity::None => "NONE",
-    ReturnConsumedCapacity::Total => "TOTAL",
-}
-                }
-                /// Returns all the `&str` representations of the enum members.
-                pub const fn values() -> &'static [&'static str] {
-                    &["INDEXES", "NONE", "TOTAL"]
-                }
-            }
-impl ::std::convert::AsRef<str> for ReturnConsumedCapacity {
-                fn as_ref(&self) -> &str {
-                    self.as_str()
-                }
-            }
-impl crate::constrained::Constrained for ReturnConsumedCapacity  {
-                type Unconstrained = ::std::string::String;
-            }
-
-            impl ::std::convert::From<::std::string::String> for crate::constrained::MaybeConstrained<crate::model::ReturnConsumedCapacity> {
-                fn from(value: ::std::string::String) -> Self {
-                    Self::Unconstrained(value)
-                }
-            }
-
-#[allow(missing_docs)] // documentation missing in model
-#[derive(::std::clone::Clone, ::std::cmp::Eq, ::std::cmp::Ord, ::std::cmp::PartialEq, ::std::cmp::PartialOrd, ::std::fmt::Debug, ::std::hash::Hash)]
-pub enum ReturnValue {
-    #[allow(missing_docs)] // documentation missing in model
-    AllNew,
-    #[allow(missing_docs)] // documentation missing in model
-    AllOld,
-    #[allow(missing_docs)] // documentation missing in model
-    None,
-    #[allow(missing_docs)] // documentation missing in model
-    UpdatedNew,
-    #[allow(missing_docs)] // documentation missing in model
-    UpdatedOld,
-}
-/// See [`ReturnValue`](crate::model::ReturnValue).
-pub mod return_value {
-    #[derive(Debug, PartialEq)]
-                    pub struct ConstraintViolation(pub(crate) ::std::string::String);
-    
-                    impl ::std::fmt::Display for ConstraintViolation {
-                        fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-                            write!(f, r#"Value provided for 'com.amazonaws.dynamodb#ReturnValue' failed to satisfy constraint: Member must satisfy enum value set: [NONE, ALL_OLD, UPDATED_OLD, ALL_NEW, UPDATED_NEW]"#)
-                        }
-                    }
-    
-                    impl ::std::error::Error for ConstraintViolation {}
-    impl ConstraintViolation {
-                            pub(crate) fn as_validation_exception_field(self, path: ::std::string::String) -> crate::model::ValidationExceptionField {
-                        crate::model::ValidationExceptionField {
-                            message: format!(r#"Value at '{}' failed to satisfy constraint: Member must satisfy enum value set: [NONE, ALL_OLD, UPDATED_OLD, ALL_NEW, UPDATED_NEW]"#, &path),
-                            path,
-                        }
-                    }
-                        }
-    
-    
-}
-impl ::std::convert::TryFrom<&str> for ReturnValue {
-                    type Error = crate::model::return_value::ConstraintViolation;
-                    fn try_from(s: &str) -> ::std::result::Result<Self, <Self as ::std::convert::TryFrom<&str>>::Error> {
-                        match s {
-                            "ALL_NEW" => Ok(ReturnValue::AllNew),
-"ALL_OLD" => Ok(ReturnValue::AllOld),
-"NONE" => Ok(ReturnValue::None),
-"UPDATED_NEW" => Ok(ReturnValue::UpdatedNew),
-"UPDATED_OLD" => Ok(ReturnValue::UpdatedOld),
-                            _ => Err(crate::model::return_value::ConstraintViolation(s.to_owned()))
-                        }
-                    }
-                }
-                impl ::std::convert::TryFrom<::std::string::String> for ReturnValue {
-                    type Error = crate::model::return_value::ConstraintViolation;
-                    fn try_from(s: ::std::string::String) -> ::std::result::Result<Self, <Self as ::std::convert::TryFrom<::std::string::String>>::Error> {
-                        s.as_str().try_into()
-                    }
-                }
-impl std::str::FromStr for ReturnValue {
-                    type Err = crate::model::return_value::ConstraintViolation;
-                    fn from_str(s: &str) -> std::result::Result<Self, <Self as std::str::FromStr>::Err> {
-                        Self::try_from(s)
-                    }
-                }
-impl ReturnValue {
-                /// Returns the `&str` value of the enum member.
-                pub fn as_str(&self) -> &str {
-                    match self {
-    ReturnValue::AllNew => "ALL_NEW",
-    ReturnValue::AllOld => "ALL_OLD",
-    ReturnValue::None => "NONE",
-    ReturnValue::UpdatedNew => "UPDATED_NEW",
-    ReturnValue::UpdatedOld => "UPDATED_OLD",
-}
-                }
-                /// Returns all the `&str` representations of the enum members.
-                pub const fn values() -> &'static [&'static str] {
-                    &["ALL_NEW", "ALL_OLD", "NONE", "UPDATED_NEW", "UPDATED_OLD"]
-                }
-            }
-impl ::std::convert::AsRef<str> for ReturnValue {
-                fn as_ref(&self) -> &str {
-                    self.as_str()
-                }
-            }
-impl crate::constrained::Constrained for ReturnValue  {
-                type Unconstrained = ::std::string::String;
-            }
-
-            impl ::std::convert::From<::std::string::String> for crate::constrained::MaybeConstrained<crate::model::ReturnValue> {
-                fn from(value: ::std::string::String) -> Self {
-                    Self::Unconstrained(value)
-                }
-            }
-
-
-
-#[allow(missing_docs)] // documentation missing in model
-#[derive(::std::clone::Clone, ::std::cmp::Eq, ::std::cmp::PartialEq, ::std::fmt::Debug)]
-pub struct ExpectedAttributeValue  {
-    #[allow(missing_docs)] // documentation missing in model
-    pub value: ::std::option::Option<crate::model::AttributeValue>,
-    #[allow(missing_docs)] // documentation missing in model
-    pub exists: ::std::option::Option<bool>,
-    #[allow(missing_docs)] // documentation missing in model
-    pub comparison_operator: ::std::option::Option<crate::model::ComparisonOperator>,
-    #[allow(missing_docs)] // documentation missing in model
-    pub attribute_value_list: ::std::option::Option<::std::vec::Vec::<crate::model::AttributeValue>>,
-}
-impl  ExpectedAttributeValue  {
-    #[allow(missing_docs)] // documentation missing in model
-    pub fn value(&self) -> ::std::option::Option<&crate::model::AttributeValue> {
-        self.value.as_ref()
-    }
-    #[allow(missing_docs)] // documentation missing in model
-    pub fn exists(&self) -> ::std::option::Option<bool> {
-        self.exists
-    }
-    #[allow(missing_docs)] // documentation missing in model
-    pub fn comparison_operator(&self) -> ::std::option::Option<&crate::model::ComparisonOperator> {
-        self.comparison_operator.as_ref()
-    }
-    #[allow(missing_docs)] // documentation missing in model
-    pub fn attribute_value_list(&self) -> ::std::option::Option<&[crate::model::AttributeValue]> {
-        self.attribute_value_list.as_deref()
-    }
-}
-impl  ExpectedAttributeValue  {
-    /// Creates a new builder-style object to manufacture [`ExpectedAttributeValue`](crate::model::ExpectedAttributeValue).
-    pub fn builder() -> crate::model::expected_attribute_value::Builder  {
-        crate::model::expected_attribute_value::Builder::default()
-    }
-}
-impl crate::constrained::Constrained for crate::model::ExpectedAttributeValue {
-                type Unconstrained = crate::model::expected_attribute_value::Builder;
-            }
-
-#[allow(missing_docs)] // documentation missing in model
-#[derive(::std::clone::Clone, ::std::cmp::Eq, ::std::cmp::Ord, ::std::cmp::PartialEq, ::std::cmp::PartialOrd, ::std::fmt::Debug, ::std::hash::Hash)]
-pub enum ComparisonOperator {
-    #[allow(missing_docs)] // documentation missing in model
-    BeginsWith,
-    #[allow(missing_docs)] // documentation missing in model
-    Between,
-    #[allow(missing_docs)] // documentation missing in model
-    Contains,
-    #[allow(missing_docs)] // documentation missing in model
-    Eq,
-    #[allow(missing_docs)] // documentation missing in model
-    Ge,
-    #[allow(missing_docs)] // documentation missing in model
-    Gt,
-    #[allow(missing_docs)] // documentation missing in model
-    In,
-    #[allow(missing_docs)] // documentation missing in model
-    Le,
-    #[allow(missing_docs)] // documentation missing in model
-    Lt,
-    #[allow(missing_docs)] // documentation missing in model
-    Ne,
-    #[allow(missing_docs)] // documentation missing in model
-    NotContains,
-    #[allow(missing_docs)] // documentation missing in model
-    NotNull,
-    #[allow(missing_docs)] // documentation missing in model
-    Null,
-}
-/// See [`ComparisonOperator`](crate::model::ComparisonOperator).
-pub mod comparison_operator {
-    #[derive(Debug, PartialEq)]
-                    pub struct ConstraintViolation(pub(crate) ::std::string::String);
-    
-                    impl ::std::fmt::Display for ConstraintViolation {
-                        fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-                            write!(f, r#"Value provided for 'com.amazonaws.dynamodb#ComparisonOperator' failed to satisfy constraint: Member must satisfy enum value set: [EQ, NE, IN, LE, LT, GE, GT, BETWEEN, NOT_NULL, NULL, CONTAINS, NOT_CONTAINS, BEGINS_WITH]"#)
-                        }
-                    }
-    
-                    impl ::std::error::Error for ConstraintViolation {}
-    impl ConstraintViolation {
-                            pub(crate) fn as_validation_exception_field(self, path: ::std::string::String) -> crate::model::ValidationExceptionField {
-                        crate::model::ValidationExceptionField {
-                            message: format!(r#"Value at '{}' failed to satisfy constraint: Member must satisfy enum value set: [EQ, NE, IN, LE, LT, GE, GT, BETWEEN, NOT_NULL, NULL, CONTAINS, NOT_CONTAINS, BEGINS_WITH]"#, &path),
-                            path,
-                        }
-                    }
-                        }
-    
-    
-}
-impl ::std::convert::TryFrom<&str> for ComparisonOperator {
-                    type Error = crate::model::comparison_operator::ConstraintViolation;
-                    fn try_from(s: &str) -> ::std::result::Result<Self, <Self as ::std::convert::TryFrom<&str>>::Error> {
-                        match s {
-                            "BEGINS_WITH" => Ok(ComparisonOperator::BeginsWith),
-"BETWEEN" => Ok(ComparisonOperator::Between),
-"CONTAINS" => Ok(ComparisonOperator::Contains),
-"EQ" => Ok(ComparisonOperator::Eq),
-"GE" => Ok(ComparisonOperator::Ge),
-"GT" => Ok(ComparisonOperator::Gt),
-"IN" => Ok(ComparisonOperator::In),
-"LE" => Ok(ComparisonOperator::Le),
-"LT" => Ok(ComparisonOperator::Lt),
-"NE" => Ok(ComparisonOperator::Ne),
-"NOT_CONTAINS" => Ok(ComparisonOperator::NotContains),
-"NOT_NULL" => Ok(ComparisonOperator::NotNull),
-"NULL" => Ok(ComparisonOperator::Null),
-                            _ => Err(crate::model::comparison_operator::ConstraintViolation(s.to_owned()))
-                        }
-                    }
-                }
-                impl ::std::convert::TryFrom<::std::string::String> for ComparisonOperator {
-                    type Error = crate::model::comparison_operator::ConstraintViolation;
-                    fn try_from(s: ::std::string::String) -> ::std::result::Result<Self, <Self as ::std::convert::TryFrom<::std::string::String>>::Error> {
-                        s.as_str().try_into()
-                    }
-                }
-impl std::str::FromStr for ComparisonOperator {
-                    type Err = crate::model::comparison_operator::ConstraintViolation;
-                    fn from_str(s: &str) -> std::result::Result<Self, <Self as std::str::FromStr>::Err> {
-                        Self::try_from(s)
-                    }
-                }
-impl ComparisonOperator {
-                /// Returns the `&str` value of the enum member.
-                pub fn as_str(&self) -> &str {
-                    match self {
-    ComparisonOperator::BeginsWith => "BEGINS_WITH",
-    ComparisonOperator::Between => "BETWEEN",
-    ComparisonOperator::Contains => "CONTAINS",
-    ComparisonOperator::Eq => "EQ",
-    ComparisonOperator::Ge => "GE",
-    ComparisonOperator::Gt => "GT",
-    ComparisonOperator::In => "IN",
-    ComparisonOperator::Le => "LE",
-    ComparisonOperator::Lt => "LT",
-    ComparisonOperator::Ne => "NE",
-    ComparisonOperator::NotContains => "NOT_CONTAINS",
-    ComparisonOperator::NotNull => "NOT_NULL",
-    ComparisonOperator::Null => "NULL",
-}
-                }
-                /// Returns all the `&str` representations of the enum members.
-                pub const fn values() -> &'static [&'static str] {
-                    &["BEGINS_WITH", "BETWEEN", "CONTAINS", "EQ", "GE", "GT", "IN", "LE", "LT", "NE", "NOT_CONTAINS", "NOT_NULL", "NULL"]
-                }
-            }
-impl ::std::convert::AsRef<str> for ComparisonOperator {
-                fn as_ref(&self) -> &str {
-                    self.as_str()
-                }
-            }
-impl crate::constrained::Constrained for ComparisonOperator  {
-                type Unconstrained = ::std::string::String;
-            }
-
-            impl ::std::convert::From<::std::string::String> for crate::constrained::MaybeConstrained<crate::model::ComparisonOperator> {
-                fn from(value: ::std::string::String) -> Self {
-                    Self::Unconstrained(value)
-                }
-            }
 /// See [`ValidationExceptionField`](crate::model::ValidationExceptionField).
 pub mod validation_exception_field {
     
@@ -2500,6 +2615,487 @@ pub mod validation_exception_field {
                     ,
                     message: self.message
                         .ok_or(ConstraintViolation::MissingMessage)?
+                    ,
+                }
+            )
+        }
+    }
+    
+    
+    
+    
+}
+/// See [`ItemCollectionMetrics`](crate::model::ItemCollectionMetrics).
+pub mod item_collection_metrics {
+    
+    impl ::std::convert::From<Builder > for crate::model::ItemCollectionMetrics  {
+                    fn from(builder: Builder) -> Self {
+                        builder.build()
+                    }
+                }
+    /// A builder for [`ItemCollectionMetrics`](crate::model::ItemCollectionMetrics).
+    #[derive(::std::clone::Clone, ::std::default::Default, ::std::fmt::Debug)]
+    pub struct Builder {
+        pub(crate) item_collection_key: ::std::option::Option<::std::collections::HashMap::<::std::string::String, crate::model::AttributeValue>>,
+        pub(crate) size_estimate_range_gb: ::std::option::Option<::std::vec::Vec::<f64>>,
+    }
+    impl  Builder  {
+        #[allow(missing_docs)] // documentation missing in model
+        pub fn item_collection_key(mut self, input: ::std::option::Option<::std::collections::HashMap::<::std::string::String, crate::model::AttributeValue>>) -> Self {
+            self.item_collection_key =
+                input
+            ; self
+        }
+        #[allow(missing_docs)] // documentation missing in model
+        pub fn size_estimate_range_gb(mut self, input: ::std::option::Option<::std::vec::Vec::<f64>>) -> Self {
+            self.size_estimate_range_gb =
+                input
+            ; self
+        }
+        /// Consumes the builder and constructs a [`ItemCollectionMetrics`](crate::model::ItemCollectionMetrics).
+        pub fn build(self) -> crate::model::ItemCollectionMetrics {
+                        self.build_enforcing_all_constraints()
+                    }
+        fn build_enforcing_all_constraints(self) -> crate::model::ItemCollectionMetrics {
+            crate::model::ItemCollectionMetrics {
+                item_collection_key: self.item_collection_key
+                ,
+                size_estimate_range_gb: self.size_estimate_range_gb
+                ,
+            }
+        }
+    }
+    
+    
+    
+    
+}
+/// See [`ConsumedCapacity`](crate::model::ConsumedCapacity).
+pub mod consumed_capacity {
+    
+    impl ::std::convert::From<Builder > for crate::model::ConsumedCapacity  {
+                    fn from(builder: Builder) -> Self {
+                        builder.build()
+                    }
+                }
+    /// A builder for [`ConsumedCapacity`](crate::model::ConsumedCapacity).
+    #[derive(::std::clone::Clone, ::std::default::Default, ::std::fmt::Debug)]
+    pub struct Builder {
+        pub(crate) table_name: ::std::option::Option<::std::string::String>,
+        pub(crate) capacity_units: ::std::option::Option<f64>,
+        pub(crate) read_capacity_units: ::std::option::Option<f64>,
+        pub(crate) write_capacity_units: ::std::option::Option<f64>,
+        pub(crate) table: ::std::option::Option<crate::model::Capacity>,
+        pub(crate) local_secondary_indexes: ::std::option::Option<::std::collections::HashMap::<::std::string::String, crate::model::Capacity>>,
+        pub(crate) global_secondary_indexes: ::std::option::Option<::std::collections::HashMap::<::std::string::String, crate::model::Capacity>>,
+    }
+    impl  Builder  {
+        #[allow(missing_docs)] // documentation missing in model
+        pub fn table_name(mut self, input: ::std::option::Option<::std::string::String>) -> Self {
+            self.table_name =
+                input
+            ; self
+        }
+        #[allow(missing_docs)] // documentation missing in model
+        pub fn capacity_units(mut self, input: ::std::option::Option<f64>) -> Self {
+            self.capacity_units =
+                input
+            ; self
+        }
+        #[allow(missing_docs)] // documentation missing in model
+        pub fn read_capacity_units(mut self, input: ::std::option::Option<f64>) -> Self {
+            self.read_capacity_units =
+                input
+            ; self
+        }
+        #[allow(missing_docs)] // documentation missing in model
+        pub fn write_capacity_units(mut self, input: ::std::option::Option<f64>) -> Self {
+            self.write_capacity_units =
+                input
+            ; self
+        }
+        #[allow(missing_docs)] // documentation missing in model
+        pub fn table(mut self, input: ::std::option::Option<crate::model::Capacity>) -> Self {
+            self.table =
+                input
+            ; self
+        }
+        #[allow(missing_docs)] // documentation missing in model
+        pub fn local_secondary_indexes(mut self, input: ::std::option::Option<::std::collections::HashMap::<::std::string::String, crate::model::Capacity>>) -> Self {
+            self.local_secondary_indexes =
+                input
+            ; self
+        }
+        #[allow(missing_docs)] // documentation missing in model
+        pub fn global_secondary_indexes(mut self, input: ::std::option::Option<::std::collections::HashMap::<::std::string::String, crate::model::Capacity>>) -> Self {
+            self.global_secondary_indexes =
+                input
+            ; self
+        }
+        /// Consumes the builder and constructs a [`ConsumedCapacity`](crate::model::ConsumedCapacity).
+        pub fn build(self) -> crate::model::ConsumedCapacity {
+                        self.build_enforcing_all_constraints()
+                    }
+        fn build_enforcing_all_constraints(self) -> crate::model::ConsumedCapacity {
+            crate::model::ConsumedCapacity {
+                table_name: self.table_name
+                ,
+                capacity_units: self.capacity_units
+                ,
+                read_capacity_units: self.read_capacity_units
+                ,
+                write_capacity_units: self.write_capacity_units
+                ,
+                table: self.table
+                ,
+                local_secondary_indexes: self.local_secondary_indexes
+                ,
+                global_secondary_indexes: self.global_secondary_indexes
+                ,
+            }
+        }
+    }
+    
+    
+    
+    
+}
+/// See [`Capacity`](crate::model::Capacity).
+pub mod capacity {
+    
+    impl ::std::convert::From<Builder > for crate::model::Capacity  {
+                    fn from(builder: Builder) -> Self {
+                        builder.build()
+                    }
+                }
+    /// A builder for [`Capacity`](crate::model::Capacity).
+    #[derive(::std::clone::Clone, ::std::default::Default, ::std::fmt::Debug)]
+    pub struct Builder {
+        pub(crate) read_capacity_units: ::std::option::Option<f64>,
+        pub(crate) write_capacity_units: ::std::option::Option<f64>,
+        pub(crate) capacity_units: ::std::option::Option<f64>,
+    }
+    impl  Builder  {
+        #[allow(missing_docs)] // documentation missing in model
+        pub fn read_capacity_units(mut self, input: ::std::option::Option<f64>) -> Self {
+            self.read_capacity_units =
+                input
+            ; self
+        }
+        #[allow(missing_docs)] // documentation missing in model
+        pub fn write_capacity_units(mut self, input: ::std::option::Option<f64>) -> Self {
+            self.write_capacity_units =
+                input
+            ; self
+        }
+        #[allow(missing_docs)] // documentation missing in model
+        pub fn capacity_units(mut self, input: ::std::option::Option<f64>) -> Self {
+            self.capacity_units =
+                input
+            ; self
+        }
+        /// Consumes the builder and constructs a [`Capacity`](crate::model::Capacity).
+        pub fn build(self) -> crate::model::Capacity {
+                        self.build_enforcing_all_constraints()
+                    }
+        fn build_enforcing_all_constraints(self) -> crate::model::Capacity {
+            crate::model::Capacity {
+                read_capacity_units: self.read_capacity_units
+                ,
+                write_capacity_units: self.write_capacity_units
+                ,
+                capacity_units: self.capacity_units
+                ,
+            }
+        }
+    }
+    
+    
+    
+    
+}
+pub mod expected_attribute_map {
+    
+    #[allow(clippy::enum_variant_names)]
+                    #[derive(Debug, PartialEq)]
+                    pub enum ConstraintViolation {
+                        
+                        
+                        #[doc(hidden)] Value(::std::string::String, crate::model::expected_attribute_value::ConstraintViolation),
+                    }
+                    
+                    impl ::std::fmt::Display for ConstraintViolation {
+                        fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                            match self {
+                                
+                                
+                                Self::Value(_, value_constraint_violation) => write!(f, "{}", value_constraint_violation),
+                            }
+                        }
+                    }
+                    
+                    impl ::std::error::Error for ConstraintViolation {}
+    impl ConstraintViolation {
+                            pub(crate) fn as_validation_exception_field(self, path: ::std::string::String) -> crate::model::ValidationExceptionField {
+        match self {
+            Self::Value(key, value_constraint_violation) => value_constraint_violation.as_validation_exception_field(path + "/" + key.as_str()),
+        }
+    }
+                        }
+    
+    
+    
+    
+}
+/// See [`ExpectedAttributeValue`](crate::model::ExpectedAttributeValue).
+pub mod expected_attribute_value {
+    
+    #[derive(::std::cmp::PartialEq, ::std::fmt::Debug)]
+    /// Holds one variant for each of the ways the builder can fail.
+    #[non_exhaustive]
+    #[allow(clippy::enum_variant_names)]
+                pub enum ConstraintViolation {
+        /// Constraint violation occurred building member `comparison_operator` when building `ExpectedAttributeValue`.
+        #[doc(hidden)]
+        ComparisonOperator(crate::model::comparison_operator::ConstraintViolation),
+    }
+    impl ::std::fmt::Display for ConstraintViolation {
+        fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+            match self {
+                ConstraintViolation::ComparisonOperator(_) => write!(f, "constraint violation occurred building member `comparison_operator` when building `ExpectedAttributeValue`"),
+            }
+        }
+    }
+    impl ::std::error::Error for ConstraintViolation { }
+    impl ConstraintViolation {
+                    pub(crate) fn as_validation_exception_field(self, path: ::std::string::String) -> crate::model::ValidationExceptionField {
+        match self {
+            ConstraintViolation::ComparisonOperator(inner) => inner.as_validation_exception_field(path + "/ComparisonOperator"),
+        }
+    }
+                }
+    impl ::std::convert::From<Builder> for crate::constrained::MaybeConstrained<crate::model::ExpectedAttributeValue> {
+                    fn from(builder: Builder) -> Self {
+                        Self::Unconstrained(builder)
+                    }
+                }
+    impl  ::std::convert::TryFrom<Builder > for crate::model::ExpectedAttributeValue {
+                    type Error = ConstraintViolation;
+    
+                    fn try_from(builder: Builder ) -> ::std::result::Result<Self, Self::Error> {
+                        builder.build()
+                    }
+                }
+    /// A builder for [`ExpectedAttributeValue`](crate::model::ExpectedAttributeValue).
+    #[derive(::std::clone::Clone, ::std::default::Default, ::std::fmt::Debug)]
+    pub struct Builder {
+        pub(crate) value: ::std::option::Option<crate::model::AttributeValue>,
+        pub(crate) exists: ::std::option::Option<bool>,
+        pub(crate) comparison_operator: ::std::option::Option<crate::constrained::MaybeConstrained<crate::model::ComparisonOperator>>,
+        pub(crate) attribute_value_list: ::std::option::Option<::std::vec::Vec::<crate::model::AttributeValue>>,
+    }
+    impl  Builder  {
+        #[allow(missing_docs)] // documentation missing in model
+        pub fn value(mut self, input: ::std::option::Option<crate::model::AttributeValue>) -> Self {
+            self.value =
+                input
+            ; self
+        }
+        #[allow(missing_docs)] // documentation missing in model
+        pub(crate) fn set_value(mut self, input: Option<impl ::std::convert::Into<crate::model::AttributeValue>>) -> Self {
+            self.value = input.map(|v| v.into());
+                            self
+        }
+        #[allow(missing_docs)] // documentation missing in model
+        pub fn exists(mut self, input: ::std::option::Option<bool>) -> Self {
+            self.exists =
+                input
+            ; self
+        }
+        #[allow(missing_docs)] // documentation missing in model
+        pub(crate) fn set_exists(mut self, input: Option<impl ::std::convert::Into<bool>>) -> Self {
+            self.exists = input.map(|v| v.into());
+                            self
+        }
+        #[allow(missing_docs)] // documentation missing in model
+        pub fn comparison_operator(mut self, input: ::std::option::Option<crate::model::ComparisonOperator>) -> Self {
+            self.comparison_operator =
+                input.map(crate::constrained::MaybeConstrained::Constrained)
+            ; self
+        }
+        #[allow(missing_docs)] // documentation missing in model
+        pub(crate) fn set_comparison_operator(mut self, input: Option<impl ::std::convert::Into<crate::constrained::MaybeConstrained<crate::model::ComparisonOperator>>>) -> Self {
+            self.comparison_operator = input.map(|v| v.into());
+                            self
+        }
+        #[allow(missing_docs)] // documentation missing in model
+        pub fn attribute_value_list(mut self, input: ::std::option::Option<::std::vec::Vec::<crate::model::AttributeValue>>) -> Self {
+            self.attribute_value_list =
+                input
+            ; self
+        }
+        #[allow(missing_docs)] // documentation missing in model
+        pub(crate) fn set_attribute_value_list(mut self, input: Option<impl ::std::convert::Into<::std::vec::Vec::<crate::model::AttributeValue>>>) -> Self {
+            self.attribute_value_list = input.map(|v| v.into());
+                            self
+        }
+        /// Consumes the builder and constructs a [`ExpectedAttributeValue`](crate::model::ExpectedAttributeValue).
+        /// 
+        /// The builder fails to construct a [`ExpectedAttributeValue`](crate::model::ExpectedAttributeValue) if a [`ConstraintViolation`] occurs.
+        /// 
+        pub fn build(self) -> Result<crate::model::ExpectedAttributeValue , ConstraintViolation> {
+                        self.build_enforcing_all_constraints()
+                    }
+        fn build_enforcing_all_constraints(self) -> Result<crate::model::ExpectedAttributeValue , ConstraintViolation> {
+            Ok(
+                crate::model::ExpectedAttributeValue {
+                    value: self.value
+                    ,
+                    exists: self.exists
+                    ,
+                    comparison_operator: self.comparison_operator
+                        .map(|v| match v {
+                                            crate::constrained::MaybeConstrained::Constrained(x) => Ok(x),
+                                            crate::constrained::MaybeConstrained::Unconstrained(x) => x.try_into(),
+                                        })
+                        .map(|res|
+                                        res.map_err(ConstraintViolation::ComparisonOperator)
+                                    )
+                                    .transpose()?
+                    ,
+                    attribute_value_list: self.attribute_value_list
+                    ,
+                }
+            )
+        }
+    }
+    
+    
+    
+    
+}
+pub mod attribute_updates {
+    
+    #[allow(clippy::enum_variant_names)]
+                    #[derive(Debug, PartialEq)]
+                    pub enum ConstraintViolation {
+                        
+                        
+                        #[doc(hidden)] Value(::std::string::String, crate::model::attribute_value_update::ConstraintViolation),
+                    }
+                    
+                    impl ::std::fmt::Display for ConstraintViolation {
+                        fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                            match self {
+                                
+                                
+                                Self::Value(_, value_constraint_violation) => write!(f, "{}", value_constraint_violation),
+                            }
+                        }
+                    }
+                    
+                    impl ::std::error::Error for ConstraintViolation {}
+    impl ConstraintViolation {
+                            pub(crate) fn as_validation_exception_field(self, path: ::std::string::String) -> crate::model::ValidationExceptionField {
+        match self {
+            Self::Value(key, value_constraint_violation) => value_constraint_violation.as_validation_exception_field(path + "/" + key.as_str()),
+        }
+    }
+                        }
+    
+    
+    
+    
+}
+/// See [`AttributeValueUpdate`](crate::model::AttributeValueUpdate).
+pub mod attribute_value_update {
+    
+    #[derive(::std::cmp::PartialEq, ::std::fmt::Debug)]
+    /// Holds one variant for each of the ways the builder can fail.
+    #[non_exhaustive]
+    #[allow(clippy::enum_variant_names)]
+                pub enum ConstraintViolation {
+        /// Constraint violation occurred building member `action` when building `AttributeValueUpdate`.
+        #[doc(hidden)]
+        Action(crate::model::attribute_action::ConstraintViolation),
+    }
+    impl ::std::fmt::Display for ConstraintViolation {
+        fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+            match self {
+                ConstraintViolation::Action(_) => write!(f, "constraint violation occurred building member `action` when building `AttributeValueUpdate`"),
+            }
+        }
+    }
+    impl ::std::error::Error for ConstraintViolation { }
+    impl ConstraintViolation {
+                    pub(crate) fn as_validation_exception_field(self, path: ::std::string::String) -> crate::model::ValidationExceptionField {
+        match self {
+            ConstraintViolation::Action(inner) => inner.as_validation_exception_field(path + "/Action"),
+        }
+    }
+                }
+    impl ::std::convert::From<Builder> for crate::constrained::MaybeConstrained<crate::model::AttributeValueUpdate> {
+                    fn from(builder: Builder) -> Self {
+                        Self::Unconstrained(builder)
+                    }
+                }
+    impl  ::std::convert::TryFrom<Builder > for crate::model::AttributeValueUpdate {
+                    type Error = ConstraintViolation;
+    
+                    fn try_from(builder: Builder ) -> ::std::result::Result<Self, Self::Error> {
+                        builder.build()
+                    }
+                }
+    /// A builder for [`AttributeValueUpdate`](crate::model::AttributeValueUpdate).
+    #[derive(::std::clone::Clone, ::std::default::Default, ::std::fmt::Debug)]
+    pub struct Builder {
+        pub(crate) value: ::std::option::Option<crate::model::AttributeValue>,
+        pub(crate) action: ::std::option::Option<crate::constrained::MaybeConstrained<crate::model::AttributeAction>>,
+    }
+    impl  Builder  {
+        #[allow(missing_docs)] // documentation missing in model
+        pub fn value(mut self, input: ::std::option::Option<crate::model::AttributeValue>) -> Self {
+            self.value =
+                input
+            ; self
+        }
+        #[allow(missing_docs)] // documentation missing in model
+        pub(crate) fn set_value(mut self, input: Option<impl ::std::convert::Into<crate::model::AttributeValue>>) -> Self {
+            self.value = input.map(|v| v.into());
+                            self
+        }
+        #[allow(missing_docs)] // documentation missing in model
+        pub fn action(mut self, input: ::std::option::Option<crate::model::AttributeAction>) -> Self {
+            self.action =
+                input.map(crate::constrained::MaybeConstrained::Constrained)
+            ; self
+        }
+        #[allow(missing_docs)] // documentation missing in model
+        pub(crate) fn set_action(mut self, input: Option<impl ::std::convert::Into<crate::constrained::MaybeConstrained<crate::model::AttributeAction>>>) -> Self {
+            self.action = input.map(|v| v.into());
+                            self
+        }
+        /// Consumes the builder and constructs a [`AttributeValueUpdate`](crate::model::AttributeValueUpdate).
+        /// 
+        /// The builder fails to construct a [`AttributeValueUpdate`](crate::model::AttributeValueUpdate) if a [`ConstraintViolation`] occurs.
+        /// 
+        pub fn build(self) -> Result<crate::model::AttributeValueUpdate , ConstraintViolation> {
+                        self.build_enforcing_all_constraints()
+                    }
+        fn build_enforcing_all_constraints(self) -> Result<crate::model::AttributeValueUpdate , ConstraintViolation> {
+            Ok(
+                crate::model::AttributeValueUpdate {
+                    value: self.value
+                    ,
+                    action: self.action
+                        .map(|v| match v {
+                                            crate::constrained::MaybeConstrained::Constrained(x) => Ok(x),
+                                            crate::constrained::MaybeConstrained::Unconstrained(x) => x.try_into(),
+                                        })
+                        .map(|res|
+                                        res.map_err(ConstraintViolation::Action)
+                                    )
+                                    .transpose()?
                     ,
                 }
             )
@@ -3188,9 +3784,7 @@ pub mod stream_specification {
         #[allow(missing_docs)] // documentation missing in model
         pub fn stream_view_type(mut self, input: ::std::option::Option<crate::model::StreamViewType>) -> Self {
             self.stream_view_type =
-                input.map(#[allow(clippy::redundant_closure)] |v|
-                    crate::constrained::MaybeConstrained::Constrained(v)
-                )
+                input.map(crate::constrained::MaybeConstrained::Constrained)
             ; self
         }
         #[allow(missing_docs)] // documentation missing in model
@@ -3460,9 +4054,7 @@ pub mod projection {
         #[allow(missing_docs)] // documentation missing in model
         pub fn projection_type(mut self, input: ::std::option::Option<crate::model::ProjectionType>) -> Self {
             self.projection_type =
-                input.map(#[allow(clippy::redundant_closure)] |v|
-                    crate::constrained::MaybeConstrained::Constrained(v)
-                )
+                input.map(crate::constrained::MaybeConstrained::Constrained)
             ; self
         }
         #[allow(missing_docs)] // documentation missing in model
@@ -4154,9 +4746,7 @@ pub mod sse_specification {
         #[allow(missing_docs)] // documentation missing in model
         pub fn sse_type(mut self, input: ::std::option::Option<crate::model::SSEType>) -> Self {
             self.sse_type =
-                input.map(#[allow(clippy::redundant_closure)] |v|
-                    crate::constrained::MaybeConstrained::Constrained(v)
-                )
+                input.map(crate::constrained::MaybeConstrained::Constrained)
             ; self
         }
         #[allow(missing_docs)] // documentation missing in model
@@ -4472,9 +5062,7 @@ pub mod global_secondary_index {
         #[allow(missing_docs)] // documentation missing in model
         pub fn provisioned_throughput(mut self, input: ::std::option::Option<crate::model::ProvisionedThroughput>) -> Self {
             self.provisioned_throughput =
-                input.map(#[allow(clippy::redundant_closure)] |v|
-                    crate::constrained::MaybeConstrained::Constrained(v)
-                )
+                input.map(crate::constrained::MaybeConstrained::Constrained)
             ; self
         }
         #[allow(missing_docs)] // documentation missing in model
@@ -4720,357 +5308,6 @@ pub mod local_secondary_index {
                                     )
                                     .transpose()?
                         .ok_or(ConstraintViolation::MissingProjection)?
-                    ,
-                }
-            )
-        }
-    }
-    
-    
-    
-    
-}
-/// See [`ItemCollectionMetrics`](crate::model::ItemCollectionMetrics).
-pub mod item_collection_metrics {
-    
-    impl ::std::convert::From<Builder > for crate::model::ItemCollectionMetrics  {
-                    fn from(builder: Builder) -> Self {
-                        builder.build()
-                    }
-                }
-    /// A builder for [`ItemCollectionMetrics`](crate::model::ItemCollectionMetrics).
-    #[derive(::std::clone::Clone, ::std::default::Default, ::std::fmt::Debug)]
-    pub struct Builder {
-        pub(crate) item_collection_key: ::std::option::Option<::std::collections::HashMap::<::std::string::String, crate::model::AttributeValue>>,
-        pub(crate) size_estimate_range_gb: ::std::option::Option<::std::vec::Vec::<f64>>,
-    }
-    impl  Builder  {
-        #[allow(missing_docs)] // documentation missing in model
-        pub fn item_collection_key(mut self, input: ::std::option::Option<::std::collections::HashMap::<::std::string::String, crate::model::AttributeValue>>) -> Self {
-            self.item_collection_key =
-                input
-            ; self
-        }
-        #[allow(missing_docs)] // documentation missing in model
-        pub fn size_estimate_range_gb(mut self, input: ::std::option::Option<::std::vec::Vec::<f64>>) -> Self {
-            self.size_estimate_range_gb =
-                input
-            ; self
-        }
-        /// Consumes the builder and constructs a [`ItemCollectionMetrics`](crate::model::ItemCollectionMetrics).
-        pub fn build(self) -> crate::model::ItemCollectionMetrics {
-                        self.build_enforcing_all_constraints()
-                    }
-        fn build_enforcing_all_constraints(self) -> crate::model::ItemCollectionMetrics {
-            crate::model::ItemCollectionMetrics {
-                item_collection_key: self.item_collection_key
-                ,
-                size_estimate_range_gb: self.size_estimate_range_gb
-                ,
-            }
-        }
-    }
-    
-    
-    
-    
-}
-/// See [`ConsumedCapacity`](crate::model::ConsumedCapacity).
-pub mod consumed_capacity {
-    
-    impl ::std::convert::From<Builder > for crate::model::ConsumedCapacity  {
-                    fn from(builder: Builder) -> Self {
-                        builder.build()
-                    }
-                }
-    /// A builder for [`ConsumedCapacity`](crate::model::ConsumedCapacity).
-    #[derive(::std::clone::Clone, ::std::default::Default, ::std::fmt::Debug)]
-    pub struct Builder {
-        pub(crate) table_name: ::std::option::Option<::std::string::String>,
-        pub(crate) capacity_units: ::std::option::Option<f64>,
-        pub(crate) read_capacity_units: ::std::option::Option<f64>,
-        pub(crate) write_capacity_units: ::std::option::Option<f64>,
-        pub(crate) table: ::std::option::Option<crate::model::Capacity>,
-        pub(crate) local_secondary_indexes: ::std::option::Option<::std::collections::HashMap::<::std::string::String, crate::model::Capacity>>,
-        pub(crate) global_secondary_indexes: ::std::option::Option<::std::collections::HashMap::<::std::string::String, crate::model::Capacity>>,
-    }
-    impl  Builder  {
-        #[allow(missing_docs)] // documentation missing in model
-        pub fn table_name(mut self, input: ::std::option::Option<::std::string::String>) -> Self {
-            self.table_name =
-                input
-            ; self
-        }
-        #[allow(missing_docs)] // documentation missing in model
-        pub fn capacity_units(mut self, input: ::std::option::Option<f64>) -> Self {
-            self.capacity_units =
-                input
-            ; self
-        }
-        #[allow(missing_docs)] // documentation missing in model
-        pub fn read_capacity_units(mut self, input: ::std::option::Option<f64>) -> Self {
-            self.read_capacity_units =
-                input
-            ; self
-        }
-        #[allow(missing_docs)] // documentation missing in model
-        pub fn write_capacity_units(mut self, input: ::std::option::Option<f64>) -> Self {
-            self.write_capacity_units =
-                input
-            ; self
-        }
-        #[allow(missing_docs)] // documentation missing in model
-        pub fn table(mut self, input: ::std::option::Option<crate::model::Capacity>) -> Self {
-            self.table =
-                input
-            ; self
-        }
-        #[allow(missing_docs)] // documentation missing in model
-        pub fn local_secondary_indexes(mut self, input: ::std::option::Option<::std::collections::HashMap::<::std::string::String, crate::model::Capacity>>) -> Self {
-            self.local_secondary_indexes =
-                input
-            ; self
-        }
-        #[allow(missing_docs)] // documentation missing in model
-        pub fn global_secondary_indexes(mut self, input: ::std::option::Option<::std::collections::HashMap::<::std::string::String, crate::model::Capacity>>) -> Self {
-            self.global_secondary_indexes =
-                input
-            ; self
-        }
-        /// Consumes the builder and constructs a [`ConsumedCapacity`](crate::model::ConsumedCapacity).
-        pub fn build(self) -> crate::model::ConsumedCapacity {
-                        self.build_enforcing_all_constraints()
-                    }
-        fn build_enforcing_all_constraints(self) -> crate::model::ConsumedCapacity {
-            crate::model::ConsumedCapacity {
-                table_name: self.table_name
-                ,
-                capacity_units: self.capacity_units
-                ,
-                read_capacity_units: self.read_capacity_units
-                ,
-                write_capacity_units: self.write_capacity_units
-                ,
-                table: self.table
-                ,
-                local_secondary_indexes: self.local_secondary_indexes
-                ,
-                global_secondary_indexes: self.global_secondary_indexes
-                ,
-            }
-        }
-    }
-    
-    
-    
-    
-}
-/// See [`Capacity`](crate::model::Capacity).
-pub mod capacity {
-    
-    impl ::std::convert::From<Builder > for crate::model::Capacity  {
-                    fn from(builder: Builder) -> Self {
-                        builder.build()
-                    }
-                }
-    /// A builder for [`Capacity`](crate::model::Capacity).
-    #[derive(::std::clone::Clone, ::std::default::Default, ::std::fmt::Debug)]
-    pub struct Builder {
-        pub(crate) read_capacity_units: ::std::option::Option<f64>,
-        pub(crate) write_capacity_units: ::std::option::Option<f64>,
-        pub(crate) capacity_units: ::std::option::Option<f64>,
-    }
-    impl  Builder  {
-        #[allow(missing_docs)] // documentation missing in model
-        pub fn read_capacity_units(mut self, input: ::std::option::Option<f64>) -> Self {
-            self.read_capacity_units =
-                input
-            ; self
-        }
-        #[allow(missing_docs)] // documentation missing in model
-        pub fn write_capacity_units(mut self, input: ::std::option::Option<f64>) -> Self {
-            self.write_capacity_units =
-                input
-            ; self
-        }
-        #[allow(missing_docs)] // documentation missing in model
-        pub fn capacity_units(mut self, input: ::std::option::Option<f64>) -> Self {
-            self.capacity_units =
-                input
-            ; self
-        }
-        /// Consumes the builder and constructs a [`Capacity`](crate::model::Capacity).
-        pub fn build(self) -> crate::model::Capacity {
-                        self.build_enforcing_all_constraints()
-                    }
-        fn build_enforcing_all_constraints(self) -> crate::model::Capacity {
-            crate::model::Capacity {
-                read_capacity_units: self.read_capacity_units
-                ,
-                write_capacity_units: self.write_capacity_units
-                ,
-                capacity_units: self.capacity_units
-                ,
-            }
-        }
-    }
-    
-    
-    
-    
-}
-pub mod expected_attribute_map {
-    
-    #[allow(clippy::enum_variant_names)]
-                    #[derive(Debug, PartialEq)]
-                    pub enum ConstraintViolation {
-                        
-                        
-                        #[doc(hidden)] Value(::std::string::String, crate::model::expected_attribute_value::ConstraintViolation),
-                    }
-                    
-                    impl ::std::fmt::Display for ConstraintViolation {
-                        fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-                            match self {
-                                
-                                
-                                Self::Value(_, value_constraint_violation) => write!(f, "{}", value_constraint_violation),
-                            }
-                        }
-                    }
-                    
-                    impl ::std::error::Error for ConstraintViolation {}
-    impl ConstraintViolation {
-                            pub(crate) fn as_validation_exception_field(self, path: ::std::string::String) -> crate::model::ValidationExceptionField {
-        match self {
-            Self::Value(key, value_constraint_violation) => value_constraint_violation.as_validation_exception_field(path + "/" + key.as_str()),
-        }
-    }
-                        }
-    
-    
-    
-    
-}
-/// See [`ExpectedAttributeValue`](crate::model::ExpectedAttributeValue).
-pub mod expected_attribute_value {
-    
-    #[derive(::std::cmp::PartialEq, ::std::fmt::Debug)]
-    /// Holds one variant for each of the ways the builder can fail.
-    #[non_exhaustive]
-    #[allow(clippy::enum_variant_names)]
-                pub enum ConstraintViolation {
-        /// Constraint violation occurred building member `comparison_operator` when building `ExpectedAttributeValue`.
-        #[doc(hidden)]
-        ComparisonOperator(crate::model::comparison_operator::ConstraintViolation),
-    }
-    impl ::std::fmt::Display for ConstraintViolation {
-        fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-            match self {
-                ConstraintViolation::ComparisonOperator(_) => write!(f, "constraint violation occurred building member `comparison_operator` when building `ExpectedAttributeValue`"),
-            }
-        }
-    }
-    impl ::std::error::Error for ConstraintViolation { }
-    impl ConstraintViolation {
-                    pub(crate) fn as_validation_exception_field(self, path: ::std::string::String) -> crate::model::ValidationExceptionField {
-        match self {
-            ConstraintViolation::ComparisonOperator(inner) => inner.as_validation_exception_field(path + "/ComparisonOperator"),
-        }
-    }
-                }
-    impl ::std::convert::From<Builder> for crate::constrained::MaybeConstrained<crate::model::ExpectedAttributeValue> {
-                    fn from(builder: Builder) -> Self {
-                        Self::Unconstrained(builder)
-                    }
-                }
-    impl  ::std::convert::TryFrom<Builder > for crate::model::ExpectedAttributeValue {
-                    type Error = ConstraintViolation;
-    
-                    fn try_from(builder: Builder ) -> ::std::result::Result<Self, Self::Error> {
-                        builder.build()
-                    }
-                }
-    /// A builder for [`ExpectedAttributeValue`](crate::model::ExpectedAttributeValue).
-    #[derive(::std::clone::Clone, ::std::default::Default, ::std::fmt::Debug)]
-    pub struct Builder {
-        pub(crate) value: ::std::option::Option<crate::model::AttributeValue>,
-        pub(crate) exists: ::std::option::Option<bool>,
-        pub(crate) comparison_operator: ::std::option::Option<crate::constrained::MaybeConstrained<crate::model::ComparisonOperator>>,
-        pub(crate) attribute_value_list: ::std::option::Option<::std::vec::Vec::<crate::model::AttributeValue>>,
-    }
-    impl  Builder  {
-        #[allow(missing_docs)] // documentation missing in model
-        pub fn value(mut self, input: ::std::option::Option<crate::model::AttributeValue>) -> Self {
-            self.value =
-                input
-            ; self
-        }
-        #[allow(missing_docs)] // documentation missing in model
-        pub(crate) fn set_value(mut self, input: Option<impl ::std::convert::Into<crate::model::AttributeValue>>) -> Self {
-            self.value = input.map(|v| v.into());
-                            self
-        }
-        #[allow(missing_docs)] // documentation missing in model
-        pub fn exists(mut self, input: ::std::option::Option<bool>) -> Self {
-            self.exists =
-                input
-            ; self
-        }
-        #[allow(missing_docs)] // documentation missing in model
-        pub(crate) fn set_exists(mut self, input: Option<impl ::std::convert::Into<bool>>) -> Self {
-            self.exists = input.map(|v| v.into());
-                            self
-        }
-        #[allow(missing_docs)] // documentation missing in model
-        pub fn comparison_operator(mut self, input: ::std::option::Option<crate::model::ComparisonOperator>) -> Self {
-            self.comparison_operator =
-                input.map(#[allow(clippy::redundant_closure)] |v|
-                    crate::constrained::MaybeConstrained::Constrained(v)
-                )
-            ; self
-        }
-        #[allow(missing_docs)] // documentation missing in model
-        pub(crate) fn set_comparison_operator(mut self, input: Option<impl ::std::convert::Into<crate::constrained::MaybeConstrained<crate::model::ComparisonOperator>>>) -> Self {
-            self.comparison_operator = input.map(|v| v.into());
-                            self
-        }
-        #[allow(missing_docs)] // documentation missing in model
-        pub fn attribute_value_list(mut self, input: ::std::option::Option<::std::vec::Vec::<crate::model::AttributeValue>>) -> Self {
-            self.attribute_value_list =
-                input
-            ; self
-        }
-        #[allow(missing_docs)] // documentation missing in model
-        pub(crate) fn set_attribute_value_list(mut self, input: Option<impl ::std::convert::Into<::std::vec::Vec::<crate::model::AttributeValue>>>) -> Self {
-            self.attribute_value_list = input.map(|v| v.into());
-                            self
-        }
-        /// Consumes the builder and constructs a [`ExpectedAttributeValue`](crate::model::ExpectedAttributeValue).
-        /// 
-        /// The builder fails to construct a [`ExpectedAttributeValue`](crate::model::ExpectedAttributeValue) if a [`ConstraintViolation`] occurs.
-        /// 
-        pub fn build(self) -> Result<crate::model::ExpectedAttributeValue , ConstraintViolation> {
-                        self.build_enforcing_all_constraints()
-                    }
-        fn build_enforcing_all_constraints(self) -> Result<crate::model::ExpectedAttributeValue , ConstraintViolation> {
-            Ok(
-                crate::model::ExpectedAttributeValue {
-                    value: self.value
-                    ,
-                    exists: self.exists
-                    ,
-                    comparison_operator: self.comparison_operator
-                        .map(|v| match v {
-                                            crate::constrained::MaybeConstrained::Constrained(x) => Ok(x),
-                                            crate::constrained::MaybeConstrained::Unconstrained(x) => x.try_into(),
-                                        })
-                        .map(|res|
-                                        res.map_err(ConstraintViolation::ComparisonOperator)
-                                    )
-                                    .transpose()?
-                    ,
-                    attribute_value_list: self.attribute_value_list
                     ,
                 }
             )

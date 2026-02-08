@@ -76,6 +76,26 @@ Then build the Rust code:
 cargo build
 ```
 
+## Testing
+
+Run tests against the in-memory implementation:
+
+```bash
+cargo test
+```
+
+To validate against real DynamoDB Local:
+
+```bash
+# Start DynamoDB Local
+./scripts/run-dynamodb-local.sh
+
+# In another terminal, run tests
+cargo test
+```
+
+See [docs/TESTING_AGAINST_DYNAMODB_LOCAL.md](docs/TESTING_AGAINST_DYNAMODB_LOCAL.md) for details on writing tests that run against both backends.
+
 ## Running the standalone server
 
 ```bash

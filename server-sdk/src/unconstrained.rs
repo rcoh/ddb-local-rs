@@ -10,6 +10,70 @@
 
 
 
+
+
+pub(crate) mod expected_attribute_map_unconstrained {
+    
+    #[derive(Debug, Clone)]
+                    pub(crate) struct ExpectedAttributeMapUnconstrained(pub(crate) std::collections::HashMap<::std::string::String, crate::model::expected_attribute_value::Builder>);
+    
+                    impl From<ExpectedAttributeMapUnconstrained> for crate::constrained::MaybeConstrained<crate::constrained::expected_attribute_map_constrained::ExpectedAttributeMapConstrained> {
+                        fn from(value: ExpectedAttributeMapUnconstrained) -> Self {
+                            Self::Unconstrained(value)
+                        }
+                    }
+    impl std::convert::TryFrom<ExpectedAttributeMapUnconstrained> for crate::constrained::expected_attribute_map_constrained::ExpectedAttributeMapConstrained {
+        type Error = crate::model::expected_attribute_map::ConstraintViolation;
+        fn try_from(value: ExpectedAttributeMapUnconstrained) -> std::result::Result<Self, Self::Error> {
+            let res: ::std::result::Result<::std::collections::HashMap<::std::string::String, crate::model::ExpectedAttributeValue>, Self::Error> = value.0
+                                        .into_iter()
+                                        .map(|(k, v)| {
+                                            match crate::model::ExpectedAttributeValue::try_from(v) {
+                                                    Ok(v) => Ok((k, v)),
+                                                    Err(inner_constraint_violation) => Err(Self::Error::Value(k, inner_constraint_violation)),
+                                                }
+                                        })
+                                        .collect();
+                                    let hm = res?;
+            Ok(Self(hm))
+        }
+    }
+    
+    
+    
+    
+}
+pub(crate) mod attribute_updates_unconstrained {
+    
+    #[derive(Debug, Clone)]
+                    pub(crate) struct AttributeUpdatesUnconstrained(pub(crate) std::collections::HashMap<::std::string::String, crate::model::attribute_value_update::Builder>);
+    
+                    impl From<AttributeUpdatesUnconstrained> for crate::constrained::MaybeConstrained<crate::constrained::attribute_updates_constrained::AttributeUpdatesConstrained> {
+                        fn from(value: AttributeUpdatesUnconstrained) -> Self {
+                            Self::Unconstrained(value)
+                        }
+                    }
+    impl std::convert::TryFrom<AttributeUpdatesUnconstrained> for crate::constrained::attribute_updates_constrained::AttributeUpdatesConstrained {
+        type Error = crate::model::attribute_updates::ConstraintViolation;
+        fn try_from(value: AttributeUpdatesUnconstrained) -> std::result::Result<Self, Self::Error> {
+            let res: ::std::result::Result<::std::collections::HashMap<::std::string::String, crate::model::AttributeValueUpdate>, Self::Error> = value.0
+                                        .into_iter()
+                                        .map(|(k, v)| {
+                                            match crate::model::AttributeValueUpdate::try_from(v) {
+                                                    Ok(v) => Ok((k, v)),
+                                                    Err(inner_constraint_violation) => Err(Self::Error::Value(k, inner_constraint_violation)),
+                                                }
+                                        })
+                                        .collect();
+                                    let hm = res?;
+            Ok(Self(hm))
+        }
+    }
+    
+    
+    
+    
+}
 pub(crate) mod key_schema_unconstrained {
     
     #[derive(Debug, Clone)]
@@ -163,37 +227,6 @@ pub(crate) mod local_secondary_index_list_unconstrained {
                                         
                                         .map_err(|(idx, inner_violation)| Self::Error::Member(idx, inner_violation))?;
             Ok(Self(inner))
-        }
-    }
-    
-    
-    
-    
-}
-pub(crate) mod expected_attribute_map_unconstrained {
-    
-    #[derive(Debug, Clone)]
-                    pub(crate) struct ExpectedAttributeMapUnconstrained(pub(crate) std::collections::HashMap<::std::string::String, crate::model::expected_attribute_value::Builder>);
-    
-                    impl From<ExpectedAttributeMapUnconstrained> for crate::constrained::MaybeConstrained<crate::constrained::expected_attribute_map_constrained::ExpectedAttributeMapConstrained> {
-                        fn from(value: ExpectedAttributeMapUnconstrained) -> Self {
-                            Self::Unconstrained(value)
-                        }
-                    }
-    impl std::convert::TryFrom<ExpectedAttributeMapUnconstrained> for crate::constrained::expected_attribute_map_constrained::ExpectedAttributeMapConstrained {
-        type Error = crate::model::expected_attribute_map::ConstraintViolation;
-        fn try_from(value: ExpectedAttributeMapUnconstrained) -> std::result::Result<Self, Self::Error> {
-            let res: ::std::result::Result<::std::collections::HashMap<::std::string::String, crate::model::ExpectedAttributeValue>, Self::Error> = value.0
-                                        .into_iter()
-                                        .map(|(k, v)| {
-                                            match crate::model::ExpectedAttributeValue::try_from(v) {
-                                                    Ok(v) => Ok((k, v)),
-                                                    Err(inner_constraint_violation) => Err(Self::Error::Value(k, inner_constraint_violation)),
-                                                }
-                                        })
-                                        .collect();
-                                    let hm = res?;
-            Ok(Self(hm))
         }
     }
     

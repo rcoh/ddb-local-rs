@@ -20,6 +20,8 @@ type DdbService = BoxCloneService<hyper::Request<SdkBody>, hyper::Response<BoxBo
 
 #[derive(Clone)]
 struct InMemoryHttpClient {
+    // the service is not Sync for reasons I don't know.
+    // But _this_ needs to be sync for it to actually work.
     service: Arc<Mutex<DdbService>>,
 }
 
@@ -98,6 +100,11 @@ pub trait DynamoDb: Send + Sync {
         &self,
         input: input::CreateTableInput,
     ) -> Result<output::CreateTableOutput, error::CreateTableError>;
+
+    async fn update_item(
+        &self,
+        input: input::UpdateItemInput,
+    ) -> Result<output::UpdateItemOutput, error::UpdateItemError>;
 }
 
 macro_rules! build_service {
@@ -119,6 +126,7 @@ macro_rules! build_service {
         let get_backend = $backend.clone();
         let put_backend = $backend.clone();
         let create_table_backend = $backend.clone();
+        let update_backend = $backend.clone();
 
         DynamoDb20120810::builder(config)
             .get_item(move |input| {
@@ -132,6 +140,10 @@ macro_rules! build_service {
             .create_table(move |input| {
                 let backend = create_table_backend.clone();
                 async move { backend.create_table(input).await }
+            })
+            .update_item(move |input| {
+                let backend = update_backend.clone();
+                async move { backend.update_item(input).await }
             })
             .build()
             .expect("failed to build DynamoDB service")

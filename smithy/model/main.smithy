@@ -14,6 +14,12 @@ structure ArchivalSummary {
     ArchivalBackupArn: BackupArn
 }
 
+enum AttributeAction {
+    ADD = "ADD"
+    PUT = "PUT"
+    DELETE = "DELETE"
+}
+
 structure AttributeDefinition {
     @required
     AttributeName: KeySchemaAttributeName
@@ -37,6 +43,11 @@ list AttributeNameList {
     member: AttributeName
 }
 
+map AttributeUpdates {
+    key: AttributeName
+    value: AttributeValueUpdate
+}
+
 union AttributeValue {
     S: StringAttributeValue
     N: NumberAttributeValue
@@ -52,6 +63,11 @@ union AttributeValue {
 
 list AttributeValueList {
     member: AttributeValue
+}
+
+structure AttributeValueUpdate {
+    Value: AttributeValue
+    Action: AttributeAction
 }
 
 boolean Backfilling
@@ -177,6 +193,7 @@ service DynamoDB_20120810 {
         GetItem
         PutItem
         CreateTable
+        UpdateItem
     ]
 }
 
@@ -708,4 +725,56 @@ string TagValueString
 @error("client")
 structure TransactionConflictException {
     message: ErrorMessage
+}
+
+string UpdateExpression
+
+operation UpdateItem {
+    input: UpdateItemInput
+    output: UpdateItemOutput
+    errors: [
+        ValidationException
+        ConditionalCheckFailedException
+        InternalServerError
+        InvalidEndpointException
+        ItemCollectionSizeLimitExceededException
+        ProvisionedThroughputExceededException
+        RequestLimitExceeded
+        ResourceNotFoundException
+        TransactionConflictException
+    ]
+}
+
+structure UpdateItemInput {
+    @required
+    TableName: TableName
+
+    @required
+    Key: Key
+
+    AttributeUpdates: AttributeUpdates
+
+    Expected: ExpectedAttributeMap
+
+    ConditionalOperator: ConditionalOperator
+
+    ReturnValues: ReturnValue
+
+    ReturnConsumedCapacity: ReturnConsumedCapacity
+
+    ReturnItemCollectionMetrics: ReturnItemCollectionMetrics
+
+    UpdateExpression: UpdateExpression
+
+    ConditionExpression: ConditionExpression
+
+    ExpressionAttributeNames: ExpressionAttributeNameMap
+
+    ExpressionAttributeValues: ExpressionAttributeValueMap
+}
+
+structure UpdateItemOutput {
+    Attributes: AttributeMap
+    ConsumedCapacity: ConsumedCapacity
+    ItemCollectionMetrics: ItemCollectionMetrics
 }

@@ -1,4 +1,5 @@
 use clap::Parser;
+use std::net::SocketAddr;
 use tracing_subscriber::{EnvFilter, prelude::*};
 
 pub const DEFAULT_ADDRESS: &str = "127.0.0.1";
@@ -31,12 +32,17 @@ async fn main() {
 
     let bind = format!("{}:{}", args.address, args.port);
     let local = ddb_local::DynamoDbLocal::builder()
-        .bind_to_address(bind.parse().expect("unable to parse bind address"))
+        .bind_to_address(
+            bind.parse::<SocketAddr>()
+                .expect("unable to parse bind address"),
+        )
         .await
         .expect("failed to bind server");
 
     tracing::info!("server listening on {}", local.addr());
 
     // Keep the server running
-    tokio::signal::ctrl_c().await.expect("failed to listen for ctrl-c");
+    tokio::signal::ctrl_c()
+        .await
+        .expect("failed to listen for ctrl-c");
 }

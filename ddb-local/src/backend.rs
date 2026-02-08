@@ -64,6 +64,73 @@ pub struct InMemoryDynamoDb {
     store: Arc<Mutex<HashMap<String, TableStore>>>,
 }
 
+#[cfg(test)]
+#[derive(Debug, Clone, Copy)]
+pub enum TestBackendType {
+    InMemory,
+    DynamoDbLocal,
+}
+
+#[cfg(test)]
+pub struct TestBackend {
+    backend_type: TestBackendType,
+    in_memory: Option<InMemoryDynamoDb>,
+}
+
+#[cfg(test)]
+impl TestBackend {
+    pub fn create_table(&self, table_name: &str, key_schema: &[&str]) {
+        match self.backend_type {
+            TestBackendType::InMemory => {
+                self.in_memory.as_ref().unwrap().create_table(table_name, key_schema)
+            }
+            TestBackendType::DynamoDbLocal => {
+                // External DynamoDB Local handles table creation via client
+            }
+        }
+    }
+}
+
+#[cfg(test)]
+pub async fn create_test_client(backend_type: TestBackendType) -> (Client, TestBackend) {
+    match backend_type {
+        TestBackendType::InMemory => {
+            let backend = InMemoryDynamoDb::new();
+            let bound = crate::DynamoDbLocal::builder()
+                .with_backend(backend.clone())
+                .as_http_client();
+            let client = bound.client().await;
+            (
+                client,
+                TestBackend {
+                    backend_type,
+                    in_memory: Some(backend),
+                },
+            )
+        }
+        TestBackendType::DynamoDbLocal => {
+            let endpoint = std::env::var("DYNAMODB_LOCAL_ENDPOINT")
+                .unwrap_or_else(|_| "http://localhost:8000".to_string());
+            let config = aws_config::defaults(aws_config::BehaviorVersion::latest())
+                .endpoint_url(&endpoint)
+                .region("us-east-1")
+                .credentials_provider(aws_sdk_dynamodb::config::Credentials::new(
+                    "test", "test", None, None, "test",
+                ))
+                .load()
+                .await;
+            let client = Client::new(&config);
+            (
+                client,
+                TestBackend {
+                    backend_type,
+                    in_memory: None,
+                },
+            )
+        }
+    }
+}
+
 pub async fn create_in_memory_dynamodb_client() -> (Client, InMemoryDynamoDb) {
     let backend = InMemoryDynamoDb::new();
     let bound = crate::DynamoDbLocal::builder()
@@ -231,19 +298,75 @@ impl DynamoDb for InMemoryDynamoDb {
             )),
         }
     }
+
+    async fn update_item(
+        &self,
+        input: input::UpdateItemInput,
+    ) -> Result<output::UpdateItemOutput, error::UpdateItemError> {
+        let mut table = self.table(&input.table_name);
+
+        let table_store = match table.get_mut() {
+            Some(t) => t,
+            None => {
+                return Err(error::UpdateItemError::ResourceNotFoundException(
+                    error::ResourceNotFoundException::builder()
+                        .message(Some(format!("Table: {} not found", input.table_name)))
+                        .build(),
+                ));
+            }
+        };
+
+        let key = table_store.key_from_item(&input.key);
+        let item = table_store.items.entry(key).or_insert_with(|| input.key.clone());
+
+        // Handle update expression (SET operations only)
+        if let Some(update_expr) = &input.update_expression {
+            if let Some(attr_values) = &input.expression_attribute_values {
+                // Parse simple SET expressions like "SET #name = :val" or "SET attr = :val"
+                for set_clause in update_expr.split("SET").skip(1) {
+                    for assignment in set_clause.split(',') {
+                        let parts: Vec<&str> = assignment.split('=').map(|s| s.trim()).collect();
+                        if parts.len() == 2 {
+                            let attr_name = if parts[0].starts_with('#') {
+                                input.expression_attribute_names.as_ref()
+                                    .and_then(|names| names.get(parts[0]))
+                                    .map(|s| s.as_str())
+                                    .unwrap_or(parts[0])
+                            } else {
+                                parts[0]
+                            };
+                            
+                            if let Some(value) = attr_values.get(parts[1]) {
+                                item.insert(attr_name.to_string(), value.clone());
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        Ok(output::UpdateItemOutput {
+            attributes: None,
+            consumed_capacity: None,
+            item_collection_metrics: None,
+        })
+    }
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
     use aws_sdk_dynamodb::types::AttributeValue;
+    use rstest::rstest;
     use std::collections::HashMap;
 
+    #[rstest]
+    #[case::in_memory(TestBackendType::InMemory)]
+    #[case::dynamodb_local(TestBackendType::DynamoDbLocal)]
     #[tokio::test]
-    async fn test_put_and_get_item() {
-        tracing_subscriber::fmt::init();
-        let (client, store) = create_in_memory_dynamodb_client().await;
-        store.create_table("test-table", &["id"]);
+    async fn test_put_and_get_item(#[case] backend_type: TestBackendType) {
+        let (client, backend) = create_test_client(backend_type).await;
+        backend.create_table("test-table", &["id"]);
 
         // Put an item
         let mut item = HashMap::new();
@@ -649,7 +772,6 @@ mod tests {
     }
 
     #[tokio::test]
-    #[ignore = "update_item not supported yet"]
     async fn test_update_item_table_not_found() {
         let (client, _store) = create_in_memory_dynamodb_client().await;
         // Note: we don't insert the table, so it should not exist
@@ -674,6 +796,117 @@ mod tests {
             }
             other => panic!("Expected ResourceNotFoundException, got: {:?}", other),
         }
+    }
+
+    #[tokio::test]
+    async fn test_update_item_creates_if_not_exists() {
+        let (client, store) = create_in_memory_dynamodb_client().await;
+        store.create_table("test-table", &["id"]);
+
+        let mut key = HashMap::new();
+        key.insert("id".to_string(), AttributeValue::S("new-id".to_string()));
+
+        client
+            .update_item()
+            .table_name("test-table")
+            .set_key(Some(key.clone()))
+            .update_expression("SET #name = :val")
+            .expression_attribute_names("#name", "name")
+            .expression_attribute_values(":val", AttributeValue::S("test-name".to_string()))
+            .send()
+            .await
+            .unwrap();
+
+        let get_result = client
+            .get_item()
+            .table_name("test-table")
+            .set_key(Some(key))
+            .send()
+            .await
+            .unwrap();
+
+        assert!(get_result.item.is_some());
+        let item = get_result.item.unwrap();
+        assert_eq!(item.get("name").unwrap().as_s().unwrap(), "test-name");
+    }
+
+    #[tokio::test]
+    async fn test_update_item_modifies_existing() {
+        let (client, store) = create_in_memory_dynamodb_client().await;
+        store.create_table("test-table", &["id"]);
+
+        let mut item = HashMap::new();
+        item.insert("id".to_string(), AttributeValue::S("test-id".to_string()));
+        item.insert("name".to_string(), AttributeValue::S("old-name".to_string()));
+        item.insert("count".to_string(), AttributeValue::N("5".to_string()));
+
+        client
+            .put_item()
+            .table_name("test-table")
+            .set_item(Some(item.clone()))
+            .send()
+            .await
+            .unwrap();
+
+        let mut key = HashMap::new();
+        key.insert("id".to_string(), AttributeValue::S("test-id".to_string()));
+
+        client
+            .update_item()
+            .table_name("test-table")
+            .set_key(Some(key.clone()))
+            .update_expression("SET #name = :val")
+            .expression_attribute_names("#name", "name")
+            .expression_attribute_values(":val", AttributeValue::S("new-name".to_string()))
+            .send()
+            .await
+            .unwrap();
+
+        let get_result = client
+            .get_item()
+            .table_name("test-table")
+            .set_key(Some(key))
+            .send()
+            .await
+            .unwrap();
+
+        let updated_item = get_result.item.unwrap();
+        assert_eq!(updated_item.get("name").unwrap().as_s().unwrap(), "new-name");
+        assert_eq!(updated_item.get("count").unwrap().as_n().unwrap(), "5");
+    }
+
+    #[tokio::test]
+    async fn test_update_item_multiple_attributes() {
+        let (client, store) = create_in_memory_dynamodb_client().await;
+        store.create_table("test-table", &["id"]);
+
+        let mut key = HashMap::new();
+        key.insert("id".to_string(), AttributeValue::S("test-id".to_string()));
+
+        client
+            .update_item()
+            .table_name("test-table")
+            .set_key(Some(key.clone()))
+            .update_expression("SET #name = :name, #status = :status")
+            .expression_attribute_names("#name", "name")
+            .expression_attribute_names("#status", "status")
+            .expression_attribute_values(":name", AttributeValue::S("test-name".to_string()))
+            .expression_attribute_values(":status", AttributeValue::S("active".to_string()))
+            .send()
+            .await
+            .unwrap();
+
+        let get_result = client
+            .get_item()
+            .table_name("test-table")
+            .set_key(Some(key))
+            .send()
+            .await
+            .unwrap();
+
+        let item = get_result.item.unwrap();
+        assert_eq!(item.get("name").unwrap().as_s().unwrap(), "test-name");
+        assert_eq!(item.get("status").unwrap().as_s().unwrap(), "active");
     }
 
     #[tokio::test]

@@ -5,6 +5,8 @@ pub(crate) mod shape_get_item;
 
 pub(crate) mod shape_put_item;
 
+pub(crate) mod shape_update_item;
+
 pub(crate) mod shape_conditional_check_failed_exception;
 
 pub(crate) fn or_empty_doc(data: &[u8]) -> &[u8] {
@@ -39,11 +41,15 @@ pub(crate) mod shape_resource_not_found_exception;
 
 pub(crate) mod shape_transaction_conflict_exception;
 
+pub(crate) mod shape_update_item_output;
+
 pub(crate) mod shape_validation_exception;
 
 pub(crate) mod shape_attribute_definitions;
 
 pub(crate) mod shape_attribute_name_list;
+
+pub(crate) mod shape_attribute_updates;
 
 pub(crate) mod shape_expected_attribute_map;
 
@@ -72,6 +78,8 @@ pub(crate) mod shape_tag_list;
 pub(crate) mod shape_attribute_definition;
 
 pub(crate) mod shape_attribute_value;
+
+pub(crate) mod shape_attribute_value_update;
 
 pub(crate) mod shape_consumed_capacity;
 
