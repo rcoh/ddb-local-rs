@@ -6,7 +6,10 @@
       "module": "dynamodb_local_server_sdk",
       "moduleVersion": "0.1.0",
       "moduleDescription": "DynamoDB Local server SDK",
-      "moduleAuthors": ["Russell Cohen"]
+      "moduleAuthors": ["Russell Cohen"],
+      "codegen": {
+        "http-1x": true
+      }
     }
   }
 }

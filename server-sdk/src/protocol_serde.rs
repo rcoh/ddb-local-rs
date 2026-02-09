@@ -10,12 +10,12 @@ pub(crate) mod shape_update_item;
 pub(crate) mod shape_conditional_check_failed_exception;
 
 pub(crate) fn or_empty_doc(data: &[u8]) -> &[u8] {
-                    if data.is_empty() {
-                        b"{}"
-                    } else {
-                        data
-                    }
-                }
+    if data.is_empty() {
+        b"{}"
+    } else {
+        data
+    }
+}
 
 pub(crate) mod shape_create_table_output;
 
@@ -136,4 +136,3 @@ pub(crate) mod shape_non_key_attribute_name_list;
 pub(crate) mod shape_provisioned_throughput_override;
 
 pub(crate) mod shape_replica_global_secondary_index_description;
-

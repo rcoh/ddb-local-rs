@@ -12,7 +12,9 @@ pub enum UpdateItemError {
     #[allow(missing_docs)] // documentation missing in model
     InvalidEndpointException(crate::error::InvalidEndpointException),
     #[allow(missing_docs)] // documentation missing in model
-    ItemCollectionSizeLimitExceededException(crate::error::ItemCollectionSizeLimitExceededException),
+    ItemCollectionSizeLimitExceededException(
+        crate::error::ItemCollectionSizeLimitExceededException,
+    ),
     #[allow(missing_docs)] // documentation missing in model
     ProvisionedThroughputExceededException(crate::error::ProvisionedThroughputExceededException),
     #[allow(missing_docs)] // documentation missing in model
@@ -25,33 +27,15 @@ pub enum UpdateItemError {
 impl ::std::fmt::Display for UpdateItemError {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match &self {
-            UpdateItemError::ValidationException(_inner) =>
-            _inner.fmt(f)
-            ,
-            UpdateItemError::ConditionalCheckFailedException(_inner) =>
-            _inner.fmt(f)
-            ,
-            UpdateItemError::InternalServerError(_inner) =>
-            _inner.fmt(f)
-            ,
-            UpdateItemError::InvalidEndpointException(_inner) =>
-            _inner.fmt(f)
-            ,
-            UpdateItemError::ItemCollectionSizeLimitExceededException(_inner) =>
-            _inner.fmt(f)
-            ,
-            UpdateItemError::ProvisionedThroughputExceededException(_inner) =>
-            _inner.fmt(f)
-            ,
-            UpdateItemError::RequestLimitExceeded(_inner) =>
-            _inner.fmt(f)
-            ,
-            UpdateItemError::ResourceNotFoundException(_inner) =>
-            _inner.fmt(f)
-            ,
-            UpdateItemError::TransactionConflictException(_inner) =>
-            _inner.fmt(f)
-            ,
+            UpdateItemError::ValidationException(_inner) => _inner.fmt(f),
+            UpdateItemError::ConditionalCheckFailedException(_inner) => _inner.fmt(f),
+            UpdateItemError::InternalServerError(_inner) => _inner.fmt(f),
+            UpdateItemError::InvalidEndpointException(_inner) => _inner.fmt(f),
+            UpdateItemError::ItemCollectionSizeLimitExceededException(_inner) => _inner.fmt(f),
+            UpdateItemError::ProvisionedThroughputExceededException(_inner) => _inner.fmt(f),
+            UpdateItemError::RequestLimitExceeded(_inner) => _inner.fmt(f),
+            UpdateItemError::ResourceNotFoundException(_inner) => _inner.fmt(f),
+            UpdateItemError::TransactionConflictException(_inner) => _inner.fmt(f),
         }
     }
 }
@@ -74,11 +58,17 @@ impl UpdateItemError {
     }
     /// Returns `true` if the error kind is `UpdateItemError::ItemCollectionSizeLimitExceededException`.
     pub fn is_item_collection_size_limit_exceeded_exception(&self) -> bool {
-        matches!(&self, UpdateItemError::ItemCollectionSizeLimitExceededException(_))
+        matches!(
+            &self,
+            UpdateItemError::ItemCollectionSizeLimitExceededException(_)
+        )
     }
     /// Returns `true` if the error kind is `UpdateItemError::ProvisionedThroughputExceededException`.
     pub fn is_provisioned_throughput_exceeded_exception(&self) -> bool {
-        matches!(&self, UpdateItemError::ProvisionedThroughputExceededException(_))
+        matches!(
+            &self,
+            UpdateItemError::ProvisionedThroughputExceededException(_)
+        )
     }
     /// Returns `true` if the error kind is `UpdateItemError::RequestLimitExceeded`.
     pub fn is_request_limit_exceeded(&self) -> bool {
@@ -95,66 +85,30 @@ impl UpdateItemError {
     /// Returns the error name string by matching the correct variant.
     pub fn name(&self) -> &'static str {
         match &self {
-            UpdateItemError::ValidationException(_inner) =>
-            _inner.name()
-            ,
-            UpdateItemError::ConditionalCheckFailedException(_inner) =>
-            _inner.name()
-            ,
-            UpdateItemError::InternalServerError(_inner) =>
-            _inner.name()
-            ,
-            UpdateItemError::InvalidEndpointException(_inner) =>
-            _inner.name()
-            ,
-            UpdateItemError::ItemCollectionSizeLimitExceededException(_inner) =>
-            _inner.name()
-            ,
-            UpdateItemError::ProvisionedThroughputExceededException(_inner) =>
-            _inner.name()
-            ,
-            UpdateItemError::RequestLimitExceeded(_inner) =>
-            _inner.name()
-            ,
-            UpdateItemError::ResourceNotFoundException(_inner) =>
-            _inner.name()
-            ,
-            UpdateItemError::TransactionConflictException(_inner) =>
-            _inner.name()
-            ,
+            UpdateItemError::ValidationException(_inner) => _inner.name(),
+            UpdateItemError::ConditionalCheckFailedException(_inner) => _inner.name(),
+            UpdateItemError::InternalServerError(_inner) => _inner.name(),
+            UpdateItemError::InvalidEndpointException(_inner) => _inner.name(),
+            UpdateItemError::ItemCollectionSizeLimitExceededException(_inner) => _inner.name(),
+            UpdateItemError::ProvisionedThroughputExceededException(_inner) => _inner.name(),
+            UpdateItemError::RequestLimitExceeded(_inner) => _inner.name(),
+            UpdateItemError::ResourceNotFoundException(_inner) => _inner.name(),
+            UpdateItemError::TransactionConflictException(_inner) => _inner.name(),
         }
     }
 }
 impl ::std::error::Error for UpdateItemError {
     fn source(&self) -> std::option::Option<&(dyn ::std::error::Error + 'static)> {
         match &self {
-            UpdateItemError::ValidationException(_inner) =>
-            Some(_inner)
-            ,
-            UpdateItemError::ConditionalCheckFailedException(_inner) =>
-            Some(_inner)
-            ,
-            UpdateItemError::InternalServerError(_inner) =>
-            Some(_inner)
-            ,
-            UpdateItemError::InvalidEndpointException(_inner) =>
-            Some(_inner)
-            ,
-            UpdateItemError::ItemCollectionSizeLimitExceededException(_inner) =>
-            Some(_inner)
-            ,
-            UpdateItemError::ProvisionedThroughputExceededException(_inner) =>
-            Some(_inner)
-            ,
-            UpdateItemError::RequestLimitExceeded(_inner) =>
-            Some(_inner)
-            ,
-            UpdateItemError::ResourceNotFoundException(_inner) =>
-            Some(_inner)
-            ,
-            UpdateItemError::TransactionConflictException(_inner) =>
-            Some(_inner)
-            ,
+            UpdateItemError::ValidationException(_inner) => Some(_inner),
+            UpdateItemError::ConditionalCheckFailedException(_inner) => Some(_inner),
+            UpdateItemError::InternalServerError(_inner) => Some(_inner),
+            UpdateItemError::InvalidEndpointException(_inner) => Some(_inner),
+            UpdateItemError::ItemCollectionSizeLimitExceededException(_inner) => Some(_inner),
+            UpdateItemError::ProvisionedThroughputExceededException(_inner) => Some(_inner),
+            UpdateItemError::RequestLimitExceeded(_inner) => Some(_inner),
+            UpdateItemError::ResourceNotFoundException(_inner) => Some(_inner),
+            UpdateItemError::TransactionConflictException(_inner) => Some(_inner),
         }
     }
 }
@@ -163,8 +117,12 @@ impl ::std::convert::From<crate::error::ValidationException> for crate::error::U
         Self::ValidationException(variant)
     }
 }
-impl ::std::convert::From<crate::error::ConditionalCheckFailedException> for crate::error::UpdateItemError {
-    fn from(variant: crate::error::ConditionalCheckFailedException) -> crate::error::UpdateItemError {
+impl ::std::convert::From<crate::error::ConditionalCheckFailedException>
+    for crate::error::UpdateItemError
+{
+    fn from(
+        variant: crate::error::ConditionalCheckFailedException,
+    ) -> crate::error::UpdateItemError {
         Self::ConditionalCheckFailedException(variant)
     }
 }
@@ -173,18 +131,28 @@ impl ::std::convert::From<crate::error::InternalServerError> for crate::error::U
         Self::InternalServerError(variant)
     }
 }
-impl ::std::convert::From<crate::error::InvalidEndpointException> for crate::error::UpdateItemError {
+impl ::std::convert::From<crate::error::InvalidEndpointException>
+    for crate::error::UpdateItemError
+{
     fn from(variant: crate::error::InvalidEndpointException) -> crate::error::UpdateItemError {
         Self::InvalidEndpointException(variant)
     }
 }
-impl ::std::convert::From<crate::error::ItemCollectionSizeLimitExceededException> for crate::error::UpdateItemError {
-    fn from(variant: crate::error::ItemCollectionSizeLimitExceededException) -> crate::error::UpdateItemError {
+impl ::std::convert::From<crate::error::ItemCollectionSizeLimitExceededException>
+    for crate::error::UpdateItemError
+{
+    fn from(
+        variant: crate::error::ItemCollectionSizeLimitExceededException,
+    ) -> crate::error::UpdateItemError {
         Self::ItemCollectionSizeLimitExceededException(variant)
     }
 }
-impl ::std::convert::From<crate::error::ProvisionedThroughputExceededException> for crate::error::UpdateItemError {
-    fn from(variant: crate::error::ProvisionedThroughputExceededException) -> crate::error::UpdateItemError {
+impl ::std::convert::From<crate::error::ProvisionedThroughputExceededException>
+    for crate::error::UpdateItemError
+{
+    fn from(
+        variant: crate::error::ProvisionedThroughputExceededException,
+    ) -> crate::error::UpdateItemError {
         Self::ProvisionedThroughputExceededException(variant)
     }
 }
@@ -193,37 +161,45 @@ impl ::std::convert::From<crate::error::RequestLimitExceeded> for crate::error::
         Self::RequestLimitExceeded(variant)
     }
 }
-impl ::std::convert::From<crate::error::ResourceNotFoundException> for crate::error::UpdateItemError {
+impl ::std::convert::From<crate::error::ResourceNotFoundException>
+    for crate::error::UpdateItemError
+{
     fn from(variant: crate::error::ResourceNotFoundException) -> crate::error::UpdateItemError {
         Self::ResourceNotFoundException(variant)
     }
 }
-impl ::std::convert::From<crate::error::TransactionConflictException> for crate::error::UpdateItemError {
+impl ::std::convert::From<crate::error::TransactionConflictException>
+    for crate::error::UpdateItemError
+{
     fn from(variant: crate::error::TransactionConflictException) -> crate::error::UpdateItemError {
         Self::TransactionConflictException(variant)
     }
 }
 
 #[allow(missing_docs)] // documentation missing in model
-#[derive(::std::clone::Clone, ::std::cmp::Eq, ::std::cmp::PartialEq, ::std::fmt::Debug, ::std::hash::Hash)]
-pub struct TransactionConflictException  {
+#[derive(
+    ::std::clone::Clone, ::std::cmp::Eq, ::std::cmp::PartialEq, ::std::fmt::Debug, ::std::hash::Hash,
+)]
+pub struct TransactionConflictException {
     #[allow(missing_docs)] // documentation missing in model
     pub message: ::std::option::Option<::std::string::String>,
 }
 impl TransactionConflictException {
     /// Returns the error message.
-                        pub fn message(&self) -> ::std::option::Option<&str> { self.message.as_deref() }
+    pub fn message(&self) -> ::std::option::Option<&str> {
+        self.message.as_deref()
+    }
     #[doc(hidden)]
-                        /// Returns the error name.
-                        pub fn name(&self) -> &'static str {
-                            "TransactionConflictException"
-                        }
+    /// Returns the error name.
+    pub fn name(&self) -> &'static str {
+        "TransactionConflictException"
+    }
 }
 impl ::std::fmt::Display for TransactionConflictException {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         ::std::write!(f, "TransactionConflictException")?;
         if let ::std::option::Option::Some(inner_1) = &self.message {
-             {
+            {
                 ::std::write!(f, ": {inner_1}")?;
             }
         }
@@ -231,33 +207,37 @@ impl ::std::fmt::Display for TransactionConflictException {
     }
 }
 impl ::std::error::Error for TransactionConflictException {}
-impl  TransactionConflictException  {
+impl TransactionConflictException {
     /// Creates a new builder-style object to manufacture [`TransactionConflictException`](crate::error::TransactionConflictException).
-    pub fn builder() -> crate::error::transaction_conflict_exception::Builder  {
+    pub fn builder() -> crate::error::transaction_conflict_exception::Builder {
         crate::error::transaction_conflict_exception::Builder::default()
     }
 }
 
 #[allow(missing_docs)] // documentation missing in model
-#[derive(::std::clone::Clone, ::std::cmp::Eq, ::std::cmp::PartialEq, ::std::fmt::Debug, ::std::hash::Hash)]
-pub struct ResourceNotFoundException  {
+#[derive(
+    ::std::clone::Clone, ::std::cmp::Eq, ::std::cmp::PartialEq, ::std::fmt::Debug, ::std::hash::Hash,
+)]
+pub struct ResourceNotFoundException {
     #[allow(missing_docs)] // documentation missing in model
     pub message: ::std::option::Option<::std::string::String>,
 }
 impl ResourceNotFoundException {
     /// Returns the error message.
-                        pub fn message(&self) -> ::std::option::Option<&str> { self.message.as_deref() }
+    pub fn message(&self) -> ::std::option::Option<&str> {
+        self.message.as_deref()
+    }
     #[doc(hidden)]
-                        /// Returns the error name.
-                        pub fn name(&self) -> &'static str {
-                            "ResourceNotFoundException"
-                        }
+    /// Returns the error name.
+    pub fn name(&self) -> &'static str {
+        "ResourceNotFoundException"
+    }
 }
 impl ::std::fmt::Display for ResourceNotFoundException {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         ::std::write!(f, "ResourceNotFoundException")?;
         if let ::std::option::Option::Some(inner_2) = &self.message {
-             {
+            {
                 ::std::write!(f, ": {inner_2}")?;
             }
         }
@@ -265,33 +245,37 @@ impl ::std::fmt::Display for ResourceNotFoundException {
     }
 }
 impl ::std::error::Error for ResourceNotFoundException {}
-impl  ResourceNotFoundException  {
+impl ResourceNotFoundException {
     /// Creates a new builder-style object to manufacture [`ResourceNotFoundException`](crate::error::ResourceNotFoundException).
-    pub fn builder() -> crate::error::resource_not_found_exception::Builder  {
+    pub fn builder() -> crate::error::resource_not_found_exception::Builder {
         crate::error::resource_not_found_exception::Builder::default()
     }
 }
 
 #[allow(missing_docs)] // documentation missing in model
-#[derive(::std::clone::Clone, ::std::cmp::Eq, ::std::cmp::PartialEq, ::std::fmt::Debug, ::std::hash::Hash)]
-pub struct RequestLimitExceeded  {
+#[derive(
+    ::std::clone::Clone, ::std::cmp::Eq, ::std::cmp::PartialEq, ::std::fmt::Debug, ::std::hash::Hash,
+)]
+pub struct RequestLimitExceeded {
     #[allow(missing_docs)] // documentation missing in model
     pub message: ::std::option::Option<::std::string::String>,
 }
 impl RequestLimitExceeded {
     /// Returns the error message.
-                        pub fn message(&self) -> ::std::option::Option<&str> { self.message.as_deref() }
+    pub fn message(&self) -> ::std::option::Option<&str> {
+        self.message.as_deref()
+    }
     #[doc(hidden)]
-                        /// Returns the error name.
-                        pub fn name(&self) -> &'static str {
-                            "RequestLimitExceeded"
-                        }
+    /// Returns the error name.
+    pub fn name(&self) -> &'static str {
+        "RequestLimitExceeded"
+    }
 }
 impl ::std::fmt::Display for RequestLimitExceeded {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         ::std::write!(f, "RequestLimitExceeded")?;
         if let ::std::option::Option::Some(inner_3) = &self.message {
-             {
+            {
                 ::std::write!(f, ": {inner_3}")?;
             }
         }
@@ -299,33 +283,37 @@ impl ::std::fmt::Display for RequestLimitExceeded {
     }
 }
 impl ::std::error::Error for RequestLimitExceeded {}
-impl  RequestLimitExceeded  {
+impl RequestLimitExceeded {
     /// Creates a new builder-style object to manufacture [`RequestLimitExceeded`](crate::error::RequestLimitExceeded).
-    pub fn builder() -> crate::error::request_limit_exceeded::Builder  {
+    pub fn builder() -> crate::error::request_limit_exceeded::Builder {
         crate::error::request_limit_exceeded::Builder::default()
     }
 }
 
 #[allow(missing_docs)] // documentation missing in model
-#[derive(::std::clone::Clone, ::std::cmp::Eq, ::std::cmp::PartialEq, ::std::fmt::Debug, ::std::hash::Hash)]
-pub struct ProvisionedThroughputExceededException  {
+#[derive(
+    ::std::clone::Clone, ::std::cmp::Eq, ::std::cmp::PartialEq, ::std::fmt::Debug, ::std::hash::Hash,
+)]
+pub struct ProvisionedThroughputExceededException {
     #[allow(missing_docs)] // documentation missing in model
     pub message: ::std::option::Option<::std::string::String>,
 }
 impl ProvisionedThroughputExceededException {
     /// Returns the error message.
-                        pub fn message(&self) -> ::std::option::Option<&str> { self.message.as_deref() }
+    pub fn message(&self) -> ::std::option::Option<&str> {
+        self.message.as_deref()
+    }
     #[doc(hidden)]
-                        /// Returns the error name.
-                        pub fn name(&self) -> &'static str {
-                            "ProvisionedThroughputExceededException"
-                        }
+    /// Returns the error name.
+    pub fn name(&self) -> &'static str {
+        "ProvisionedThroughputExceededException"
+    }
 }
 impl ::std::fmt::Display for ProvisionedThroughputExceededException {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         ::std::write!(f, "ProvisionedThroughputExceededException")?;
         if let ::std::option::Option::Some(inner_4) = &self.message {
-             {
+            {
                 ::std::write!(f, ": {inner_4}")?;
             }
         }
@@ -333,33 +321,37 @@ impl ::std::fmt::Display for ProvisionedThroughputExceededException {
     }
 }
 impl ::std::error::Error for ProvisionedThroughputExceededException {}
-impl  ProvisionedThroughputExceededException  {
+impl ProvisionedThroughputExceededException {
     /// Creates a new builder-style object to manufacture [`ProvisionedThroughputExceededException`](crate::error::ProvisionedThroughputExceededException).
-    pub fn builder() -> crate::error::provisioned_throughput_exceeded_exception::Builder  {
+    pub fn builder() -> crate::error::provisioned_throughput_exceeded_exception::Builder {
         crate::error::provisioned_throughput_exceeded_exception::Builder::default()
     }
 }
 
 #[allow(missing_docs)] // documentation missing in model
-#[derive(::std::clone::Clone, ::std::cmp::Eq, ::std::cmp::PartialEq, ::std::fmt::Debug, ::std::hash::Hash)]
-pub struct ItemCollectionSizeLimitExceededException  {
+#[derive(
+    ::std::clone::Clone, ::std::cmp::Eq, ::std::cmp::PartialEq, ::std::fmt::Debug, ::std::hash::Hash,
+)]
+pub struct ItemCollectionSizeLimitExceededException {
     #[allow(missing_docs)] // documentation missing in model
     pub message: ::std::option::Option<::std::string::String>,
 }
 impl ItemCollectionSizeLimitExceededException {
     /// Returns the error message.
-                        pub fn message(&self) -> ::std::option::Option<&str> { self.message.as_deref() }
+    pub fn message(&self) -> ::std::option::Option<&str> {
+        self.message.as_deref()
+    }
     #[doc(hidden)]
-                        /// Returns the error name.
-                        pub fn name(&self) -> &'static str {
-                            "ItemCollectionSizeLimitExceededException"
-                        }
+    /// Returns the error name.
+    pub fn name(&self) -> &'static str {
+        "ItemCollectionSizeLimitExceededException"
+    }
 }
 impl ::std::fmt::Display for ItemCollectionSizeLimitExceededException {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         ::std::write!(f, "ItemCollectionSizeLimitExceededException")?;
         if let ::std::option::Option::Some(inner_5) = &self.message {
-             {
+            {
                 ::std::write!(f, ": {inner_5}")?;
             }
         }
@@ -367,33 +359,37 @@ impl ::std::fmt::Display for ItemCollectionSizeLimitExceededException {
     }
 }
 impl ::std::error::Error for ItemCollectionSizeLimitExceededException {}
-impl  ItemCollectionSizeLimitExceededException  {
+impl ItemCollectionSizeLimitExceededException {
     /// Creates a new builder-style object to manufacture [`ItemCollectionSizeLimitExceededException`](crate::error::ItemCollectionSizeLimitExceededException).
-    pub fn builder() -> crate::error::item_collection_size_limit_exceeded_exception::Builder  {
+    pub fn builder() -> crate::error::item_collection_size_limit_exceeded_exception::Builder {
         crate::error::item_collection_size_limit_exceeded_exception::Builder::default()
     }
 }
 
 #[allow(missing_docs)] // documentation missing in model
-#[derive(::std::clone::Clone, ::std::cmp::Eq, ::std::cmp::PartialEq, ::std::fmt::Debug, ::std::hash::Hash)]
-pub struct InvalidEndpointException  {
+#[derive(
+    ::std::clone::Clone, ::std::cmp::Eq, ::std::cmp::PartialEq, ::std::fmt::Debug, ::std::hash::Hash,
+)]
+pub struct InvalidEndpointException {
     #[allow(missing_docs)] // documentation missing in model
     pub message: ::std::option::Option<::std::string::String>,
 }
 impl InvalidEndpointException {
     /// Returns the error message.
-                        pub fn message(&self) -> ::std::option::Option<&str> { self.message.as_deref() }
+    pub fn message(&self) -> ::std::option::Option<&str> {
+        self.message.as_deref()
+    }
     #[doc(hidden)]
-                        /// Returns the error name.
-                        pub fn name(&self) -> &'static str {
-                            "InvalidEndpointException"
-                        }
+    /// Returns the error name.
+    pub fn name(&self) -> &'static str {
+        "InvalidEndpointException"
+    }
 }
 impl ::std::fmt::Display for InvalidEndpointException {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         ::std::write!(f, "InvalidEndpointException")?;
         if let ::std::option::Option::Some(inner_6) = &self.message {
-             {
+            {
                 ::std::write!(f, ": {inner_6}")?;
             }
         }
@@ -401,33 +397,37 @@ impl ::std::fmt::Display for InvalidEndpointException {
     }
 }
 impl ::std::error::Error for InvalidEndpointException {}
-impl  InvalidEndpointException  {
+impl InvalidEndpointException {
     /// Creates a new builder-style object to manufacture [`InvalidEndpointException`](crate::error::InvalidEndpointException).
-    pub fn builder() -> crate::error::invalid_endpoint_exception::Builder  {
+    pub fn builder() -> crate::error::invalid_endpoint_exception::Builder {
         crate::error::invalid_endpoint_exception::Builder::default()
     }
 }
 
 #[allow(missing_docs)] // documentation missing in model
-#[derive(::std::clone::Clone, ::std::cmp::Eq, ::std::cmp::PartialEq, ::std::fmt::Debug, ::std::hash::Hash)]
-pub struct InternalServerError  {
+#[derive(
+    ::std::clone::Clone, ::std::cmp::Eq, ::std::cmp::PartialEq, ::std::fmt::Debug, ::std::hash::Hash,
+)]
+pub struct InternalServerError {
     #[allow(missing_docs)] // documentation missing in model
     pub message: ::std::option::Option<::std::string::String>,
 }
 impl InternalServerError {
     /// Returns the error message.
-                        pub fn message(&self) -> ::std::option::Option<&str> { self.message.as_deref() }
+    pub fn message(&self) -> ::std::option::Option<&str> {
+        self.message.as_deref()
+    }
     #[doc(hidden)]
-                        /// Returns the error name.
-                        pub fn name(&self) -> &'static str {
-                            "InternalServerError"
-                        }
+    /// Returns the error name.
+    pub fn name(&self) -> &'static str {
+        "InternalServerError"
+    }
 }
 impl ::std::fmt::Display for InternalServerError {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         ::std::write!(f, "InternalServerError")?;
         if let ::std::option::Option::Some(inner_7) = &self.message {
-             {
+            {
                 ::std::write!(f, ": {inner_7}")?;
             }
         }
@@ -435,33 +435,37 @@ impl ::std::fmt::Display for InternalServerError {
     }
 }
 impl ::std::error::Error for InternalServerError {}
-impl  InternalServerError  {
+impl InternalServerError {
     /// Creates a new builder-style object to manufacture [`InternalServerError`](crate::error::InternalServerError).
-    pub fn builder() -> crate::error::internal_server_error::Builder  {
+    pub fn builder() -> crate::error::internal_server_error::Builder {
         crate::error::internal_server_error::Builder::default()
     }
 }
 
 #[allow(missing_docs)] // documentation missing in model
-#[derive(::std::clone::Clone, ::std::cmp::Eq, ::std::cmp::PartialEq, ::std::fmt::Debug, ::std::hash::Hash)]
-pub struct ConditionalCheckFailedException  {
+#[derive(
+    ::std::clone::Clone, ::std::cmp::Eq, ::std::cmp::PartialEq, ::std::fmt::Debug, ::std::hash::Hash,
+)]
+pub struct ConditionalCheckFailedException {
     #[allow(missing_docs)] // documentation missing in model
     pub message: ::std::option::Option<::std::string::String>,
 }
 impl ConditionalCheckFailedException {
     /// Returns the error message.
-                        pub fn message(&self) -> ::std::option::Option<&str> { self.message.as_deref() }
+    pub fn message(&self) -> ::std::option::Option<&str> {
+        self.message.as_deref()
+    }
     #[doc(hidden)]
-                        /// Returns the error name.
-                        pub fn name(&self) -> &'static str {
-                            "ConditionalCheckFailedException"
-                        }
+    /// Returns the error name.
+    pub fn name(&self) -> &'static str {
+        "ConditionalCheckFailedException"
+    }
 }
 impl ::std::fmt::Display for ConditionalCheckFailedException {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         ::std::write!(f, "ConditionalCheckFailedException")?;
         if let ::std::option::Option::Some(inner_8) = &self.message {
-             {
+            {
                 ::std::write!(f, ": {inner_8}")?;
             }
         }
@@ -469,22 +473,24 @@ impl ::std::fmt::Display for ConditionalCheckFailedException {
     }
 }
 impl ::std::error::Error for ConditionalCheckFailedException {}
-impl  ConditionalCheckFailedException  {
+impl ConditionalCheckFailedException {
     /// Creates a new builder-style object to manufacture [`ConditionalCheckFailedException`](crate::error::ConditionalCheckFailedException).
-    pub fn builder() -> crate::error::conditional_check_failed_exception::Builder  {
+    pub fn builder() -> crate::error::conditional_check_failed_exception::Builder {
         crate::error::conditional_check_failed_exception::Builder::default()
     }
 }
 
 /// A standard error for input validation failures. This should be thrown by services when a member of the input structure falls outside of the modeled or documented constraints.
-#[derive(::std::clone::Clone, ::std::cmp::Eq, ::std::cmp::PartialEq, ::std::fmt::Debug, ::std::hash::Hash)]
-pub struct ValidationException  {
+#[derive(
+    ::std::clone::Clone, ::std::cmp::Eq, ::std::cmp::PartialEq, ::std::fmt::Debug, ::std::hash::Hash,
+)]
+pub struct ValidationException {
     /// A summary of the validation failure.
     pub message: ::std::string::String,
     /// A list of specific failures encountered while validating the input. A member can appear in this list more than once if it failed to satisfy multiple constraints.
-    pub field_list: ::std::option::Option<::std::vec::Vec::<crate::model::ValidationExceptionField>>,
+    pub field_list: ::std::option::Option<::std::vec::Vec<crate::model::ValidationExceptionField>>,
 }
-impl  ValidationException  {
+impl ValidationException {
     /// A list of specific failures encountered while validating the input. A member can appear in this list more than once if it failed to satisfy multiple constraints.
     pub fn field_list(&self) -> ::std::option::Option<&[crate::model::ValidationExceptionField]> {
         self.field_list.as_deref()
@@ -492,26 +498,28 @@ impl  ValidationException  {
 }
 impl ValidationException {
     /// Returns the error message.
-                        pub fn message(&self) -> &str { &self.message }
+    pub fn message(&self) -> &str {
+        &self.message
+    }
     #[doc(hidden)]
-                        /// Returns the error name.
-                        pub fn name(&self) -> &'static str {
-                            "ValidationException"
-                        }
+    /// Returns the error name.
+    pub fn name(&self) -> &'static str {
+        "ValidationException"
+    }
 }
 impl ::std::fmt::Display for ValidationException {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         ::std::write!(f, "ValidationException")?;
-         {
+        {
             ::std::write!(f, ": {}", &self.message)?;
         }
         Ok(())
     }
 }
 impl ::std::error::Error for ValidationException {}
-impl  ValidationException  {
+impl ValidationException {
     /// Creates a new builder-style object to manufacture [`ValidationException`](crate::error::ValidationException).
-    pub fn builder() -> crate::error::validation_exception::Builder  {
+    pub fn builder() -> crate::error::validation_exception::Builder {
         crate::error::validation_exception::Builder::default()
     }
 }
@@ -534,21 +542,11 @@ pub enum CreateTableError {
 impl ::std::fmt::Display for CreateTableError {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match &self {
-            CreateTableError::ValidationException(_inner) =>
-            _inner.fmt(f)
-            ,
-            CreateTableError::InternalServerError(_inner) =>
-            _inner.fmt(f)
-            ,
-            CreateTableError::InvalidEndpointException(_inner) =>
-            _inner.fmt(f)
-            ,
-            CreateTableError::LimitExceededException(_inner) =>
-            _inner.fmt(f)
-            ,
-            CreateTableError::ResourceInUseException(_inner) =>
-            _inner.fmt(f)
-            ,
+            CreateTableError::ValidationException(_inner) => _inner.fmt(f),
+            CreateTableError::InternalServerError(_inner) => _inner.fmt(f),
+            CreateTableError::InvalidEndpointException(_inner) => _inner.fmt(f),
+            CreateTableError::LimitExceededException(_inner) => _inner.fmt(f),
+            CreateTableError::ResourceInUseException(_inner) => _inner.fmt(f),
         }
     }
 }
@@ -576,42 +574,22 @@ impl CreateTableError {
     /// Returns the error name string by matching the correct variant.
     pub fn name(&self) -> &'static str {
         match &self {
-            CreateTableError::ValidationException(_inner) =>
-            _inner.name()
-            ,
-            CreateTableError::InternalServerError(_inner) =>
-            _inner.name()
-            ,
-            CreateTableError::InvalidEndpointException(_inner) =>
-            _inner.name()
-            ,
-            CreateTableError::LimitExceededException(_inner) =>
-            _inner.name()
-            ,
-            CreateTableError::ResourceInUseException(_inner) =>
-            _inner.name()
-            ,
+            CreateTableError::ValidationException(_inner) => _inner.name(),
+            CreateTableError::InternalServerError(_inner) => _inner.name(),
+            CreateTableError::InvalidEndpointException(_inner) => _inner.name(),
+            CreateTableError::LimitExceededException(_inner) => _inner.name(),
+            CreateTableError::ResourceInUseException(_inner) => _inner.name(),
         }
     }
 }
 impl ::std::error::Error for CreateTableError {
     fn source(&self) -> std::option::Option<&(dyn ::std::error::Error + 'static)> {
         match &self {
-            CreateTableError::ValidationException(_inner) =>
-            Some(_inner)
-            ,
-            CreateTableError::InternalServerError(_inner) =>
-            Some(_inner)
-            ,
-            CreateTableError::InvalidEndpointException(_inner) =>
-            Some(_inner)
-            ,
-            CreateTableError::LimitExceededException(_inner) =>
-            Some(_inner)
-            ,
-            CreateTableError::ResourceInUseException(_inner) =>
-            Some(_inner)
-            ,
+            CreateTableError::ValidationException(_inner) => Some(_inner),
+            CreateTableError::InternalServerError(_inner) => Some(_inner),
+            CreateTableError::InvalidEndpointException(_inner) => Some(_inner),
+            CreateTableError::LimitExceededException(_inner) => Some(_inner),
+            CreateTableError::ResourceInUseException(_inner) => Some(_inner),
         }
     }
 }
@@ -625,7 +603,9 @@ impl ::std::convert::From<crate::error::InternalServerError> for crate::error::C
         Self::InternalServerError(variant)
     }
 }
-impl ::std::convert::From<crate::error::InvalidEndpointException> for crate::error::CreateTableError {
+impl ::std::convert::From<crate::error::InvalidEndpointException>
+    for crate::error::CreateTableError
+{
     fn from(variant: crate::error::InvalidEndpointException) -> crate::error::CreateTableError {
         Self::InvalidEndpointException(variant)
     }
@@ -642,25 +622,29 @@ impl ::std::convert::From<crate::error::ResourceInUseException> for crate::error
 }
 
 #[allow(missing_docs)] // documentation missing in model
-#[derive(::std::clone::Clone, ::std::cmp::Eq, ::std::cmp::PartialEq, ::std::fmt::Debug, ::std::hash::Hash)]
-pub struct ResourceInUseException  {
+#[derive(
+    ::std::clone::Clone, ::std::cmp::Eq, ::std::cmp::PartialEq, ::std::fmt::Debug, ::std::hash::Hash,
+)]
+pub struct ResourceInUseException {
     #[allow(missing_docs)] // documentation missing in model
     pub message: ::std::option::Option<::std::string::String>,
 }
 impl ResourceInUseException {
     /// Returns the error message.
-                        pub fn message(&self) -> ::std::option::Option<&str> { self.message.as_deref() }
+    pub fn message(&self) -> ::std::option::Option<&str> {
+        self.message.as_deref()
+    }
     #[doc(hidden)]
-                        /// Returns the error name.
-                        pub fn name(&self) -> &'static str {
-                            "ResourceInUseException"
-                        }
+    /// Returns the error name.
+    pub fn name(&self) -> &'static str {
+        "ResourceInUseException"
+    }
 }
 impl ::std::fmt::Display for ResourceInUseException {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         ::std::write!(f, "ResourceInUseException")?;
         if let ::std::option::Option::Some(inner_9) = &self.message {
-             {
+            {
                 ::std::write!(f, ": {inner_9}")?;
             }
         }
@@ -668,33 +652,37 @@ impl ::std::fmt::Display for ResourceInUseException {
     }
 }
 impl ::std::error::Error for ResourceInUseException {}
-impl  ResourceInUseException  {
+impl ResourceInUseException {
     /// Creates a new builder-style object to manufacture [`ResourceInUseException`](crate::error::ResourceInUseException).
-    pub fn builder() -> crate::error::resource_in_use_exception::Builder  {
+    pub fn builder() -> crate::error::resource_in_use_exception::Builder {
         crate::error::resource_in_use_exception::Builder::default()
     }
 }
 
 #[allow(missing_docs)] // documentation missing in model
-#[derive(::std::clone::Clone, ::std::cmp::Eq, ::std::cmp::PartialEq, ::std::fmt::Debug, ::std::hash::Hash)]
-pub struct LimitExceededException  {
+#[derive(
+    ::std::clone::Clone, ::std::cmp::Eq, ::std::cmp::PartialEq, ::std::fmt::Debug, ::std::hash::Hash,
+)]
+pub struct LimitExceededException {
     #[allow(missing_docs)] // documentation missing in model
     pub message: ::std::option::Option<::std::string::String>,
 }
 impl LimitExceededException {
     /// Returns the error message.
-                        pub fn message(&self) -> ::std::option::Option<&str> { self.message.as_deref() }
+    pub fn message(&self) -> ::std::option::Option<&str> {
+        self.message.as_deref()
+    }
     #[doc(hidden)]
-                        /// Returns the error name.
-                        pub fn name(&self) -> &'static str {
-                            "LimitExceededException"
-                        }
+    /// Returns the error name.
+    pub fn name(&self) -> &'static str {
+        "LimitExceededException"
+    }
 }
 impl ::std::fmt::Display for LimitExceededException {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         ::std::write!(f, "LimitExceededException")?;
         if let ::std::option::Option::Some(inner_10) = &self.message {
-             {
+            {
                 ::std::write!(f, ": {inner_10}")?;
             }
         }
@@ -702,9 +690,9 @@ impl ::std::fmt::Display for LimitExceededException {
     }
 }
 impl ::std::error::Error for LimitExceededException {}
-impl  LimitExceededException  {
+impl LimitExceededException {
     /// Creates a new builder-style object to manufacture [`LimitExceededException`](crate::error::LimitExceededException).
-    pub fn builder() -> crate::error::limit_exceeded_exception::Builder  {
+    pub fn builder() -> crate::error::limit_exceeded_exception::Builder {
         crate::error::limit_exceeded_exception::Builder::default()
     }
 }
@@ -722,7 +710,9 @@ pub enum PutItemError {
     #[allow(missing_docs)] // documentation missing in model
     InvalidEndpointException(crate::error::InvalidEndpointException),
     #[allow(missing_docs)] // documentation missing in model
-    ItemCollectionSizeLimitExceededException(crate::error::ItemCollectionSizeLimitExceededException),
+    ItemCollectionSizeLimitExceededException(
+        crate::error::ItemCollectionSizeLimitExceededException,
+    ),
     #[allow(missing_docs)] // documentation missing in model
     ProvisionedThroughputExceededException(crate::error::ProvisionedThroughputExceededException),
     #[allow(missing_docs)] // documentation missing in model
@@ -735,33 +725,15 @@ pub enum PutItemError {
 impl ::std::fmt::Display for PutItemError {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match &self {
-            PutItemError::ValidationException(_inner) =>
-            _inner.fmt(f)
-            ,
-            PutItemError::ConditionalCheckFailedException(_inner) =>
-            _inner.fmt(f)
-            ,
-            PutItemError::InternalServerError(_inner) =>
-            _inner.fmt(f)
-            ,
-            PutItemError::InvalidEndpointException(_inner) =>
-            _inner.fmt(f)
-            ,
-            PutItemError::ItemCollectionSizeLimitExceededException(_inner) =>
-            _inner.fmt(f)
-            ,
-            PutItemError::ProvisionedThroughputExceededException(_inner) =>
-            _inner.fmt(f)
-            ,
-            PutItemError::RequestLimitExceeded(_inner) =>
-            _inner.fmt(f)
-            ,
-            PutItemError::ResourceNotFoundException(_inner) =>
-            _inner.fmt(f)
-            ,
-            PutItemError::TransactionConflictException(_inner) =>
-            _inner.fmt(f)
-            ,
+            PutItemError::ValidationException(_inner) => _inner.fmt(f),
+            PutItemError::ConditionalCheckFailedException(_inner) => _inner.fmt(f),
+            PutItemError::InternalServerError(_inner) => _inner.fmt(f),
+            PutItemError::InvalidEndpointException(_inner) => _inner.fmt(f),
+            PutItemError::ItemCollectionSizeLimitExceededException(_inner) => _inner.fmt(f),
+            PutItemError::ProvisionedThroughputExceededException(_inner) => _inner.fmt(f),
+            PutItemError::RequestLimitExceeded(_inner) => _inner.fmt(f),
+            PutItemError::ResourceNotFoundException(_inner) => _inner.fmt(f),
+            PutItemError::TransactionConflictException(_inner) => _inner.fmt(f),
         }
     }
 }
@@ -784,11 +756,17 @@ impl PutItemError {
     }
     /// Returns `true` if the error kind is `PutItemError::ItemCollectionSizeLimitExceededException`.
     pub fn is_item_collection_size_limit_exceeded_exception(&self) -> bool {
-        matches!(&self, PutItemError::ItemCollectionSizeLimitExceededException(_))
+        matches!(
+            &self,
+            PutItemError::ItemCollectionSizeLimitExceededException(_)
+        )
     }
     /// Returns `true` if the error kind is `PutItemError::ProvisionedThroughputExceededException`.
     pub fn is_provisioned_throughput_exceeded_exception(&self) -> bool {
-        matches!(&self, PutItemError::ProvisionedThroughputExceededException(_))
+        matches!(
+            &self,
+            PutItemError::ProvisionedThroughputExceededException(_)
+        )
     }
     /// Returns `true` if the error kind is `PutItemError::RequestLimitExceeded`.
     pub fn is_request_limit_exceeded(&self) -> bool {
@@ -805,66 +783,30 @@ impl PutItemError {
     /// Returns the error name string by matching the correct variant.
     pub fn name(&self) -> &'static str {
         match &self {
-            PutItemError::ValidationException(_inner) =>
-            _inner.name()
-            ,
-            PutItemError::ConditionalCheckFailedException(_inner) =>
-            _inner.name()
-            ,
-            PutItemError::InternalServerError(_inner) =>
-            _inner.name()
-            ,
-            PutItemError::InvalidEndpointException(_inner) =>
-            _inner.name()
-            ,
-            PutItemError::ItemCollectionSizeLimitExceededException(_inner) =>
-            _inner.name()
-            ,
-            PutItemError::ProvisionedThroughputExceededException(_inner) =>
-            _inner.name()
-            ,
-            PutItemError::RequestLimitExceeded(_inner) =>
-            _inner.name()
-            ,
-            PutItemError::ResourceNotFoundException(_inner) =>
-            _inner.name()
-            ,
-            PutItemError::TransactionConflictException(_inner) =>
-            _inner.name()
-            ,
+            PutItemError::ValidationException(_inner) => _inner.name(),
+            PutItemError::ConditionalCheckFailedException(_inner) => _inner.name(),
+            PutItemError::InternalServerError(_inner) => _inner.name(),
+            PutItemError::InvalidEndpointException(_inner) => _inner.name(),
+            PutItemError::ItemCollectionSizeLimitExceededException(_inner) => _inner.name(),
+            PutItemError::ProvisionedThroughputExceededException(_inner) => _inner.name(),
+            PutItemError::RequestLimitExceeded(_inner) => _inner.name(),
+            PutItemError::ResourceNotFoundException(_inner) => _inner.name(),
+            PutItemError::TransactionConflictException(_inner) => _inner.name(),
         }
     }
 }
 impl ::std::error::Error for PutItemError {
     fn source(&self) -> std::option::Option<&(dyn ::std::error::Error + 'static)> {
         match &self {
-            PutItemError::ValidationException(_inner) =>
-            Some(_inner)
-            ,
-            PutItemError::ConditionalCheckFailedException(_inner) =>
-            Some(_inner)
-            ,
-            PutItemError::InternalServerError(_inner) =>
-            Some(_inner)
-            ,
-            PutItemError::InvalidEndpointException(_inner) =>
-            Some(_inner)
-            ,
-            PutItemError::ItemCollectionSizeLimitExceededException(_inner) =>
-            Some(_inner)
-            ,
-            PutItemError::ProvisionedThroughputExceededException(_inner) =>
-            Some(_inner)
-            ,
-            PutItemError::RequestLimitExceeded(_inner) =>
-            Some(_inner)
-            ,
-            PutItemError::ResourceNotFoundException(_inner) =>
-            Some(_inner)
-            ,
-            PutItemError::TransactionConflictException(_inner) =>
-            Some(_inner)
-            ,
+            PutItemError::ValidationException(_inner) => Some(_inner),
+            PutItemError::ConditionalCheckFailedException(_inner) => Some(_inner),
+            PutItemError::InternalServerError(_inner) => Some(_inner),
+            PutItemError::InvalidEndpointException(_inner) => Some(_inner),
+            PutItemError::ItemCollectionSizeLimitExceededException(_inner) => Some(_inner),
+            PutItemError::ProvisionedThroughputExceededException(_inner) => Some(_inner),
+            PutItemError::RequestLimitExceeded(_inner) => Some(_inner),
+            PutItemError::ResourceNotFoundException(_inner) => Some(_inner),
+            PutItemError::TransactionConflictException(_inner) => Some(_inner),
         }
     }
 }
@@ -873,7 +815,9 @@ impl ::std::convert::From<crate::error::ValidationException> for crate::error::P
         Self::ValidationException(variant)
     }
 }
-impl ::std::convert::From<crate::error::ConditionalCheckFailedException> for crate::error::PutItemError {
+impl ::std::convert::From<crate::error::ConditionalCheckFailedException>
+    for crate::error::PutItemError
+{
     fn from(variant: crate::error::ConditionalCheckFailedException) -> crate::error::PutItemError {
         Self::ConditionalCheckFailedException(variant)
     }
@@ -888,13 +832,21 @@ impl ::std::convert::From<crate::error::InvalidEndpointException> for crate::err
         Self::InvalidEndpointException(variant)
     }
 }
-impl ::std::convert::From<crate::error::ItemCollectionSizeLimitExceededException> for crate::error::PutItemError {
-    fn from(variant: crate::error::ItemCollectionSizeLimitExceededException) -> crate::error::PutItemError {
+impl ::std::convert::From<crate::error::ItemCollectionSizeLimitExceededException>
+    for crate::error::PutItemError
+{
+    fn from(
+        variant: crate::error::ItemCollectionSizeLimitExceededException,
+    ) -> crate::error::PutItemError {
         Self::ItemCollectionSizeLimitExceededException(variant)
     }
 }
-impl ::std::convert::From<crate::error::ProvisionedThroughputExceededException> for crate::error::PutItemError {
-    fn from(variant: crate::error::ProvisionedThroughputExceededException) -> crate::error::PutItemError {
+impl ::std::convert::From<crate::error::ProvisionedThroughputExceededException>
+    for crate::error::PutItemError
+{
+    fn from(
+        variant: crate::error::ProvisionedThroughputExceededException,
+    ) -> crate::error::PutItemError {
         Self::ProvisionedThroughputExceededException(variant)
     }
 }
@@ -908,7 +860,9 @@ impl ::std::convert::From<crate::error::ResourceNotFoundException> for crate::er
         Self::ResourceNotFoundException(variant)
     }
 }
-impl ::std::convert::From<crate::error::TransactionConflictException> for crate::error::PutItemError {
+impl ::std::convert::From<crate::error::TransactionConflictException>
+    for crate::error::PutItemError
+{
     fn from(variant: crate::error::TransactionConflictException) -> crate::error::PutItemError {
         Self::TransactionConflictException(variant)
     }
@@ -934,24 +888,12 @@ pub enum GetItemError {
 impl ::std::fmt::Display for GetItemError {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match &self {
-            GetItemError::ValidationException(_inner) =>
-            _inner.fmt(f)
-            ,
-            GetItemError::InternalServerError(_inner) =>
-            _inner.fmt(f)
-            ,
-            GetItemError::InvalidEndpointException(_inner) =>
-            _inner.fmt(f)
-            ,
-            GetItemError::ProvisionedThroughputExceededException(_inner) =>
-            _inner.fmt(f)
-            ,
-            GetItemError::RequestLimitExceeded(_inner) =>
-            _inner.fmt(f)
-            ,
-            GetItemError::ResourceNotFoundException(_inner) =>
-            _inner.fmt(f)
-            ,
+            GetItemError::ValidationException(_inner) => _inner.fmt(f),
+            GetItemError::InternalServerError(_inner) => _inner.fmt(f),
+            GetItemError::InvalidEndpointException(_inner) => _inner.fmt(f),
+            GetItemError::ProvisionedThroughputExceededException(_inner) => _inner.fmt(f),
+            GetItemError::RequestLimitExceeded(_inner) => _inner.fmt(f),
+            GetItemError::ResourceNotFoundException(_inner) => _inner.fmt(f),
         }
     }
 }
@@ -970,7 +912,10 @@ impl GetItemError {
     }
     /// Returns `true` if the error kind is `GetItemError::ProvisionedThroughputExceededException`.
     pub fn is_provisioned_throughput_exceeded_exception(&self) -> bool {
-        matches!(&self, GetItemError::ProvisionedThroughputExceededException(_))
+        matches!(
+            &self,
+            GetItemError::ProvisionedThroughputExceededException(_)
+        )
     }
     /// Returns `true` if the error kind is `GetItemError::RequestLimitExceeded`.
     pub fn is_request_limit_exceeded(&self) -> bool {
@@ -983,48 +928,24 @@ impl GetItemError {
     /// Returns the error name string by matching the correct variant.
     pub fn name(&self) -> &'static str {
         match &self {
-            GetItemError::ValidationException(_inner) =>
-            _inner.name()
-            ,
-            GetItemError::InternalServerError(_inner) =>
-            _inner.name()
-            ,
-            GetItemError::InvalidEndpointException(_inner) =>
-            _inner.name()
-            ,
-            GetItemError::ProvisionedThroughputExceededException(_inner) =>
-            _inner.name()
-            ,
-            GetItemError::RequestLimitExceeded(_inner) =>
-            _inner.name()
-            ,
-            GetItemError::ResourceNotFoundException(_inner) =>
-            _inner.name()
-            ,
+            GetItemError::ValidationException(_inner) => _inner.name(),
+            GetItemError::InternalServerError(_inner) => _inner.name(),
+            GetItemError::InvalidEndpointException(_inner) => _inner.name(),
+            GetItemError::ProvisionedThroughputExceededException(_inner) => _inner.name(),
+            GetItemError::RequestLimitExceeded(_inner) => _inner.name(),
+            GetItemError::ResourceNotFoundException(_inner) => _inner.name(),
         }
     }
 }
 impl ::std::error::Error for GetItemError {
     fn source(&self) -> std::option::Option<&(dyn ::std::error::Error + 'static)> {
         match &self {
-            GetItemError::ValidationException(_inner) =>
-            Some(_inner)
-            ,
-            GetItemError::InternalServerError(_inner) =>
-            Some(_inner)
-            ,
-            GetItemError::InvalidEndpointException(_inner) =>
-            Some(_inner)
-            ,
-            GetItemError::ProvisionedThroughputExceededException(_inner) =>
-            Some(_inner)
-            ,
-            GetItemError::RequestLimitExceeded(_inner) =>
-            Some(_inner)
-            ,
-            GetItemError::ResourceNotFoundException(_inner) =>
-            Some(_inner)
-            ,
+            GetItemError::ValidationException(_inner) => Some(_inner),
+            GetItemError::InternalServerError(_inner) => Some(_inner),
+            GetItemError::InvalidEndpointException(_inner) => Some(_inner),
+            GetItemError::ProvisionedThroughputExceededException(_inner) => Some(_inner),
+            GetItemError::RequestLimitExceeded(_inner) => Some(_inner),
+            GetItemError::ResourceNotFoundException(_inner) => Some(_inner),
         }
     }
 }
@@ -1043,8 +964,12 @@ impl ::std::convert::From<crate::error::InvalidEndpointException> for crate::err
         Self::InvalidEndpointException(variant)
     }
 }
-impl ::std::convert::From<crate::error::ProvisionedThroughputExceededException> for crate::error::GetItemError {
-    fn from(variant: crate::error::ProvisionedThroughputExceededException) -> crate::error::GetItemError {
+impl ::std::convert::From<crate::error::ProvisionedThroughputExceededException>
+    for crate::error::GetItemError
+{
+    fn from(
+        variant: crate::error::ProvisionedThroughputExceededException,
+    ) -> crate::error::GetItemError {
         Self::ProvisionedThroughputExceededException(variant)
     }
 }
@@ -1060,300 +985,256 @@ impl ::std::convert::From<crate::error::ResourceNotFoundException> for crate::er
 }
 /// See [`TransactionConflictException`](crate::error::TransactionConflictException).
 pub mod transaction_conflict_exception {
-    
-    impl ::std::convert::From<Builder > for crate::error::TransactionConflictException  {
-                    fn from(builder: Builder) -> Self {
-                        builder.build()
-                    }
-                }
+
+    impl ::std::convert::From<Builder> for crate::error::TransactionConflictException {
+        fn from(builder: Builder) -> Self {
+            builder.build()
+        }
+    }
     /// A builder for [`TransactionConflictException`](crate::error::TransactionConflictException).
     #[derive(::std::clone::Clone, ::std::default::Default, ::std::fmt::Debug)]
     pub struct Builder {
         pub(crate) message: ::std::option::Option<::std::string::String>,
     }
-    impl  Builder  {
+    impl Builder {
         #[allow(missing_docs)] // documentation missing in model
         pub fn message(mut self, input: ::std::option::Option<::std::string::String>) -> Self {
-            self.message =
-                input
-            ; self
+            self.message = input;
+            self
         }
         /// Consumes the builder and constructs a [`TransactionConflictException`](crate::error::TransactionConflictException).
         pub fn build(self) -> crate::error::TransactionConflictException {
-                        self.build_enforcing_all_constraints()
-                    }
+            self.build_enforcing_all_constraints()
+        }
         fn build_enforcing_all_constraints(self) -> crate::error::TransactionConflictException {
             crate::error::TransactionConflictException {
-                message: self.message
-                ,
+                message: self.message,
             }
         }
     }
-    
-    
-    
-    
 }
 /// See [`ResourceNotFoundException`](crate::error::ResourceNotFoundException).
 pub mod resource_not_found_exception {
-    
-    impl ::std::convert::From<Builder > for crate::error::ResourceNotFoundException  {
-                    fn from(builder: Builder) -> Self {
-                        builder.build()
-                    }
-                }
+
+    impl ::std::convert::From<Builder> for crate::error::ResourceNotFoundException {
+        fn from(builder: Builder) -> Self {
+            builder.build()
+        }
+    }
     /// A builder for [`ResourceNotFoundException`](crate::error::ResourceNotFoundException).
     #[derive(::std::clone::Clone, ::std::default::Default, ::std::fmt::Debug)]
     pub struct Builder {
         pub(crate) message: ::std::option::Option<::std::string::String>,
     }
-    impl  Builder  {
+    impl Builder {
         #[allow(missing_docs)] // documentation missing in model
         pub fn message(mut self, input: ::std::option::Option<::std::string::String>) -> Self {
-            self.message =
-                input
-            ; self
+            self.message = input;
+            self
         }
         /// Consumes the builder and constructs a [`ResourceNotFoundException`](crate::error::ResourceNotFoundException).
         pub fn build(self) -> crate::error::ResourceNotFoundException {
-                        self.build_enforcing_all_constraints()
-                    }
+            self.build_enforcing_all_constraints()
+        }
         fn build_enforcing_all_constraints(self) -> crate::error::ResourceNotFoundException {
             crate::error::ResourceNotFoundException {
-                message: self.message
-                ,
+                message: self.message,
             }
         }
     }
-    
-    
-    
-    
 }
 /// See [`RequestLimitExceeded`](crate::error::RequestLimitExceeded).
 pub mod request_limit_exceeded {
-    
-    impl ::std::convert::From<Builder > for crate::error::RequestLimitExceeded  {
-                    fn from(builder: Builder) -> Self {
-                        builder.build()
-                    }
-                }
+
+    impl ::std::convert::From<Builder> for crate::error::RequestLimitExceeded {
+        fn from(builder: Builder) -> Self {
+            builder.build()
+        }
+    }
     /// A builder for [`RequestLimitExceeded`](crate::error::RequestLimitExceeded).
     #[derive(::std::clone::Clone, ::std::default::Default, ::std::fmt::Debug)]
     pub struct Builder {
         pub(crate) message: ::std::option::Option<::std::string::String>,
     }
-    impl  Builder  {
+    impl Builder {
         #[allow(missing_docs)] // documentation missing in model
         pub fn message(mut self, input: ::std::option::Option<::std::string::String>) -> Self {
-            self.message =
-                input
-            ; self
+            self.message = input;
+            self
         }
         /// Consumes the builder and constructs a [`RequestLimitExceeded`](crate::error::RequestLimitExceeded).
         pub fn build(self) -> crate::error::RequestLimitExceeded {
-                        self.build_enforcing_all_constraints()
-                    }
+            self.build_enforcing_all_constraints()
+        }
         fn build_enforcing_all_constraints(self) -> crate::error::RequestLimitExceeded {
             crate::error::RequestLimitExceeded {
-                message: self.message
-                ,
+                message: self.message,
             }
         }
     }
-    
-    
-    
-    
 }
 /// See [`ProvisionedThroughputExceededException`](crate::error::ProvisionedThroughputExceededException).
 pub mod provisioned_throughput_exceeded_exception {
-    
-    impl ::std::convert::From<Builder > for crate::error::ProvisionedThroughputExceededException  {
-                    fn from(builder: Builder) -> Self {
-                        builder.build()
-                    }
-                }
+
+    impl ::std::convert::From<Builder> for crate::error::ProvisionedThroughputExceededException {
+        fn from(builder: Builder) -> Self {
+            builder.build()
+        }
+    }
     /// A builder for [`ProvisionedThroughputExceededException`](crate::error::ProvisionedThroughputExceededException).
     #[derive(::std::clone::Clone, ::std::default::Default, ::std::fmt::Debug)]
     pub struct Builder {
         pub(crate) message: ::std::option::Option<::std::string::String>,
     }
-    impl  Builder  {
+    impl Builder {
         #[allow(missing_docs)] // documentation missing in model
         pub fn message(mut self, input: ::std::option::Option<::std::string::String>) -> Self {
-            self.message =
-                input
-            ; self
+            self.message = input;
+            self
         }
         /// Consumes the builder and constructs a [`ProvisionedThroughputExceededException`](crate::error::ProvisionedThroughputExceededException).
         pub fn build(self) -> crate::error::ProvisionedThroughputExceededException {
-                        self.build_enforcing_all_constraints()
-                    }
-        fn build_enforcing_all_constraints(self) -> crate::error::ProvisionedThroughputExceededException {
+            self.build_enforcing_all_constraints()
+        }
+        fn build_enforcing_all_constraints(
+            self,
+        ) -> crate::error::ProvisionedThroughputExceededException {
             crate::error::ProvisionedThroughputExceededException {
-                message: self.message
-                ,
+                message: self.message,
             }
         }
     }
-    
-    
-    
-    
 }
 /// See [`ItemCollectionSizeLimitExceededException`](crate::error::ItemCollectionSizeLimitExceededException).
 pub mod item_collection_size_limit_exceeded_exception {
-    
-    impl ::std::convert::From<Builder > for crate::error::ItemCollectionSizeLimitExceededException  {
-                    fn from(builder: Builder) -> Self {
-                        builder.build()
-                    }
-                }
+
+    impl ::std::convert::From<Builder> for crate::error::ItemCollectionSizeLimitExceededException {
+        fn from(builder: Builder) -> Self {
+            builder.build()
+        }
+    }
     /// A builder for [`ItemCollectionSizeLimitExceededException`](crate::error::ItemCollectionSizeLimitExceededException).
     #[derive(::std::clone::Clone, ::std::default::Default, ::std::fmt::Debug)]
     pub struct Builder {
         pub(crate) message: ::std::option::Option<::std::string::String>,
     }
-    impl  Builder  {
+    impl Builder {
         #[allow(missing_docs)] // documentation missing in model
         pub fn message(mut self, input: ::std::option::Option<::std::string::String>) -> Self {
-            self.message =
-                input
-            ; self
+            self.message = input;
+            self
         }
         /// Consumes the builder and constructs a [`ItemCollectionSizeLimitExceededException`](crate::error::ItemCollectionSizeLimitExceededException).
         pub fn build(self) -> crate::error::ItemCollectionSizeLimitExceededException {
-                        self.build_enforcing_all_constraints()
-                    }
-        fn build_enforcing_all_constraints(self) -> crate::error::ItemCollectionSizeLimitExceededException {
+            self.build_enforcing_all_constraints()
+        }
+        fn build_enforcing_all_constraints(
+            self,
+        ) -> crate::error::ItemCollectionSizeLimitExceededException {
             crate::error::ItemCollectionSizeLimitExceededException {
-                message: self.message
-                ,
+                message: self.message,
             }
         }
     }
-    
-    
-    
-    
 }
 /// See [`InvalidEndpointException`](crate::error::InvalidEndpointException).
 pub mod invalid_endpoint_exception {
-    
-    impl ::std::convert::From<Builder > for crate::error::InvalidEndpointException  {
-                    fn from(builder: Builder) -> Self {
-                        builder.build()
-                    }
-                }
+
+    impl ::std::convert::From<Builder> for crate::error::InvalidEndpointException {
+        fn from(builder: Builder) -> Self {
+            builder.build()
+        }
+    }
     /// A builder for [`InvalidEndpointException`](crate::error::InvalidEndpointException).
     #[derive(::std::clone::Clone, ::std::default::Default, ::std::fmt::Debug)]
     pub struct Builder {
         pub(crate) message: ::std::option::Option<::std::string::String>,
     }
-    impl  Builder  {
+    impl Builder {
         #[allow(missing_docs)] // documentation missing in model
         pub fn message(mut self, input: ::std::option::Option<::std::string::String>) -> Self {
-            self.message =
-                input
-            ; self
+            self.message = input;
+            self
         }
         /// Consumes the builder and constructs a [`InvalidEndpointException`](crate::error::InvalidEndpointException).
         pub fn build(self) -> crate::error::InvalidEndpointException {
-                        self.build_enforcing_all_constraints()
-                    }
+            self.build_enforcing_all_constraints()
+        }
         fn build_enforcing_all_constraints(self) -> crate::error::InvalidEndpointException {
             crate::error::InvalidEndpointException {
-                message: self.message
-                ,
+                message: self.message,
             }
         }
     }
-    
-    
-    
-    
 }
 /// See [`InternalServerError`](crate::error::InternalServerError).
 pub mod internal_server_error {
-    
-    impl ::std::convert::From<Builder > for crate::error::InternalServerError  {
-                    fn from(builder: Builder) -> Self {
-                        builder.build()
-                    }
-                }
+
+    impl ::std::convert::From<Builder> for crate::error::InternalServerError {
+        fn from(builder: Builder) -> Self {
+            builder.build()
+        }
+    }
     /// A builder for [`InternalServerError`](crate::error::InternalServerError).
     #[derive(::std::clone::Clone, ::std::default::Default, ::std::fmt::Debug)]
     pub struct Builder {
         pub(crate) message: ::std::option::Option<::std::string::String>,
     }
-    impl  Builder  {
+    impl Builder {
         #[allow(missing_docs)] // documentation missing in model
         pub fn message(mut self, input: ::std::option::Option<::std::string::String>) -> Self {
-            self.message =
-                input
-            ; self
+            self.message = input;
+            self
         }
         /// Consumes the builder and constructs a [`InternalServerError`](crate::error::InternalServerError).
         pub fn build(self) -> crate::error::InternalServerError {
-                        self.build_enforcing_all_constraints()
-                    }
+            self.build_enforcing_all_constraints()
+        }
         fn build_enforcing_all_constraints(self) -> crate::error::InternalServerError {
             crate::error::InternalServerError {
-                message: self.message
-                ,
+                message: self.message,
             }
         }
     }
-    
-    
-    
-    
 }
 /// See [`ConditionalCheckFailedException`](crate::error::ConditionalCheckFailedException).
 pub mod conditional_check_failed_exception {
-    
-    impl ::std::convert::From<Builder > for crate::error::ConditionalCheckFailedException  {
-                    fn from(builder: Builder) -> Self {
-                        builder.build()
-                    }
-                }
+
+    impl ::std::convert::From<Builder> for crate::error::ConditionalCheckFailedException {
+        fn from(builder: Builder) -> Self {
+            builder.build()
+        }
+    }
     /// A builder for [`ConditionalCheckFailedException`](crate::error::ConditionalCheckFailedException).
     #[derive(::std::clone::Clone, ::std::default::Default, ::std::fmt::Debug)]
     pub struct Builder {
         pub(crate) message: ::std::option::Option<::std::string::String>,
     }
-    impl  Builder  {
+    impl Builder {
         #[allow(missing_docs)] // documentation missing in model
         pub fn message(mut self, input: ::std::option::Option<::std::string::String>) -> Self {
-            self.message =
-                input
-            ; self
+            self.message = input;
+            self
         }
         /// Consumes the builder and constructs a [`ConditionalCheckFailedException`](crate::error::ConditionalCheckFailedException).
         pub fn build(self) -> crate::error::ConditionalCheckFailedException {
-                        self.build_enforcing_all_constraints()
-                    }
+            self.build_enforcing_all_constraints()
+        }
         fn build_enforcing_all_constraints(self) -> crate::error::ConditionalCheckFailedException {
             crate::error::ConditionalCheckFailedException {
-                message: self.message
-                ,
+                message: self.message,
             }
         }
     }
-    
-    
-    
-    
 }
 /// See [`ValidationException`](crate::error::ValidationException).
 pub mod validation_exception {
-    
+
     #[derive(::std::cmp::PartialEq, ::std::fmt::Debug)]
     /// Holds one variant for each of the ways the builder can fail.
     #[non_exhaustive]
     #[allow(clippy::enum_variant_names)]
-                pub enum ConstraintViolation {
+    pub enum ConstraintViolation {
         /// `message` was not provided but it is required when building `ValidationException`.
         MissingMessage,
     }
@@ -1364,129 +1245,109 @@ pub mod validation_exception {
             }
         }
     }
-    impl ::std::error::Error for ConstraintViolation { }
-    impl  ::std::convert::TryFrom<Builder > for crate::error::ValidationException {
-                    type Error = ConstraintViolation;
-    
-                    fn try_from(builder: Builder ) -> ::std::result::Result<Self, Self::Error> {
-                        builder.build()
-                    }
-                }
+    impl ::std::error::Error for ConstraintViolation {}
+    impl ::std::convert::TryFrom<Builder> for crate::error::ValidationException {
+        type Error = ConstraintViolation;
+
+        fn try_from(builder: Builder) -> ::std::result::Result<Self, Self::Error> {
+            builder.build()
+        }
+    }
     /// A builder for [`ValidationException`](crate::error::ValidationException).
     #[derive(::std::clone::Clone, ::std::default::Default, ::std::fmt::Debug)]
     pub struct Builder {
         pub(crate) message: ::std::option::Option<::std::string::String>,
-        pub(crate) field_list: ::std::option::Option<::std::vec::Vec::<crate::model::ValidationExceptionField>>,
+        pub(crate) field_list:
+            ::std::option::Option<::std::vec::Vec<crate::model::ValidationExceptionField>>,
     }
-    impl  Builder  {
+    impl Builder {
         /// A summary of the validation failure.
         pub fn message(mut self, input: ::std::string::String) -> Self {
-            self.message =
-                Some(
-                    input
-                )
-            ; self
+            self.message = Some(input);
+            self
         }
         /// A list of specific failures encountered while validating the input. A member can appear in this list more than once if it failed to satisfy multiple constraints.
-        pub fn field_list(mut self, input: ::std::option::Option<::std::vec::Vec::<crate::model::ValidationExceptionField>>) -> Self {
-            self.field_list =
-                input
-            ; self
+        pub fn field_list(
+            mut self,
+            input: ::std::option::Option<::std::vec::Vec<crate::model::ValidationExceptionField>>,
+        ) -> Self {
+            self.field_list = input;
+            self
         }
         /// Consumes the builder and constructs a [`ValidationException`](crate::error::ValidationException).
-        /// 
+        ///
         /// The builder fails to construct a [`ValidationException`](crate::error::ValidationException) if a [`ConstraintViolation`] occurs.
-        /// 
-        pub fn build(self) -> Result<crate::error::ValidationException , ConstraintViolation> {
-                        self.build_enforcing_all_constraints()
-                    }
-        fn build_enforcing_all_constraints(self) -> Result<crate::error::ValidationException , ConstraintViolation> {
-            Ok(
-                crate::error::ValidationException {
-                    message: self.message
-                        .ok_or(ConstraintViolation::MissingMessage)?
-                    ,
-                    field_list: self.field_list
-                    ,
-                }
-            )
+        ///
+        pub fn build(self) -> Result<crate::error::ValidationException, ConstraintViolation> {
+            self.build_enforcing_all_constraints()
+        }
+        fn build_enforcing_all_constraints(
+            self,
+        ) -> Result<crate::error::ValidationException, ConstraintViolation> {
+            Ok(crate::error::ValidationException {
+                message: self.message.ok_or(ConstraintViolation::MissingMessage)?,
+                field_list: self.field_list,
+            })
         }
     }
-    
-    
-    
-    
 }
 /// See [`ResourceInUseException`](crate::error::ResourceInUseException).
 pub mod resource_in_use_exception {
-    
-    impl ::std::convert::From<Builder > for crate::error::ResourceInUseException  {
-                    fn from(builder: Builder) -> Self {
-                        builder.build()
-                    }
-                }
+
+    impl ::std::convert::From<Builder> for crate::error::ResourceInUseException {
+        fn from(builder: Builder) -> Self {
+            builder.build()
+        }
+    }
     /// A builder for [`ResourceInUseException`](crate::error::ResourceInUseException).
     #[derive(::std::clone::Clone, ::std::default::Default, ::std::fmt::Debug)]
     pub struct Builder {
         pub(crate) message: ::std::option::Option<::std::string::String>,
     }
-    impl  Builder  {
+    impl Builder {
         #[allow(missing_docs)] // documentation missing in model
         pub fn message(mut self, input: ::std::option::Option<::std::string::String>) -> Self {
-            self.message =
-                input
-            ; self
+            self.message = input;
+            self
         }
         /// Consumes the builder and constructs a [`ResourceInUseException`](crate::error::ResourceInUseException).
         pub fn build(self) -> crate::error::ResourceInUseException {
-                        self.build_enforcing_all_constraints()
-                    }
+            self.build_enforcing_all_constraints()
+        }
         fn build_enforcing_all_constraints(self) -> crate::error::ResourceInUseException {
             crate::error::ResourceInUseException {
-                message: self.message
-                ,
+                message: self.message,
             }
         }
     }
-    
-    
-    
-    
 }
 /// See [`LimitExceededException`](crate::error::LimitExceededException).
 pub mod limit_exceeded_exception {
-    
-    impl ::std::convert::From<Builder > for crate::error::LimitExceededException  {
-                    fn from(builder: Builder) -> Self {
-                        builder.build()
-                    }
-                }
+
+    impl ::std::convert::From<Builder> for crate::error::LimitExceededException {
+        fn from(builder: Builder) -> Self {
+            builder.build()
+        }
+    }
     /// A builder for [`LimitExceededException`](crate::error::LimitExceededException).
     #[derive(::std::clone::Clone, ::std::default::Default, ::std::fmt::Debug)]
     pub struct Builder {
         pub(crate) message: ::std::option::Option<::std::string::String>,
     }
-    impl  Builder  {
+    impl Builder {
         #[allow(missing_docs)] // documentation missing in model
         pub fn message(mut self, input: ::std::option::Option<::std::string::String>) -> Self {
-            self.message =
-                input
-            ; self
+            self.message = input;
+            self
         }
         /// Consumes the builder and constructs a [`LimitExceededException`](crate::error::LimitExceededException).
         pub fn build(self) -> crate::error::LimitExceededException {
-                        self.build_enforcing_all_constraints()
-                    }
+            self.build_enforcing_all_constraints()
+        }
         fn build_enforcing_all_constraints(self) -> crate::error::LimitExceededException {
             crate::error::LimitExceededException {
-                message: self.message
-                ,
+                message: self.message,
             }
         }
     }
-    
-    
-    
-    
 }
-

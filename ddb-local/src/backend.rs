@@ -81,9 +81,11 @@ pub struct TestBackend {
 impl TestBackend {
     pub fn create_table(&self, table_name: &str, key_schema: &[&str]) {
         match self.backend_type {
-            TestBackendType::InMemory => {
-                self.in_memory.as_ref().unwrap().create_table(table_name, key_schema)
-            }
+            TestBackendType::InMemory => self
+                .in_memory
+                .as_ref()
+                .unwrap()
+                .create_table(table_name, key_schema),
             TestBackendType::DynamoDbLocal => {
                 // External DynamoDB Local handles table creation via client
             }
@@ -317,7 +319,10 @@ impl DynamoDb for InMemoryDynamoDb {
         };
 
         let key = table_store.key_from_item(&input.key);
-        let item = table_store.items.entry(key).or_insert_with(|| input.key.clone());
+        let item = table_store
+            .items
+            .entry(key)
+            .or_insert_with(|| input.key.clone());
 
         // Handle update expression (SET operations only)
         if let Some(update_expr) = &input.update_expression {
@@ -328,14 +333,16 @@ impl DynamoDb for InMemoryDynamoDb {
                         let parts: Vec<&str> = assignment.split('=').map(|s| s.trim()).collect();
                         if parts.len() == 2 {
                             let attr_name = if parts[0].starts_with('#') {
-                                input.expression_attribute_names.as_ref()
+                                input
+                                    .expression_attribute_names
+                                    .as_ref()
                                     .and_then(|names| names.get(parts[0]))
                                     .map(|s| s.as_str())
                                     .unwrap_or(parts[0])
                             } else {
                                 parts[0]
                             };
-                            
+
                             if let Some(value) = attr_values.get(parts[1]) {
                                 item.insert(attr_name.to_string(), value.clone());
                             }
@@ -837,7 +844,10 @@ mod tests {
 
         let mut item = HashMap::new();
         item.insert("id".to_string(), AttributeValue::S("test-id".to_string()));
-        item.insert("name".to_string(), AttributeValue::S("old-name".to_string()));
+        item.insert(
+            "name".to_string(),
+            AttributeValue::S("old-name".to_string()),
+        );
         item.insert("count".to_string(), AttributeValue::N("5".to_string()));
 
         client
@@ -871,7 +881,10 @@ mod tests {
             .unwrap();
 
         let updated_item = get_result.item.unwrap();
-        assert_eq!(updated_item.get("name").unwrap().as_s().unwrap(), "new-name");
+        assert_eq!(
+            updated_item.get("name").unwrap().as_s().unwrap(),
+            "new-name"
+        );
         assert_eq!(updated_item.get("count").unwrap().as_n().unwrap(), "5");
     }
 

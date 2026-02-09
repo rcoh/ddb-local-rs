@@ -2,100 +2,115 @@
 #[allow(missing_docs)] // documentation missing in model
 pub struct UpdateItem;
 
-            impl ::aws_smithy_legacy_http_server::operation::OperationShape for UpdateItem {
-                const ID: ::aws_smithy_legacy_http_server::shape_id::ShapeId = ::aws_smithy_legacy_http_server::shape_id::ShapeId::new("com.amazonaws.dynamodb#UpdateItem", "com.amazonaws.dynamodb", "UpdateItem");
+impl ::aws_smithy_http_server::operation::OperationShape for UpdateItem {
+    const ID: ::aws_smithy_http_server::shape_id::ShapeId =
+        ::aws_smithy_http_server::shape_id::ShapeId::new(
+            "com.amazonaws.dynamodb#UpdateItem",
+            "com.amazonaws.dynamodb",
+            "UpdateItem",
+        );
 
-                type Input = crate::input::UpdateItemInput;
-                type Output = crate::output::UpdateItemOutput;
-                type Error = crate::error::UpdateItemError;
-            }
+    type Input = crate::input::UpdateItemInput;
+    type Output = crate::output::UpdateItemOutput;
+    type Error = crate::error::UpdateItemError;
+}
 
-            impl ::aws_smithy_legacy_http_server::instrumentation::sensitivity::Sensitivity for UpdateItem {
-                type RequestFmt = ::aws_smithy_legacy_http_server::instrumentation::sensitivity::DefaultRequestFmt;
-                type ResponseFmt = ::aws_smithy_legacy_http_server::instrumentation::sensitivity::DefaultResponseFmt;
+impl ::aws_smithy_http_server::instrumentation::sensitivity::Sensitivity for UpdateItem {
+    type RequestFmt = ::aws_smithy_http_server::instrumentation::sensitivity::DefaultRequestFmt;
+    type ResponseFmt = ::aws_smithy_http_server::instrumentation::sensitivity::DefaultResponseFmt;
 
-                fn request_fmt() -> Self::RequestFmt {
-                    ::aws_smithy_legacy_http_server::instrumentation::sensitivity::RequestFmt::new()
-                }
+    fn request_fmt() -> Self::RequestFmt {
+        ::aws_smithy_http_server::instrumentation::sensitivity::RequestFmt::new()
+    }
 
-                fn response_fmt() -> Self::ResponseFmt {
-                    ::aws_smithy_legacy_http_server::instrumentation::sensitivity::ResponseFmt::new()
-                }
-            }
-
+    fn response_fmt() -> Self::ResponseFmt {
+        ::aws_smithy_http_server::instrumentation::sensitivity::ResponseFmt::new()
+    }
+}
 
 #[allow(missing_docs)] // documentation missing in model
 pub struct CreateTable;
 
-            impl ::aws_smithy_legacy_http_server::operation::OperationShape for CreateTable {
-                const ID: ::aws_smithy_legacy_http_server::shape_id::ShapeId = ::aws_smithy_legacy_http_server::shape_id::ShapeId::new("com.amazonaws.dynamodb#CreateTable", "com.amazonaws.dynamodb", "CreateTable");
+impl ::aws_smithy_http_server::operation::OperationShape for CreateTable {
+    const ID: ::aws_smithy_http_server::shape_id::ShapeId =
+        ::aws_smithy_http_server::shape_id::ShapeId::new(
+            "com.amazonaws.dynamodb#CreateTable",
+            "com.amazonaws.dynamodb",
+            "CreateTable",
+        );
 
-                type Input = crate::input::CreateTableInput;
-                type Output = crate::output::CreateTableOutput;
-                type Error = crate::error::CreateTableError;
-            }
+    type Input = crate::input::CreateTableInput;
+    type Output = crate::output::CreateTableOutput;
+    type Error = crate::error::CreateTableError;
+}
 
-            impl ::aws_smithy_legacy_http_server::instrumentation::sensitivity::Sensitivity for CreateTable {
-                type RequestFmt = ::aws_smithy_legacy_http_server::instrumentation::sensitivity::DefaultRequestFmt;
-                type ResponseFmt = ::aws_smithy_legacy_http_server::instrumentation::sensitivity::DefaultResponseFmt;
+impl ::aws_smithy_http_server::instrumentation::sensitivity::Sensitivity for CreateTable {
+    type RequestFmt = ::aws_smithy_http_server::instrumentation::sensitivity::DefaultRequestFmt;
+    type ResponseFmt = ::aws_smithy_http_server::instrumentation::sensitivity::DefaultResponseFmt;
 
-                fn request_fmt() -> Self::RequestFmt {
-                    ::aws_smithy_legacy_http_server::instrumentation::sensitivity::RequestFmt::new()
-                }
+    fn request_fmt() -> Self::RequestFmt {
+        ::aws_smithy_http_server::instrumentation::sensitivity::RequestFmt::new()
+    }
 
-                fn response_fmt() -> Self::ResponseFmt {
-                    ::aws_smithy_legacy_http_server::instrumentation::sensitivity::ResponseFmt::new()
-                }
-            }
-
+    fn response_fmt() -> Self::ResponseFmt {
+        ::aws_smithy_http_server::instrumentation::sensitivity::ResponseFmt::new()
+    }
+}
 
 #[allow(missing_docs)] // documentation missing in model
 pub struct PutItem;
 
-            impl ::aws_smithy_legacy_http_server::operation::OperationShape for PutItem {
-                const ID: ::aws_smithy_legacy_http_server::shape_id::ShapeId = ::aws_smithy_legacy_http_server::shape_id::ShapeId::new("com.amazonaws.dynamodb#PutItem", "com.amazonaws.dynamodb", "PutItem");
+impl ::aws_smithy_http_server::operation::OperationShape for PutItem {
+    const ID: ::aws_smithy_http_server::shape_id::ShapeId =
+        ::aws_smithy_http_server::shape_id::ShapeId::new(
+            "com.amazonaws.dynamodb#PutItem",
+            "com.amazonaws.dynamodb",
+            "PutItem",
+        );
 
-                type Input = crate::input::PutItemInput;
-                type Output = crate::output::PutItemOutput;
-                type Error = crate::error::PutItemError;
-            }
+    type Input = crate::input::PutItemInput;
+    type Output = crate::output::PutItemOutput;
+    type Error = crate::error::PutItemError;
+}
 
-            impl ::aws_smithy_legacy_http_server::instrumentation::sensitivity::Sensitivity for PutItem {
-                type RequestFmt = ::aws_smithy_legacy_http_server::instrumentation::sensitivity::DefaultRequestFmt;
-                type ResponseFmt = ::aws_smithy_legacy_http_server::instrumentation::sensitivity::DefaultResponseFmt;
+impl ::aws_smithy_http_server::instrumentation::sensitivity::Sensitivity for PutItem {
+    type RequestFmt = ::aws_smithy_http_server::instrumentation::sensitivity::DefaultRequestFmt;
+    type ResponseFmt = ::aws_smithy_http_server::instrumentation::sensitivity::DefaultResponseFmt;
 
-                fn request_fmt() -> Self::RequestFmt {
-                    ::aws_smithy_legacy_http_server::instrumentation::sensitivity::RequestFmt::new()
-                }
+    fn request_fmt() -> Self::RequestFmt {
+        ::aws_smithy_http_server::instrumentation::sensitivity::RequestFmt::new()
+    }
 
-                fn response_fmt() -> Self::ResponseFmt {
-                    ::aws_smithy_legacy_http_server::instrumentation::sensitivity::ResponseFmt::new()
-                }
-            }
-
+    fn response_fmt() -> Self::ResponseFmt {
+        ::aws_smithy_http_server::instrumentation::sensitivity::ResponseFmt::new()
+    }
+}
 
 #[allow(missing_docs)] // documentation missing in model
 pub struct GetItem;
 
-            impl ::aws_smithy_legacy_http_server::operation::OperationShape for GetItem {
-                const ID: ::aws_smithy_legacy_http_server::shape_id::ShapeId = ::aws_smithy_legacy_http_server::shape_id::ShapeId::new("com.amazonaws.dynamodb#GetItem", "com.amazonaws.dynamodb", "GetItem");
+impl ::aws_smithy_http_server::operation::OperationShape for GetItem {
+    const ID: ::aws_smithy_http_server::shape_id::ShapeId =
+        ::aws_smithy_http_server::shape_id::ShapeId::new(
+            "com.amazonaws.dynamodb#GetItem",
+            "com.amazonaws.dynamodb",
+            "GetItem",
+        );
 
-                type Input = crate::input::GetItemInput;
-                type Output = crate::output::GetItemOutput;
-                type Error = crate::error::GetItemError;
-            }
+    type Input = crate::input::GetItemInput;
+    type Output = crate::output::GetItemOutput;
+    type Error = crate::error::GetItemError;
+}
 
-            impl ::aws_smithy_legacy_http_server::instrumentation::sensitivity::Sensitivity for GetItem {
-                type RequestFmt = ::aws_smithy_legacy_http_server::instrumentation::sensitivity::DefaultRequestFmt;
-                type ResponseFmt = ::aws_smithy_legacy_http_server::instrumentation::sensitivity::DefaultResponseFmt;
+impl ::aws_smithy_http_server::instrumentation::sensitivity::Sensitivity for GetItem {
+    type RequestFmt = ::aws_smithy_http_server::instrumentation::sensitivity::DefaultRequestFmt;
+    type ResponseFmt = ::aws_smithy_http_server::instrumentation::sensitivity::DefaultResponseFmt;
 
-                fn request_fmt() -> Self::RequestFmt {
-                    ::aws_smithy_legacy_http_server::instrumentation::sensitivity::RequestFmt::new()
-                }
+    fn request_fmt() -> Self::RequestFmt {
+        ::aws_smithy_http_server::instrumentation::sensitivity::RequestFmt::new()
+    }
 
-                fn response_fmt() -> Self::ResponseFmt {
-                    ::aws_smithy_legacy_http_server::instrumentation::sensitivity::ResponseFmt::new()
-                }
-            }
-
-
+    fn response_fmt() -> Self::ResponseFmt {
+        ::aws_smithy_http_server::instrumentation::sensitivity::ResponseFmt::new()
+    }
+}
