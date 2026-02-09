@@ -8,6 +8,7 @@ use aws_smithy_types::body::SdkBody;
 use dynamodb_local_server_sdk::server::body::BoxBody;
 use dynamodb_local_server_sdk::{error, input, output};
 use http::Uri;
+use http_body_util::BodyExt;
 use std::convert::Infallible;
 use std::sync::Arc;
 use tokio::sync::Mutex;
@@ -16,7 +17,7 @@ use tower::util::BoxCloneService;
 
 pub mod backend;
 
-type DdbService = BoxCloneService<hyper::Request<SdkBody>, hyper::Response<BoxBody>, Infallible>;
+type DdbService = BoxCloneService<http::Request<SdkBody>, http::Response<BoxBody>, Infallible>;
 
 #[derive(Clone)]
 struct InMemoryHttpClient {
@@ -46,18 +47,18 @@ impl HttpConnector for InMemoryHttpClient {
     ) -> aws_smithy_runtime_api::client::http::HttpConnectorFuture {
         let service = self.service.clone();
         let fut = async move {
-            // Convert HttpRequest to hyper::Request
-            let mut hyper_req = request.try_into_http02x().unwrap();
+            // Convert HttpRequest to http::Request
+            let mut http_req = request.try_into_http1x().unwrap();
             // not sure why needed, but smithy rejects otherwise
-            *hyper_req.uri_mut() = Uri::from_static("/");
+            *http_req.uri_mut() = Uri::from_static("/");
 
             // Call the service
             let mut svc = service.lock().await;
-            let response = svc.call(hyper_req).await.unwrap();
+            let response = svc.call(http_req).await.unwrap();
 
-            // Convert hyper::Response to HttpResponse
+            // Convert http::Response to HttpResponse
             let (parts, body) = response.into_parts();
-            let body_bytes = hyper::body::to_bytes(body).await.unwrap();
+            let body_bytes = body.collect().await.unwrap().to_bytes();
 
             let http_response = HttpResponse::new(
                 parts.status.into(),
@@ -178,11 +179,10 @@ impl DynamoDbLocalBuilder {
         let addr = listener.local_addr()?;
 
         tokio::spawn(async move {
-            let make_service = app.into_make_service_with_connect_info::<std::net::SocketAddr>();
-            let server = hyper::Server::from_tcp(listener.into_std().unwrap())
-                .unwrap()
-                .serve(make_service);
-            server.await.unwrap();
+            let make_service = app.into_make_service();
+            dynamodb_local_server_sdk::serve(listener, make_service)
+                .await
+                .unwrap();
         });
 
         Ok(BoundDynamoDbLocal {
@@ -203,11 +203,10 @@ impl DynamoDbLocalBuilder {
         let addr = listener.local_addr()?;
 
         tokio::spawn(async move {
-            let make_service = app.into_make_service_with_connect_info::<std::net::SocketAddr>();
-            let server = hyper::Server::from_tcp(listener.into_std().unwrap())
-                .unwrap()
-                .serve(make_service);
-            server.await.unwrap();
+            let make_service = app.into_make_service();
+            dynamodb_local_server_sdk::serve(listener, make_service)
+                .await
+                .unwrap();
         });
 
         Ok(BoundDynamoDbLocal {
